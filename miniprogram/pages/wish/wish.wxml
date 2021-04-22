@@ -1,0 +1,38 @@
+<!--miniprogram/pages/wish/wish.wxml-->
+<cu-custom isBack="{{true}}" bg-color="bg-white">
+  <view slot="content">家庭心愿</view>
+</cu-custom>
+
+<image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
+
+<com-nodata wx:if="{{!loading && list.length == 0}}" content="想吃一次火锅，想要一个拥抱···生活里的幸福就是小小的心愿都成真"></com-nodata>
+<scroll-view scroll-y wx:if="{{!loading && list.length > 0}}">
+  <view class="padding-lg">
+    <view class="margin-bottom padding bg-white radius" wx:for="{{list}}" wx:key
+      wx:for-index="index" data-item="{{item}}" bindtap="wishDetail" bindlongtap="deleteWish">
+      <view class="{{item.achieve ? 'text-linethrough': ''}} margin-tb-sm">
+        {{item.createDate}} :{{item.value}}
+      </view>
+      <view wx:if="{{item.achieveDate}}" class="text-right text-gray text-sm">
+        于{{item.achieveDate}}完成
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<view class="cu-modal {{showModal ? 'show': '' }}" bindtap="toggleModal">
+  <view class="cu-dialog bg-white padding-lr" catchtap>
+    <view class="text-lg title margin-tb">心愿</view>
+    <view class="padding margin shadow-warp radius">
+      <input maxlength="80" value="{{inputValue}}" focus="{{showModal}}" bindinput="input"
+        placeholder="请输入心愿（80字符以内）"></input>
+    </view>
+    <button class="margin-tb radius bg-{{ColorList[theme].name}}" disabled="{{btnDisabled}}"
+      bindtap="checkMsg">发送</button>
+  </view>
+</view>
+
+<view class="add-btn padding-lg bg-gradual-{{ColorList[theme].name}} shadow-blur round flex justify-center align-center"
+  bindtap="toggleModal">
+  <text class="cuIcon-add text-xxl"></text>
+</view>

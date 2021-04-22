@@ -1,0 +1,37 @@
+/* miniprogram/pages/setting/setting.wxss */
+
+.bg-item{
+  width: 150rpx;
+  height: 300rpx;
+  position: relative;
+}
+
+.bg-item image{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.bg-item .img1{
+  width: 80rpx;
+  height: 56rpx;
+}
+.bg-item .img2{
+  width: 54rpx;
+  height: 74rpx;
+}
+.bg-item .img3{
+  width: 54rpx;
+  height: 54rpx;
+}
+.bg-item .img4{
+  width: 80rpx;
+  height: 95rpx;
+}
+
+.bg-item-check{
+  position: absolute;
+  right: 5rpx;
+  top: 5rpx;
+  z-index: 9;
+}

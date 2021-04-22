@@ -1,0 +1,5 @@
+<!--components/com-nodata/com-nodata.wxml-->
+<view wx:if="{{show}}" class="nodata-note padding-lg text-grey">
+  <text class="">{{content}}</text>
+  <text class="close cuIcon-roundclosefill text-xl" bindtap="close"></text>
+</view>

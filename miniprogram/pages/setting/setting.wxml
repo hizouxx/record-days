@@ -1,0 +1,76 @@
+<!--miniprogram/pages/setting/setting.wxml-->
+<cu-custom isBack="{{true}}" bg-color="bg-white">
+  <view slot="content">设置</view>
+</cu-custom>
+
+<scroll-view class="padding-bottom-lg">
+  <view class="margin-lr padding-top padding-bottom-sm text-gray">桌面布局</view>
+  <view class="margin-lr padding-lr bg-white radius">
+    <view class="padding-tb flex justify-between align-center" data-layout="{{3}}" bindtap="selectLayout">
+      <text class="text-black">三列布局</text>
+      <text
+        class="cuIcon-{{dragColumnsSize === 3 ? 'radiobox': 'round'}} text-xl text-grey"></text>
+    </view>
+    <view class="padding-tb flex justify-between align-center solid-top" data-layout="{{4}}" bindtap="selectLayout">
+      <text class="text-black">四列布局</text>
+      <text
+        class="cuIcon-{{dragColumnsSize === 4 ? 'radiobox': 'round'}} text-xl text-grey"></text>
+    </view>
+  </view>
+
+  <view class="margin-lr padding-top padding-bottom-sm text-gray">主题色</view>
+  <view class="margin-lr flex justify-between align-center bg-white radius padding-lr text-grey" bindtap="toggleModal">
+    <view class="padding-tb text-black">选择主题色</view>
+    <view class="cuIcon-right"></view>
+  </view>
+
+  <view class="margin-lr padding-top padding-bottom-sm text-gray">桌面背景</view>
+  <view class="margin-lr radius bg-white">
+    <view class="flex justify-between padding">
+      <view class="bg-item radius bg-gray" data-bg="{{0}}" bindtap="selectBg">
+        <image class="img1" src="../../images/desktop/1.png"></image>
+        <text
+          class="bg-item-check cuIcon-{{bgCur===0?'roundcheck':''}} text-xl text-grey"></text>
+      </view>
+      <view class="bg-item radius bg-gray" data-bg="{{1}}" bindtap="selectBg">
+        <image class="img2" src="../../images/desktop/2.png"></image>
+        <text
+          class="bg-item-check cuIcon-{{bgCur===1?'roundcheck':''}} text-xl text-grey"></text>
+      </view>
+      <view class="bg-item radius bg-gray" data-bg="{{2}}" bindtap="selectBg">
+        <image class="img3" src="../../images/desktop/3.png"></image>
+        <text
+          class="bg-item-check cuIcon-{{bgCur===2?'roundcheck':''}} text-xl text-grey"></text>
+      </view>
+      <view class="bg-item radius bg-gray" data-bg="{{3}}" bindtap="selectBg">
+        <image class="img4" src="../../images/desktop/4.png"></image>
+        <text
+          class="bg-item-check cuIcon-{{bgCur===3?'roundcheck':''}} text-xl text-grey"></text>
+      </view>
+    </view>
+
+  </view>
+
+
+
+
+
+
+
+
+</scroll-view>
+
+
+<!--更换主题色（左侧划框）-->
+<view class="cu-modal drawer-modal justify-start {{drawerModalL ? 'show':''}}" bindtap="toggleModal" catchtouchmove>
+  <scroll-view scroll-y class="cu-dialog basis-df" catchtap style="padding-top: {{CustomBar}}px; height: 100vh">
+    <view class="cu-list menu text-left">
+      <view class="cu-item" wx:for="{{ColorList}}" wx:key wx:index="index">
+        <view class="content text-{{item.name}}" data-select="{{index}}" bindtap="selectTheme">
+          <text class="text-bold text-sm">{{item.title}}</text>
+          <text wx:if="{{theme == index}}" class="cuIcon-check margin-left"></text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

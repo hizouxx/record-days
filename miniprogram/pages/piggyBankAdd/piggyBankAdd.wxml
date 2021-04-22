@@ -1,0 +1,41 @@
+<!--miniprogram/pages/piggyBankAdd/piggyBankAdd.wxml-->
+<cu-custom isBack="{{true}}" bg-color="bg-white">
+  <view slot="content">新增账目</view>
+</cu-custom>
+<scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
+  <view class="padding-top">
+    <view class="flex justify-around bg-white">
+      <view class="text-{{type == 'pay' ? ColorList[theme].name : 'grey'}} basis-df padding radius text-center" data-type="pay" bindtap="selectType">支出</view>
+      <view class="text-{{type == 'income' ? ColorList[theme].name : 'grey'}} basis-df padding radius text-center " data-type="income" bindtap="selectType">收入</view>
+    </view>
+
+    <view wx:if="{{type == 'income'}}" class="flex flex-wrap padding-lr-sm padding-tb">
+      <view class="basis-md" wx:for="{{IncomeList}}" wx:key wx:for-index='index'>
+        <view class="margin-sm padding-tb-sm text-center text-grey radius shadow-btn{{index == purpose ? '-active' : ''}}" data-purpose="{{index}}" bindtap="selectPurpose">
+          <text class="cuIcon-{{item.icon}} margin-right-xs"></text>{{item.name}}
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{type == 'pay'}}" class="flex flex-wrap padding-lr-sm padding-tb">
+      <view class="basis-md" wx:for="{{PayList}}" wx:key wx:for-index='index'>
+        <view class="margin-sm padding-tb-sm text-center text-grey radius shadow-btn{{index == purpose ? '-active' : ''}}" data-purpose="{{index}}" bindtap="selectPurpose">
+          <text class="cuIcon-{{item.icon}} margin-right-xs"></text>{{item.name}}
+        </view>
+      </view>
+    </view>
+
+    <view class="margin padding radius bg-white">
+      <input value="{{remark}}" placeholder="{{type == 'pay' ? '支出去向（由1-12位中英文或数字组成）' : '收入来源（由1-12位中英文或数字组成）'}}" bindinput="remarkInput" />
+    </view>
+    <view class="margin padding radius bg-white">
+      <input type="digit" value="{{amount}}" placeholder="{{type == 'income' ? '收入金额（最多保留小数点后两位）' : '支出金额（最多保留小数点后两位）'}}" bindinput="amountInput" />
+    </view>
+  </view>
+</scroll-view>
+
+<view class="fixed-bottom flex justitfy-center padding-bottom">
+  <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius " disabled="{{btnDisabled}}" bindtap="checkMsg">
+    <text wx:if="{{btnLoading}}" class="cuIcon-loading2 iconfont-spin text-lg margin-right-xs"></text>
+    <text>提交</text>
+  </button>
+</view>

@@ -1,0 +1,35 @@
+<!--miniprogram/pages/agreement/agreement.wxml-->
+<cu-custom isBack="{{true}}" bg-color="bg-white">
+  <view slot="content">家庭协议</view>
+</cu-custom>
+<scroll-view scroll-y>
+  <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
+  <com-nodata wx:if="{{!loading && list.length == 0}}" content="“约法三章。”"></com-nodata>
+  <view wx:if="{{!loading && list.length > 0}}" class="margin-lg padding-lg bg-white radius">
+    <block wx:for="{{list}}" wx:key>
+      <view class="padding-tb-xs text-content text-indent text-underline" data-item="{{item}}" bindlongtap="delete">
+        <view class="text-sm">{{index+1}}.{{item.value}}</view>
+      </view>
+    </block>
+
+  </view>
+</scroll-view>
+
+<!-- Modal -->
+<view class="cu-modal {{showModal ? 'show': '' }}" bindtap="toggleModal">
+  <view class="cu-dialog bg-white padding-lr" catchtap>
+    <view class="text-lg title margin-tb">协议</view>
+    <view class="padding margin solids radius">
+      <input maxlength="80" value="{{inputValue}}" focus="{{showModal}}" bindinput="input"
+        placeholder="请输入协议（80字符以内）"></input>
+    </view>
+    <button class="margin-tb radius bg-{{ColorList[theme].name}}" disabled="{{btnDisabled}}"
+      bindtap="checkMsg">确定</button>
+  </view>
+</view>
+
+<!-- Add -->
+<view class="add-btn padding-lg bg-gradual-{{ColorList[theme].name}} shadow-blur round flex justify-center align-center"
+  bindtap="toggleModal">
+  <text class="cuIcon-add text-xxl"></text>
+</view>

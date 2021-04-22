@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/doodling/doodling",
+    "pages/piggyBankAdd/piggyBankAdd",
+    "pages/specialDayAdd/specialDayAdd",
+    "pages/agreement/agreement",
+    "pages/piggyBank/piggyBank",
+    "pages/info/info",
+    "pages/log/log",
+    "pages/wish/wish",
+    "pages/about/about",
+    "pages/photoWall/photoWall",
+    "pages/specialDay/specialDay",
+    "pages/photoWallDetail/photoWallDetail",
+    "pages/qrCode/qrCode"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {
+    "cu-custom": "/components/cu-custom/cu-custom",
+    "com-nodata": "/components/com-nodata/com-nodata"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

@@ -1,0 +1,33 @@
+<!--miniprogram/pages/specialDay/specialDay.wxml-->
+<cu-custom isBack="{{true}}" bg-color="bg-white">
+  <view slot="content">家庭纪念日</view>
+</cu-custom>
+<scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
+  <view class="padding-lr padding-top">
+    <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
+    <com-nodata wx:if="{{!loading && dataList.length == 0}}" content="每一个特殊的日子都值得被纪念。"></com-nodata>
+    <view wx:if="{{!loading && dataList.length > 0}}" wx:for="{{dataList}}" wx:key wx:for-item='item'>
+      <view class="margin-bottom padding radius bg-white flex align-center justify-between" data-id="{{item._id}}" bindlongtap="deleteSpecialDay">
+        <view class="cuIcon-{{SpecialDayList[item.name].icon}}">
+          <text class="margin-left-xs">{{item.remark}}</text>
+        </view>
+        <view class="text-right">
+          <view class="margin-bottom-sm">
+            <view wx:if="{{item.days > 0}}">
+              还有<text class="text-{{ColorList[theme].name}} text-xl margin-lr-xs">{{item.days}}</text>天到来
+            </view>
+            <view wx:if="{{item.days == 0}}">
+              <text class="text-{{ColorList[theme].name}} text-xl margin-lr-xs">今天</text>
+            </view>
+            <view wx:if="{{item.days < 0}}">已经过去{{item.days2}}天</view>
+          </view>
+          <view class="text-sm text-gray">{{item.date2}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<view class="add-btn padding-lg bg-gradual-{{ColorList[theme].name}} shadow-blur round flex justify-center align-center" bindtap="add">
+  <text class="cuIcon-add text-xxl"></text>
+</view>

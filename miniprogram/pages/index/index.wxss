@@ -1,0 +1,37 @@
+/* miniprogram/pages/index/index.wxss */
+.swiper,
+swiper-item {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+}
+
+.desktop {
+  position: absolute;
+  bottom: calc(constant(safe-area-inset-bottom) + 150rpx);
+  bottom: calc(env(safe-area-inset-bottom) + 150rpx);
+  left: 50%;
+  transform: translateX(-50%);
+}
+.desktop-1 {
+  width: 480rpx;
+  height: 337rpx;
+}
+.desktop-2 {
+  width: 320rpx;
+  height: 445rpx;
+}
+.desktop-3 {
+  width: 320rpx;
+  height: 320rpx;
+}
+.desktop-4 {
+  width: 480rpx;
+  height: 556rpx;
+}
+
+
+.index .wx-swiper-dots {
+  bottom: calc(constant(safe-area-inset-bottom) + 100rpx);
+  bottom: calc(env(safe-area-inset-bottom) + 100rpx);
+}

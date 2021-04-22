@@ -1,0 +1,30 @@
+/* components/com-nodata/com-nodata.wxss */
+.nodata-note{
+  position: fixed;
+  bottom: calc(100rpx + constant(safe-area-inset-bottom));
+  bottom: calc(100rpx + env(safe-area-inset-bottom));
+  width: 400rpx;
+  right: 50%;
+  transform: translateX(50%);
+  z-index: 9;
+  background: rgba(255, 255, 255, 0.5);
+}
+.nodata-note .close{
+  position: absolute;
+  right: 10rpx;
+  top: 10rpx;
+}
+.nodata-note:after{
+  content: '';
+  position: absolute;
+  bottom: 40rpx;
+  left: 100%;
+  width: 0;
+  height: 0;
+  border-width: 16rpx;
+  border-style: solid;
+  border-color: transparent;
+  border-left-width: 16rpx;
+  border-left-color: currentColor;
+  color: var(--white);
+}

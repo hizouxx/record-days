@@ -1,0 +1,57 @@
+<cu-custom isBack="{{true}}" bg-color="bg-white">
+  <view slot="content">画板工具</view>
+</cu-custom>
+
+<view class="bg-gray padding-top-xs">
+
+
+  <canvas class="bg-white" style="width: 100vw; height: calc(100vh - 10rpx - {{CustomBar}}px)" canvas-id="myCanvas"
+    disable-scroll="true" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd"
+    bindtouchcancel="touchEnd">
+  </canvas>
+</view>
+
+<cover-view class="doodling-btns-left round flex flex-direction justify-center align-center"
+  style="left: {{showSetting ? '30rpx': '-100rpx'}}">
+  <cover-view wx:for='{{colorList}}' wx:for-item='item' wx:key='index' wx:for-index='index'>
+    <cover-view class="pen-color round text-white text-center margin-xs" style="background:{{item}}"
+      catchtap='selectPenColorTap' data-index='{{index}}'>
+      {{(colorIndex == index && !isClear) ? '✓' : ''}}
+    </cover-view>
+  </cover-view>
+
+</cover-view>
+
+
+<!-- <cover-view class="doodling-btn-right round text-center {{penWidth==2 ? 'text-brown shadow-in' : ''}}"
+    bindtap='selectPenWidthTap' data-width='2'>2px
+  </cover-view>
+  <cover-view class="doodling-btn-right round text-center {{penWidth==4 ? 'text-brown shadow-in' : ''}}"
+    bindtap='selectPenWidthTap' data-width='4'>4px
+  </cover-view>
+  <cover-view class="doodling-btn-right round text-center {{penWidth==6 ? 'text-brown shadow-in' : ''}}"
+    bindtap='selectPenWidthTap' data-width='6'>6px
+  </cover-view>
+  <cover-view class="doodling-btn-right round text-center {{penWidth==8 ? 'text-brown shadow-in' : ''}}"
+    bindtap='selectPenWidthTap' data-width='8'>8px
+  </cover-view> -->
+
+<cover-view class="doodling-btn-right round text-center bg-gray" style="margin-top:{{showSetting? '-200rpx': '0'}}"
+  bindtap="revokeCanvas">
+  撤回
+</cover-view>
+<cover-view class="doodling-btn-right round text-center bg-gray {{isClear ? 'text-brown shadow-in' : ''}}"
+  style="margin-top:{{showSetting? '-100rpx': '0'}}" bindtap="clearTap">
+  橡皮
+</cover-view>
+<cover-view class="doodling-btn-right round text-center bg-gray" style="z-index: 9" bindtap="toggleSetting">
+  {{showSetting ? '-' : '+'}}
+</cover-view>
+<cover-view class="doodling-btn-right round text-center bg-gray" style="margin-top:{{showSetting? '100rpx': '0'}}"
+  bindtap="deleteTap">
+  重置
+</cover-view>
+<cover-view class="doodling-btn-right round text-center bg-gray" style="margin-top:{{showSetting? '200rpx': '0'}}"
+  bindtap="confirmTap">
+  转图
+</cover-view>

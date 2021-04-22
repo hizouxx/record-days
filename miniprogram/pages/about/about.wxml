@@ -1,0 +1,23 @@
+<!--miniprogram/pages/about/about.wxml-->
+<cu-custom isBack="{{true}}" bg-color="bg-white">
+  <view slot="content">关于小程序</view>
+</cu-custom>
+
+<view class="padding-lr-xl">
+  <!-- 介绍 -->
+  <view class="padding-top padding-bottom-sm text-gray">介绍</view>
+  <view class="padding bg-white radius shadow-lg">一款非盈利性质的工具小程序，用来记录婚姻家庭中的生活点滴，后续将持续不断迭代更新，欢迎使用、分享、提想法。</view>
+  <!-- 反馈 -->
+  <view class="padding-top padding-bottom-sm text-gray">反馈</view>
+  <view class="shadow-lg bg-white radius">
+    <button class="feedback bg-white text-left" open-type="feedback">在此写下您的建议或意见</button>
+  </view>
+  <!-- 代码 -->
+  <view class="padding-top padding-bottom-sm text-gray">代码已开源至Github</view>
+  <view class="padding bg-white radius">https://github.com/hizouxx/record-days</view>
+</view>
+
+<view class="fixed-bottom text-center text-grey padding-bottom">
+  <view class="cuIcon-wefill"></view>
+  <view class="padding-lr-xs">2020-10-31 ~ {{now}}</view>
+</view>

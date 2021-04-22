@@ -1,0 +1,19 @@
+<!--miniprogram/pages/photoWallDetail/photoWallDetail.wxml-->
+<cu-custom isBack="{{true}}" bg-color="bg-white"></cu-custom>
+<scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
+  <view>
+    <com-loading wx:if="{{loading}}"></com-loading>
+    <view wx:if="{{!loading}}">
+      <view id="left" class="photo-col padding-tb-sm padding-left-sm padding-right-xs">
+        <view wx:for="{{leftList}}" wx:key class="margin-bottom-sm padding-sm shadow-warp bg-white">
+          <image src="{{item.tempFileURL}}" mode='widthFix' data-current="{{item.tempFileURL}}" bindtap="previewPhoto"></image>
+        </view>
+      </view>
+      <view id="right" class="photo-col padding-tb-sm padding-right-sm padding-left-xs">
+        <view wx:for="{{rightList}}" wx:key class="margin-bottom-sm padding-sm shadow-warp bg-white">
+          <image src="{{item.tempFileURL}}" mode='widthFix' data-current="{{item.tempFileURL}}" bindtap="previewPhoto"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

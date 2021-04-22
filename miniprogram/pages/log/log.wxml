@@ -1,0 +1,51 @@
+<!--miniprogram/pages/log/log.wxml-->
+<cu-custom isBack="{{true}}" bg-color="bg-white">
+  <view slot="content">家庭日记</view>
+</cu-custom>
+<swiper class="swiper" style="height: calc(100vh - {{CustomBar}}px)" current="{{current}}" bindchange="swiperChange">
+  <swiper-item class="swiper-item">
+
+    <view class="margin-tb-xs padding-sm flex justify-between align-center bg-white">
+      <text>{{today}}</text>
+      <text>农历{{lunarDate}} {{week}}</text>
+    </view>
+
+    <textarea class="padding bg-white" value="{{remark}}" placeholder="写点什么（200字符）" maxlength="200"
+      bindinput="remarkInput" />
+
+    <view class="flex flex-wrap justitfy-between padding bg-white margin-top animation-fade">
+      <block wx:for="{{48}}" wx:key wx:for-index='index'>
+        <view class="basis-ss">
+          <view class="padding-tb-sm radius bg-{{emoji === (index+1) ? 'gray': ''}}"
+            data-emoji="{{index+1}}" bindtap="clickEmoji">
+            <image class="emoji" src="{{'../../images/face/'+(index+1)+'.gif'}}"></image>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class="fixed-bottom flex justitfy-center padding-bottom">
+      <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius" disabled="{{btnDisabled}}" bindtap="checkMsg">
+        <text wx:if="{{btnLoading}}" class="cuIcon-loading2 iconfont-spi text-lgn margin-right-xs"></text>
+        <text>提交</text>
+      </button>
+    </view>
+
+  </swiper-item>
+  <swiper-item class="swiper-item">
+    <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
+      <view wx:if="{{loading}}" class="loading-gif">
+        <image src="../../images/icon-loading.gif" mode="aspectFit"></image>
+      </view>
+      <view wx:if="{{!loading && dataList.length > 0}}" class="cu-timeline" wx:for="{{dataList}}" wx:key>
+        <view class="margin padding radius bg-white" data-id="{{item._id}}" bindlongpress="deleteLog">
+          <view>{{item.date}} {{item.time}}</view>
+          <view class="padding-top-sm flex flex-wrap align-center">
+            <text class="text-df margin-right-xs">{{item.remark}}</text>
+            <image class="emoji2" src="{{'../../images/face/'+(item.emoji)+'.gif'}}"></image>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>

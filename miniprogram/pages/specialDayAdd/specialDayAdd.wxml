@@ -1,0 +1,41 @@
+<!--miniprogram/pages/specialDayAdd/specialDayAdd.wxml-->
+<cu-custom isBack="{{true}}" bg-color="bg-white">
+  <view slot="content">新增纪念日</view>
+</cu-custom>
+
+
+<scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
+
+
+  <view class="flex flex-wrap padding-lr-sm padding-tb">
+    <view class="basis-md" wx:for="{{SpecialDayList}}" wx:key wx:for-index='index'>
+      <view
+        class="margin-lr-sm text-grey margin-tb-sm padding-tb-sm text-center radius shadow-btn{{index == name ? '-active' : ''}}"
+        data-name="{{index}}" bindtap="selectDayName">
+        <text class="cuIcon-{{item.icon}} margin-right-xs"></text>
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="margin padding radius bg-white">
+    <input value="{{remark}}" placeholder="纪念日名称(1-12位中英文或数字)" bindinput="remarkInput" />
+  </view>
+
+  <view class="cu-form-group margin radius bg-white">
+    <view class="title">日期选择</view>
+    <picker mode="date" value="{{date}}" start="1970-01-01" end="2050-01-01" bindchange="dateChange">
+      <view class="picker">{{date}}</view>
+    </picker>
+  </view>
+
+
+</scroll-view>
+
+<view class="fixed-bottom flex justitfy-center padding-bottom">
+  <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius" disabled="{{btnDisabled}}"
+    bindtap="checkMsg">
+    <text wx:if="{{btnLoading}}" class="cuIcon-loading2 iconfont-spin text-lg margin-right-xs"></text>
+    <text>提交</text>
+  </button>
+</view>

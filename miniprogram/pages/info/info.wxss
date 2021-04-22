@@ -1,0 +1,15 @@
+/* miniprogram/pages/info/info.wxss */
+
+.avatar-img {
+  height: 100%;
+  width: 100%;
+}
+
+.gender {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30rpx;
+  height: 30rpx;
+  padding: 2rpx;
+}

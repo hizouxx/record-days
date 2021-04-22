@@ -1,0 +1,70 @@
+<!--miniprogram/pages/info/info.wxml-->
+<cu-custom isBack="{{true}}" bg-color="bg-white">
+  <view slot="content">账户信息</view>
+</cu-custom>
+
+<image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
+<view wx:if="{{!loading}}">
+  <!-- 已授权 -->
+  <view>
+    <view class="padding-lr flex align-center">
+      <text class="padding-sm text-{{tabIndex == 0 ? 'xxl' : 'lg'}}" data-index="{{0}}" bindtap="toggleUser">我</text>
+      <text wx:if="{{isCouple}}" class="padding-sm text-{{tabIndex == 1 ? 'xxl' : 'lg'}}" data-index="{{1}}"
+        bindtap="toggleUser">另一半</text>
+    </view>
+
+    <!-- 我 -->
+    <view wx:if="{{tabIndex == 0}}" class="margin-lr bg-white radius">
+      <view class="flex align-center justify-between padding-tb padding-lr">
+        <view class="flex align-center">
+          <view class="cu-avatar lg round">
+            <image class="avatar-img round bg-gray" src="{{userInfo.avatarUrl || '../../images/avatar_default.png'}}"
+              mode="cover"></image>
+            <view
+              class="gender round text-sm {{userInfo.gender == 1 ? 'cuIcon-male bg-blue' : userInfo.gender == 2 ? 'cuIcon-female bg-pink' : ''}}">
+            </view>
+          </view>
+          <view class="text-lg margin-left">{{userInfo.nickName || '未获取昵称'}}</view>
+        </view>
+        <view bindtap="pageToQRCode">
+          <text class="cuIcon-qrcode margin-right-sm text-grey"></text>
+          <text class="cuIcon-right text-grey"></text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 对象 -->
+    <view wx:if="{{isCouple && tabIndex == 1}}" class="margin-lr bg-white radius">
+      <view class="flex align-center justify-between padding-tb padding-lr">
+        <view class="flex align-center">
+          <view class="cu-avatar lg round">
+            <image class="round avatar-img bg-gray"
+              src="{{bindUserInfo.avatarUrl || '../../images/avatar_default.png'}}" mode="cover"></image>
+            <view
+              class="gender round text-sm {{bindUserInfo.gender == 1 ? 'cuIcon-male bg-blue' : bindUserInfo.gender == 2 ? 'cuIcon-female bg-pink' : ''}}">
+            </view>
+          </view>
+          <view class="text-lg margin-left">{{bindUserInfo.nickName || '对方无昵称'}}</view>
+        </view>
+        <view class="text-grey padding" wx:if="{{isCouple}}" bindtap="unbandCouple">解除绑定
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <!--  -->
+  <view class="margin padding-lr bg-white radius">
+    <view class="padding-tb" bindtap="getUserProfile">获取微信头像、昵称等公开信息</view>
+    <view class="padding-tb solid-top" bindtap="scanQRcode">扫一扫</view>
+    <view class="padding-tb solid-top flex justify-between align-center" bindtap="authorizeSetting">
+      <text>小程序授权设置</text>
+      <text class="cuIcon-right text-grey"></text>
+    </view>
+    <view class="padding-tb solid-top flex justify-between align-center" bindtap="pageToAbout">
+      <text>关于小程序</text>
+      <text class="cuIcon-right text-grey"></text>
+    </view>
+  </view>
+
+</view>

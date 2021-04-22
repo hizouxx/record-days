@@ -1,0 +1,122 @@
+<!--miniprogram/pages/piggyBank/piggyBank.wxml-->
+<cu-custom isBack="{{true}}" bg-color="bg-white">
+  <view slot="content">家庭储蓄</view>
+</cu-custom>
+<scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
+  <view class="">
+    <view class="margin-lg padding-lg bg-gradual-{{ColorList[theme].name}} radius shadow">
+      <view class="flex align-center justify-between" bindtap="toggleMoneyStatus">
+        <text class="text-blod">总余额</text>
+        <text class="cuIcon-{{eye ? 'attentionfill' : 'attentionforbidfill'}}"></text>
+      </view>
+      <view wx:if="{{eye}}" class="text-center text-xl text-price">{{totalAmount}}</view>
+      <view wx:if="{{!eye}}" class="text-center text-content">***</view>
+    </view>
+
+    <view class="padding-lr-lg padding-tb-sm flex nav-tab justify-between margin-tb">
+      <view class="nav-tab-btn radius text-center text-grey shadow-btn{{curRange === 0 ? '-active':''}}"
+        data-range="{{0}}" bindtap="selectRange">本月</view>
+      <view class="nav-tab-btn radius text-center text-grey shadow-btn{{curRange === 1 ? '-active':''}}"
+        data-range="{{1}}" bindtap="selectRange">上月</view>
+      <view class="nav-tab-btn radius text-center text-grey shadow-btn{{curRange === 2 ? '-active':''}}"
+        data-range="{{2}}" bindtap="selectRange">今年</view>
+      <view class="nav-tab-btn radius text-center text-grey shadow-btn{{curRange === 3 ? '-active':''}}"
+        data-range="{{3}}" bindtap="selectRange">自定义</view>
+    </view>
+
+    <view wx:if="{{curRange === 3}}" class="margin-lg bg-white radius">
+      <view class="padding flex align-center justify-between">
+        <picker mode="date" value="{{dateStart}}" end="{{dateEnd}}" bindchange="bindDateStartChange">
+          <view class="text-lg text-grey">{{dateStart}}</view>
+        </picker>
+        <text class="margin-lr">~</text>
+        <picker mode="date" value="{{dateEnd}}" start="{{dateStart}}" end="2050-01-01" bindchange="bindDateEndChange">
+          <view class="text-lg text-grey">{{dateEnd}}</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="margin-lg radius padding-lg text-center bg-white">
+
+      <view class="flex justify-between">
+        <view class="text-gray">收入</view>
+        <view class="text-gray">支出</view>
+      </view>
+      <view class="flex justify-between margin-tb-lg">
+        <view class="text-black text-lg text-price">{{curTotalIncome}}</view>
+        <view class="text-black text-lg text-price">{{curTotalPay}}</view>
+      </view>
+      <view class="money-percentage cu-progress radius striped active">
+        <view class="bg-green" style="width: {{curTotalIncome / (curTotalPay + curTotalIncome) * 100}}%"></view>
+        <view class="bg-red" style="width: {{curTotalPay / (curTotalPay + curTotalIncome) * 100}}%"></view>
+      </view>
+
+      <view class="cuIcon-{{showStatistics ? 'fold':'unfold'}} text-grey padding-top" bindtap="toggleShowStatistics">
+      </view>
+
+      <view wx:if="{{showStatistics}}" class="margin-top-lg animation-fade">
+        <view>
+          <view wx:for="{{numIncomeList}}" wx:key wx:for-item='item'>
+            <view class="flex justify-between text-left margin-tb-sm">
+              <view class="flex align-center">
+                <view class="cu-capsule round">
+                  <view class="cu-tag bg-green">
+                    <text class="cuIcon-{{IncomeList[item.name].icon}}"></text>
+                  </view>
+                  <view class="cu-tag line-green">
+                    {{IncomeList[item.name].name}}
+                  </view>
+                </view>
+                <text class="cu-tag round line-green margin-left-xs">{{item.num}}次</text>
+              </view>
+              <text class="cu-tag round line-green">+¥{{item.total}}</text>
+            </view>
+          </view>
+          <view wx:for="{{numPayList}}" wx:key wx:for-item='item'>
+            <view class="flex justify-between text-left margin-tb-sm">
+              <view class="flex align-center">
+                <view class="cu-capsule round">
+                  <view class="cu-tag bg-red">
+                    <text class="cuIcon-{{PayList[item.name].icon}}"></text>
+                  </view>
+                  <view class="cu-tag line-red">
+                    {{PayList[item.name].name}}
+                  </view>
+                </view>
+                <text class="cu-tag round line-red margin-left-xs">{{item.num}}次</text>
+              </view>
+              <text class="cu-tag round line-red">-¥{{item.total}}</text>
+            </view>
+          </view>
+        </view>
+
+      </view>
+
+    </view>
+
+    <view class="margin-lg radius padding-lg bg-white">
+      <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
+      <view wx:if="{{!loading && dataList.length == 0}}" class="text-center text-gray">无账单数据</view>
+      <view wx:if="{{!loading && dataList.length > 0}}">
+        <view wx:for="{{dataList}}" wx:key wx:for-item='item'>
+          <view>{{item.date}}</view>
+          <view class="padding flex align-center justify-between" data-id="{{item._id}}" bindlongtap="deleteBill">
+            <view>
+              <view class="cuIcon-{{item.type == 'pay' ? PayList[item.purpose].icon : IncomeList[item.purpose].icon}}">
+                {{ item.remark }}
+              </view>
+            </view>
+            <view class="text-{{item.type == 'pay' ? 'red' : 'green'}}">
+              {{item.type == 'pay' ? '-' : '+'}}¥{{item.amount}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+
+<view class="add-btn padding-lg bg-gradual-{{ColorList[theme].name}} shadow-blur round flex justify-center align-center"
+  bindtap="add">
+  <text class="cuIcon-add text-xxl"></text>
+</view>

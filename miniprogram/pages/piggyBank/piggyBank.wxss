@@ -1,0 +1,9 @@
+/* miniprogram/pages/piggyBank/piggyBank.wxss */
+.money-percentage{
+  height: 10rpx;
+}
+.nav-tab-btn{
+  height: 90rpx;
+  line-height: 90rpx;
+  width: 150rpx;
+}

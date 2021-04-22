@@ -1,0 +1,14 @@
+/* miniprogram/pages/about/about.wxss */
+page{
+  line-height: 1.8;
+}
+.feedback{
+  max-width: 650rpx;
+  min-width: 650rpx;
+  min-height: 100rpx;
+  max-height: 100rpx;
+  line-height: 100rpx;
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  font-weight: normal;
+}

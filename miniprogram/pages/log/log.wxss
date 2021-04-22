@@ -1,0 +1,15 @@
+/* miniprogram/pages/log/log.wxss */
+
+textarea{
+  width: 750rpx;
+  box-sizing: border-box;
+}
+image.emoji{
+  width: 28rpx;
+  height: 28rpx;
+  margin: 0 auto;
+}
+image.emoji2{
+  width: 28rpx;
+  height: 28rpx;
+}
