@@ -1,6 +1,6 @@
 <!--miniprogram/pages/qcCode/qrCode.wxml-->
-<cu-custom isBack="{{true}}">
-  <view slot="content"></view>
+<cu-custom isBack="{{true}}" bg-color="bg-white">
+  <view slot="content">二维码</view>
 </cu-custom>
 <view class="canvas-warp shadow radius">
   <canvas canvas-id="mycanvas"></canvas>

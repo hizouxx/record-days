@@ -13,7 +13,8 @@
     "pages/photoWall/photoWall",
     "pages/specialDay/specialDay",
     "pages/photoWallDetail/photoWallDetail",
-    "pages/qrCode/qrCode"
+    "pages/qrCode/qrCode",
+    "pages/demo/demo"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

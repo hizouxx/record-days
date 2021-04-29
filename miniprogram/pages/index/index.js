@@ -56,35 +56,6 @@ let defaultList = [{
     name: '设置'
   }
 ]
-const swiperList = [{
-  id: 0,
-  type: 'image',
-  url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
-}, {
-  id: 1,
-  type: 'image',
-  url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
-}, {
-  id: 2,
-  type: 'image',
-  url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
-}, {
-  id: 3,
-  type: 'image',
-  url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-}, {
-  id: 4,
-  type: 'image',
-  url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
-}, {
-  id: 5,
-  type: 'image',
-  url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
-}, {
-  id: 6,
-  type: 'image',
-  url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
-}]
 let lunarInfo = [0x04bd8, 0x04ae0, 0x0a570, 0x054d5, 0x0d260, 0x0d950, 0x16554,
   0x056a0, 0x09ad0, 0x055d2, 0x04ae0, 0x0a5b6, 0x0a4d0, 0x0d250, 0x1d255, 0x0b540, 0x0d6a0, 0x0ada2, 0x095b0,
   0x14977, 0x04970, 0x0a4b0, 0x0b4b5, 0x06a50, 0x06d40, 0x1ab54, 0x02b60, 0x09570, 0x052f2, 0x04970, 0x06566,
@@ -116,7 +87,6 @@ Page({
     list: [], // 九宫格数据列表
     bgCur: 0,
     loading: false,
-    swiperList: swiperList,
     lunarInfo: lunarInfo,
     chineseNumber: chineseNumber,
     week: utils.getWeekByDate(new Date()),

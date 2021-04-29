@@ -65,6 +65,10 @@
       <text>关于小程序</text>
       <text class="cuIcon-right text-grey"></text>
     </view>
+    <view class="padding-tb solid-top flex justify-between align-center" bindtap="pageToDemo">
+      <text>页面演示</text>
+      <text class="cuIcon-right text-grey"></text>
+    </view>
   </view>
 
 </view>

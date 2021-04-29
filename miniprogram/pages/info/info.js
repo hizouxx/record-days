@@ -288,4 +288,13 @@ Page({
     })
   },
 
+  /**
+   * 跳转小程序演示
+   */
+  pageToDemo() {
+    wx.navigateTo({
+      url: '/pages/demo/demo'
+    })
+  },
+
 })
