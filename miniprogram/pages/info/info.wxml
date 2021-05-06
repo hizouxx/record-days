@@ -57,6 +57,10 @@
   <view class="margin padding-lr bg-white radius">
     <view class="padding-tb" bindtap="getUserProfile">获取微信头像、昵称等公开信息</view>
     <view class="padding-tb solid-top" bindtap="scanQRcode">扫一扫</view>
+  </view>
+
+  <!--  -->
+  <view class="margin padding-lr bg-white radius">
     <view class="padding-tb solid-top flex justify-between align-center" bindtap="authorizeSetting">
       <text>小程序授权设置</text>
       <text class="cuIcon-right text-grey"></text>
