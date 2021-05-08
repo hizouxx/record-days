@@ -272,7 +272,7 @@ Page({
    * 操作相册->编辑or删除
    */
   actionPhoto(e) {
-    wx.vibrateShort()
+    wx.vibrateLong()
     let { id } = e.currentTarget.dataset
     this.setData({
       curId: id

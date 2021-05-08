@@ -11,6 +11,7 @@ Page({
     theme: 0,
     ColorList: [], // 主题色列表
     dragColumnsSize: 0, // 九宫格排列列数
+    iconRadius: 0, // 圆角
     bgCur: 0,
   },
 
@@ -22,6 +23,7 @@ Page({
       CustomBar: app.globalData.CustomBar, // 顶部状态栏高度
       theme: wx.getStorageSync('theme') || 0, //主题
       dragColumnsSize: wx.getStorageSync('layoutColumns') || 3, //布局列数
+      iconRadius: wx.getStorageSync('iconRadius') || 10, //图标圆角
       bgCur: wx.getStorageSync('bgCur') || 0, // 背景图索引
       ColorList: app.globalData.ColorList, // 主题色列表
     })
@@ -141,6 +143,17 @@ Page({
       drawerModalL: false
     })
     wx.setStorageSync('theme', select)
+  },
+
+  /**
+   * 滑块
+   */
+  sliderChange(e) {
+    // console.log(e.detail.value)
+    this.setData({
+      iconRadius: e.detail.value
+    })
+    wx.setStorageSync('iconRadius', e.detail.value)
   },
   
 })

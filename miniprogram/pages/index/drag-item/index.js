@@ -6,6 +6,10 @@ Component({
 		itemData: {
 			type: Object,
 			value: {}
+		},
+		radius: {
+			type: Number,
+			value: 0
 		}
 	},
 	methods: {

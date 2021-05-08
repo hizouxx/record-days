@@ -27,7 +27,7 @@
           <view class="text-lg margin-left">{{userInfo.nickName || '未获取昵称'}}</view>
         </view>
         <view bindtap="pageToQRCode">
-          <text class="cuIcon-qrcode margin-right-sm text-grey"></text>
+          <text class="cuIcon-qrcode margin-right-sm text-{{ColorList[theme].name}}"></text>
           <text class="cuIcon-right text-grey"></text>
         </view>
       </view>
@@ -46,7 +46,7 @@
           </view>
           <view class="text-lg margin-left">{{bindUserInfo.nickName || '对方无昵称'}}</view>
         </view>
-        <view class="text-grey padding" wx:if="{{isCouple}}" bindtap="unbandCouple">解除绑定
+        <view class="text-grey padding-tb text-sm" wx:if="{{isCouple}}" bindtap="unbandCouple">解除绑定
         </view>
       </view>
 
@@ -62,7 +62,7 @@
   <!--  -->
   <view class="margin padding-lr bg-white radius">
     <view class="padding-tb solid-top flex justify-between align-center" bindtap="authorizeSetting">
-      <text>小程序授权设置</text>
+      <text>授权设置</text>
       <text class="cuIcon-right text-grey"></text>
     </view>
     <view class="padding-tb solid-top flex justify-between align-center" bindtap="pageToAbout">
@@ -70,7 +70,7 @@
       <text class="cuIcon-right text-grey"></text>
     </view>
     <view class="padding-tb solid-top flex justify-between align-center" bindtap="pageToDemo">
-      <text>页面演示</text>
+      <text>小程序演示</text>
       <text class="cuIcon-right text-grey"></text>
     </view>
   </view>

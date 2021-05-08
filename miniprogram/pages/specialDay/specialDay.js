@@ -113,7 +113,7 @@ Page({
    * @param {} e 
    */
   deleteSpecialDay(e) {
-    wx.vibrateShort()
+    wx.vibrateLong()
     let { id } = e.currentTarget.dataset
     wx.showActionSheet({
       itemList: ['删除'],

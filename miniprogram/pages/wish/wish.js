@@ -245,7 +245,7 @@ Page({
    * @param {*} e 
    */
   deleteWish(e) {
-    wx.vibrateShort()
+    wx.vibrateLong()
     let { _id } = e.currentTarget.dataset.item
     wx.showActionSheet({
       itemList: ['删除'],

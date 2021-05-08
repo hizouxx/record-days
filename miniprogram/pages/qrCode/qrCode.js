@@ -15,7 +15,7 @@ Page({
    */
   onLoad: function () {
     let w = this.getRatio()
-    console.log('w', w)
+    // console.log('w', w)
     QR.api.draw(app.globalData.openid, 'mycanvas', 250 * w, 250 * w);
   },
 

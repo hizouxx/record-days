@@ -86,6 +86,7 @@ Page({
     dragColumnsSize: 0, // 九宫格排列列数
     list: [], // 九宫格数据列表
     bgCur: 0,
+    iconRadius: 0, //icon圆角
     loading: false,
     lunarInfo: lunarInfo,
     chineseNumber: chineseNumber,
@@ -127,6 +128,7 @@ Page({
     this.setData({
       bgCur: wx.getStorageSync('bgCur') || 0,
       dragColumnsSize: wx.getStorageSync('layoutColumns') || 3, // 九宫格排列列数
+      iconRadius: wx.getStorageSync('iconRadius') || 10, // icon圆角
     })
     // console.log('show', this.data.dragColumnsSize)
     this.drag.init();

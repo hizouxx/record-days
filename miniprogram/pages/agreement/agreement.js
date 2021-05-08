@@ -192,7 +192,7 @@ Page({
    * @param {*} e 
    */
   delete(e) {
-    wx.vibrateShort()
+    wx.vibrateLong()
     // console.log(e)
     let { _id } = e.currentTarget.dataset.item
     wx.showActionSheet({

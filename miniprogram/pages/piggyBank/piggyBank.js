@@ -296,7 +296,7 @@ Page({
    */
   deleteBill(e) {
     // console.log(e)
-    wx.vibrateShort()
+    wx.vibrateLong()
     let {
       id
     } = e.currentTarget.dataset

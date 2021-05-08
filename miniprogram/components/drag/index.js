@@ -61,6 +61,10 @@ Component({
 			type: Number,
 			value: 0
 		},
+		radius: { // 圆角
+			type: Number,
+			value: 0
+		},
 	},
 	data: {
 		/* 未渲染数据 */
@@ -77,7 +81,7 @@ Component({
 	},
 	methods: {
 		vibrate() {
-			if (this.data.platform !== "devtools") wx.vibrateShort();
+			if (this.data.platform !== "devtools") wx.vibrateLong();
 		},
 		pageScroll(e) {
 			if (this.data.pageMetaSupport) {

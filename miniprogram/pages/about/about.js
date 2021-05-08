@@ -8,6 +8,7 @@ Page({
    */
   data: {
     CustomBar: app.globalData.CustomBar,
+    githubUrl: 'https://github.com/hizouxx/record-days',
     now: utils.formatDate(new Date())
   },
 
@@ -65,5 +66,17 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  /**
+   * 设置系统剪贴板的内容
+   */
+  handleCopy() {
+    wx.setClipboardData({
+      data: this.data.githubUrl,
+      success: () => {
+        wx.getClipboardData()
+      }
+    })
+  },
 })

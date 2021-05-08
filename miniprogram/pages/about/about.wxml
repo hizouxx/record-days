@@ -14,7 +14,10 @@
   </view>
   <!-- 代码 -->
   <view class="padding-top padding-bottom-sm text-gray">代码已开源至Github</view>
-  <view class="padding bg-white radius">https://github.com/hizouxx/record-days</view>
+  <view class="padding bg-white radius flex justify-between align-center">
+    <view class="text-sm">{{githubUrl}}</view>
+    <view class="cuIcon-copy padding-lr-xs bg-gray radius" bindtap="handleCopy"></view>
+  </view>
 </view>
 
 <view class="fixed-bottom text-center text-grey padding-bottom">
