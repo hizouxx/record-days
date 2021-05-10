@@ -8,7 +8,7 @@ Page({
   data: {
     CustomBar: app.globalData.CustomBar,
     ColorList: app.globalData.ColorList,
-    lunarDate: "", // 农历日前
+    lunarDate: "", // 农历日期
     week: utils.getWeekByDate(new Date()), // 星期几
     theme: 0,
     today: utils.formatDate(new Date()),

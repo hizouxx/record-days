@@ -26,34 +26,42 @@ App({
         {
           title: '默认',
           name: 'black',
+          color: '#333333',
         },
         {
           title: '嫣红',
           name: 'red',
+          color: '#e54d42',
         },
         {
           title: '桔橙',
           name: 'orange',
+          color: '#f37b1d',
         },
         {
           title: '明黄',
           name: 'yellow',
+          color: '#fbbd08',
         },
         {
           title: '森绿',
           name: 'green',
+          color: '#39b54a',
         },
         {
           title: '天青',
           name: 'cyan',
+          color: '#1cbbb4',
         },
         {
           title: '海蓝',
           name: 'blue',
+          color: '#0081ff',
         },
         {
           title: '姹紫',
           name: 'purple',
+          color: '#6739b6',
         }
       ],
       // 收入来源

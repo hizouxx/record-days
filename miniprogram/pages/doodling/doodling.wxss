@@ -18,7 +18,6 @@
   top: 50%;
   transform: translateY(-50%);
   background-color: rgba(0, 0, 0, 0.1);
-  transition: left 0.2s ease-in-out;
 }
 
 .doodling-btn-right {
@@ -30,5 +29,4 @@
   height: 80rpx;
   line-height: 80rpx;
   font-size: 24rpx;
-  transition: margin-top 0.2s ease-in-out;
 }

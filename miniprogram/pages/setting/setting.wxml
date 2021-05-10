@@ -26,7 +26,7 @@
 
   <view class="margin-lr padding-top padding-bottom-sm text-gray">图标圆角</view>
   <view class="margin-lr bg-white radius padding-xs">
-    <slider value="{{iconRadius}}" min="1" max="50" step="1" activeColor="{{ColorList[theme].name}}" bindchange="sliderChange"/>
+    <slider value="{{iconRadius}}" min="1" max="50" step="1" activeColor="{{ColorList[theme].color}}" bindchange="sliderChange"/>
   </view>
 
   <view class="margin-lr padding-top padding-bottom-sm text-gray">桌面背景</view>

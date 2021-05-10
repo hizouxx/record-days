@@ -25,8 +25,7 @@ Page({
     colorIndex: 0,
     revoke: [],
   },
-  onLoad: function (options) {
-  },
+  onLoad: function (options) {},
 
   onReady: function () {
     this.context = wx.createCanvasContext('myCanvas');
@@ -191,7 +190,7 @@ Page({
   /**
    * 切换设置按钮
    */
-  toggleSetting(){
+  toggleSetting() {
     this.setData({
       showSetting: !this.data.showSetting
     })

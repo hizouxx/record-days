@@ -7,47 +7,50 @@
 <view wx:if="{{!loading}}">
   <!-- 已授权 -->
   <view>
-    <view class="padding-lr flex align-center">
-      <text class="padding-sm text-{{tabIndex == 0 ? 'xxl' : 'lg'}}" data-index="{{0}}" bindtap="toggleUser">我</text>
-      <text wx:if="{{isCouple}}" class="padding-sm text-{{tabIndex == 1 ? 'xxl' : 'lg'}}" data-index="{{1}}"
-        bindtap="toggleUser">另一半</text>
+    <view class="info-nav padding-lr flex align-center">
+      <text class="padding-sm text-{{tabIndex == 0 ? 'xxl' : 'lg'}}" style="transition: font-size 0.2s ease-in-out"
+        data-index="{{0}}" bindtap="toggleUser">我</text>
+      <text wx:if="{{isCouple}}" class="padding-sm text-{{tabIndex == 1 ? 'xxl' : 'lg'}}"
+        style="transition: font-size 0.2s ease-in-out" data-index="{{1}}" bindtap="toggleUser">另一半</text>
     </view>
-
-    <!-- 我 -->
-    <view wx:if="{{tabIndex == 0}}" class="margin-lr bg-white radius">
-      <view class="flex align-center justify-between padding-tb padding-lr">
-        <view class="flex align-center">
-          <view class="cu-avatar lg round">
-            <image class="avatar-img round bg-gray" src="{{userInfo.avatarUrl || '../../images/avatar_default.png'}}"
-              mode="cover"></image>
-            <view
-              class="gender round text-sm {{userInfo.gender == 1 ? 'cuIcon-male bg-blue' : userInfo.gender == 2 ? 'cuIcon-female bg-pink' : ''}}">
+    <view class="info-con margin-lr bg-white radius">
+      <!-- 我 -->
+      <view class="info-con-item {{tabIndex == 0 ? 'transition' : ''}}">
+        <view class="flex align-center justify-between padding-tb padding-lr">
+          <view class="flex align-center">
+            <view class="cu-avatar lg round">
+              <image class="avatar-img round bg-gray" src="{{userInfo.avatarUrl || '../../images/avatar_default.png'}}"
+                mode="cover"></image>
+              <view
+                class="gender round text-sm {{userInfo.gender == 1 ? 'cuIcon-male bg-blue' : userInfo.gender == 2 ? 'cuIcon-female bg-pink' : ''}}">
+              </view>
             </view>
+            <view class="text-lg margin-left">{{userInfo.nickName || '未获取昵称'}}</view>
           </view>
-          <view class="text-lg margin-left">{{userInfo.nickName || '未获取昵称'}}</view>
-        </view>
-        <view bindtap="pageToQRCode">
-          <text class="cuIcon-qrcode margin-right-sm text-{{ColorList[theme].name}}"></text>
-          <text class="cuIcon-right text-grey"></text>
+          <view bindtap="pageToQRCode">
+            <text class="cuIcon-qrcode margin-right-sm text-grey"></text>
+            <text class="cuIcon-right text-grey"></text>
+          </view>
         </view>
       </view>
-    </view>
 
-    <!-- 对象 -->
-    <view wx:if="{{isCouple && tabIndex == 1}}" class="margin-lr bg-white radius">
-      <view class="flex align-center justify-between padding-tb padding-lr">
-        <view class="flex align-center">
-          <view class="cu-avatar lg round">
-            <image class="round avatar-img bg-gray"
-              src="{{bindUserInfo.avatarUrl || '../../images/avatar_default.png'}}" mode="cover"></image>
-            <view
-              class="gender round text-sm {{bindUserInfo.gender == 1 ? 'cuIcon-male bg-blue' : bindUserInfo.gender == 2 ? 'cuIcon-female bg-pink' : ''}}">
+      <!-- 对象 -->
+      <view class="info-con-item {{(isCouple && tabIndex == 1) ? 'transition' : ''}}">
+        <view class="flex align-center justify-between padding-tb padding-lr">
+          <view class="flex align-center">
+            <view class="cu-avatar lg round">
+              <image class="round avatar-img bg-gray"
+                src="{{bindUserInfo.avatarUrl || '../../images/avatar_default.png'}}" mode="cover"></image>
+              <view
+                class="gender round text-sm {{bindUserInfo.gender == 1 ? 'cuIcon-male bg-blue' : bindUserInfo.gender == 2 ? 'cuIcon-female bg-pink' : ''}}">
+              </view>
             </view>
+            <view class="text-lg margin-left">{{bindUserInfo.nickName || '对方无昵称'}}</view>
           </view>
-          <view class="text-lg margin-left">{{bindUserInfo.nickName || '对方无昵称'}}</view>
+          <view class="text-grey padding-tb text-sm" wx:if="{{isCouple}}" bindtap="unbandCouple">解除绑定
+          </view>
         </view>
-        <view class="text-grey padding-tb text-sm" wx:if="{{isCouple}}" bindtap="unbandCouple">解除绑定
-        </view>
+
       </view>
 
     </view>
