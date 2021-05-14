@@ -1,11 +1,13 @@
 // miniprogram/pages/piggyBank/piggyBank.js
 const app = getApp();
 const utils = require('../../utils/util.js')
+const wxCharts = require('../../utils/wxcharts.js')
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    WindowWidth: app.globalData.WindowWidth - 30,
     CustomBar: app.globalData.CustomBar,
     ColorList: app.globalData.ColorList,
     IncomeList: app.globalData.IncomeList,
@@ -23,6 +25,8 @@ Page({
     numPayList: [], // 支出类型分类列表
     numIncomeList: [], // 收入类型分类列表
     showStatistics: false,
+    showModal: false,
+    showModal2: false,
   },
 
   /**
@@ -161,7 +165,16 @@ Page({
       eye: !this.data.eye
     })
   },
-
+  /**
+   * 显示/关闭图表弹框
+   */
+  toggleModal(e) {
+    // console.log('e.target.dataset.cur', e.target.dataset.cur)
+    this.setData({
+      showModal: e.target.dataset.cur === 0 ? true : false,
+      showModal2: e.target.dataset.cur === 1 ? true : false,
+    })
+  },
   /**
    * 新增账单
    */
@@ -204,13 +217,14 @@ Page({
           loading: false,
         })
         // console.log('numPayList', this.data.numPayList)
+        this.createCanvas()
       },
       fail: err => {
         this.setData({
           loading: false,
           icon: 'none'
         })
-        console.log(err)
+        // console.log(err)
       }
     })
   },
@@ -230,7 +244,7 @@ Page({
       mlist.push({
         name: newArr[index],
         num: i.length,
-        total: this.countTotal(i, 'amount')
+        data: this.countTotal(i, 'amount')
       })
     })
     return mlist
@@ -321,7 +335,7 @@ Page({
           },
           fail: err => {
             wx.hideLoading()
-            console.log(err)
+            // console.log(err)
           }
         })
       },
@@ -330,5 +344,41 @@ Page({
       }
     })
   },
+
+  /**
+   * canvas绘图
+   */
+  createCanvas() {
+    let series = this.data.numPayList.map(i => {
+      i.name = this.data.PayList[i.name].name
+      i.data = Number(i.data)
+      return i
+    })
+    let series2 = this.data.numIncomeList.map(i => {
+      i.name = this.data.IncomeList[i.name].name
+      i.data = Number(i.data)
+      return i
+    })
+    let width = this.data.WindowWidth
+    console.log('series', series)
+    new wxCharts({
+      animation: true,
+      canvasId: 'pieCanvas',
+      type: 'pie',
+      series: series2,
+      width,
+      height: width,
+      // dataLabel: false,
+    });
+    new wxCharts({
+      animation: true,
+      canvasId: 'pieCanvas2',
+      type: 'pie',
+      series,
+      width,
+      height: width,
+      // dataLabel: false,
+    });
+  }
 
 })

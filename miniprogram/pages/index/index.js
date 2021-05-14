@@ -222,7 +222,28 @@ Page({
       }
     })
   },
-
+  /**
+   * 跳转小程序演示
+   */
+  pageToDemo() {
+    wx.navigateTo({
+      url: '/pages/demo/demo'
+    })
+  },
+  /**
+   * 跳转关于小程序
+   */
+  pageToAbout() {
+    wx.navigateTo({
+      url: '/pages/about/about'
+    })
+  },
+  /**
+   * 授权设置
+   */
+  authorizeSetting() {
+    wx.openSetting()
+  },
   /**
    * 拖动成功
    * @param {*} e 
@@ -236,6 +257,16 @@ Page({
     wx.setStorage({
       key: "listSort",
       data: JSON.stringify(e.detail.listData)
+    })
+  },
+  /**
+   * 切换swiper
+   * @param {*} e 
+   */
+  swiperChange(e) {
+    console.log(e.detail.current)
+    this.setData({
+      current: e.detail.current
     })
   },
 

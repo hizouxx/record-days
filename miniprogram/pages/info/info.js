@@ -262,13 +262,6 @@ Page({
   },
 
   /**
-   * 授权设置
-   */
-  authorizeSetting() {
-    wx.openSetting()
-  },
-
-  /**
    * 切换用户
    */
   toggleUser(e) {
@@ -279,22 +272,6 @@ Page({
       tabIndex: index
     })
   },
-  /**
-   * 跳转关于小程序
-   */
-  pageToAbout() {
-    wx.navigateTo({
-      url: '/pages/about/about'
-    })
-  },
 
-  /**
-   * 跳转小程序演示
-   */
-  pageToDemo() {
-    wx.navigateTo({
-      url: '/pages/demo/demo'
-    })
-  },
 
 })
