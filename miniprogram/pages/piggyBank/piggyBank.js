@@ -186,19 +186,19 @@ Page({
         // console.log('res1', res)
         let curTotalPay = 0
         let curTotalIncome = 0
-        let dataList = res.result.data && res.result.data.map(i => {
+        let dataList = res.result && res.result.map(i => {
           if (i.type == 'pay') {
-            curTotalPay = curTotalPay + Number(i.amount)
+            curTotalPay = curTotalPay + parseFloat(i.amount)
           } else if (i.type == 'income') {
-            curTotalIncome = curTotalIncome + Number(i.amount)
+            curTotalIncome = curTotalIncome + parseFloat(i.amount)
           }
           i.date = utils.formatDate(new Date(i.createTime))
           return i
         })
         this.setData({
           dataList,
-          curTotalPay: Number(curTotalPay.toFixed(2)),
-          curTotalIncome: Number(curTotalIncome.toFixed(2)),
+          curTotalPay: parseFloat(curTotalPay).toFixed(2),
+          curTotalIncome: parseFloat(curTotalIncome).toFixed(2),
           numPayList: this.getNumList(dataList.filter(i => i.type === 'pay')),
           numIncomeList: this.getNumList(dataList.filter(i => i.type === 'income')),
           loading: false,
@@ -243,7 +243,7 @@ Page({
   countTotal(arr, keyName) {
     let $total = 0;
     $total = arr.reduce(function (total, currentValue) {
-      return currentValue[keyName] ? (total + Number(currentValue[keyName])) : total;
+      return currentValue[keyName] ? (total + parseFloat(currentValue[keyName])) : total;
     }, 0);
     // console.log('$total', $total, typeof $total)
     return $total.toFixed(2);
@@ -273,15 +273,15 @@ Page({
         // console.log('res', res)
         let totalPay = 0,
           totalIncome = 0
-        res.result.data && res.result.data.forEach(i => {
+        res.result && res.result.forEach(i => {
           if (i.type == 'pay') {
-            totalPay = totalPay + Number(i.amount)
+            totalPay = totalPay + parseFloat(i.amount)
           } else if (i.type == 'income') {
-            totalIncome = totalIncome + Number(i.amount)
+            totalIncome = totalIncome + parseFloat(i.amount)
           }
         })
         this.setData({
-          totalAmount: Number(totalIncome - totalPay).toFixed(2)
+          totalAmount: parseFloat(totalIncome - totalPay).toFixed(2)
         })
       },
       fail: err => {
