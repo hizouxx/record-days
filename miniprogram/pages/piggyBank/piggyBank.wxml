@@ -5,12 +5,14 @@
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
   <view class="">
     <view class="margin-lg padding-lg bg-gradual-{{ColorList[theme].name}} radius shadow">
-      <view class="flex align-center justify-between" bindtap="toggleMoneyStatus">
+      <view class="flex align-center justify-between">
         <text class="text-blod">总余额</text>
-        <text class="cuIcon-{{eye ? 'attentionfill' : 'attentionforbidfill'}}"></text>
+        <text class="cuIcon-{{eye ? 'attentionfill' : 'attentionforbidfill'}} padding-sm" bindtap="toggleMoneyStatus"></text>
       </view>
-      <view wx:if="{{eye}}" class="text-center text-xl text-price">{{totalAmount}}</view>
-      <view wx:if="{{!eye}}" class="text-center text-content">***</view>
+      <view wx:if="{{eye}}" class="price-height text-center text-price">
+        <text class="text-xxl">{{totalAmount}}</text>
+      </view>
+      <view wx:if="{{!eye}}" class="price-height text-center text-content text-xxl">***</view>
     </view>
 
     <view class="padding-lr-lg padding-tb-sm flex nav-tab justify-between margin-tb">

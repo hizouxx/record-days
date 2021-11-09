@@ -197,8 +197,8 @@ Page({
         })
         this.setData({
           dataList,
-          curTotalPay: parseFloat(curTotalPay).toFixed(2),
-          curTotalIncome: parseFloat(curTotalIncome).toFixed(2),
+          curTotalPay: parseFloat(curTotalPay.toFixed(2)),
+          curTotalIncome: parseFloat(curTotalIncome.toFixed(2)),
           numPayList: this.getNumList(dataList.filter(i => i.type === 'pay')),
           numIncomeList: this.getNumList(dataList.filter(i => i.type === 'income')),
           loading: false,
@@ -266,7 +266,7 @@ Page({
       name: 'getBillList',
       data: {
         couple: [app.globalData.openid, app.globalData.bindOpenid],
-        dateStart: new Date('1970/01/01').getTime(),
+        dateStart: new Date('2020/10/01').getTime(),
         dateEnd: new Date().getTime(),
       },
       success: res => {
@@ -279,6 +279,9 @@ Page({
           } else if (i.type == 'income') {
             totalIncome = totalIncome + parseFloat(i.amount)
           }
+          this.setData({
+            totalAmount: parseFloat(totalIncome - totalPay).toFixed(2)
+          })
         })
         this.setData({
           totalAmount: parseFloat(totalIncome - totalPay).toFixed(2)
