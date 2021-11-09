@@ -42,7 +42,7 @@
           <view>{{item.date}} {{item.time}}</view>
           <view class="padding-top-sm flex flex-wrap align-center">
             <text class="text-df margin-right-xs">{{item.remark}}</text>
-            <image class="emoji2" src="{{'../../images/face/'+(item.emoji)+'.gif'}}"></image>
+            <image wx:if="{{item.emoji}}" class="emoji2" src="{{'../../images/face/'+(item.emoji)+'.gif'}}"></image>
           </view>
         </view>
       </view>

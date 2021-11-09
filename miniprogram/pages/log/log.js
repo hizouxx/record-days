@@ -16,7 +16,7 @@ Page({
     loading: true,
     btnDisabled: false,
     btnLoading: false,
-    emoji: 1, // 表情
+    emoji: 0, // 表情
     remark: '', // 备注
     dataList: [] // 列表
   },
@@ -162,7 +162,7 @@ Page({
     console.log(e)
     let {emoji} = e.currentTarget.dataset
     this.setData({
-      emoji
+      emoji: this.data.emoji === emoji ? 0 : emoji
     })
   },
   /**
