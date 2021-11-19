@@ -4,7 +4,7 @@
 </cu-custom>
 <scroll-view scroll-y>
   <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
-  <com-nodata wx:if="{{!loading && list.length == 0}}" content="“立下家庭计划”"></com-nodata>
+  <com-nodata wx:if="{{!loading && list.length == 0}}" content="“做事没计划，盲人骑害马。立一个家庭计划吧！”"></com-nodata>
   <view wx:if="{{!loading && list.length > 0}}" class="margin-lg padding-lg bg-white radius">
     <block wx:for="{{list}}" wx:key>
       <view class="padding-tb-xs text-content text-indent text-underline" data-item="{{item}}" bindlongtap="delete">

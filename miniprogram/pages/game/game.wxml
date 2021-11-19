@@ -1,0 +1,57 @@
+<!--pages/game/game.wxml-->
+<cu-custom isBack="{{true}}" bg-color="bg-white">
+  <view slot="content">休闲游戏</view>
+</cu-custom>
+
+<view class="container" style="height: calc(100vh - {{CustomBar}}px)"> 
+  <!-- loading -->
+  <loading hidden="{{hidden}}">
+    加载中...
+  </loading>
+
+  <view class="flex justify-between align-center padding-lr">
+    <view class="flex flex-direction justify-between">
+      <text class="text-sl text-bold">2048</text>
+      <text class="margin-top text-xl">合并数字到达2048!</text>
+    </view>
+    <view class="flex flex-direction align-end">
+      <view class="margin-top flex">
+        <view class="score flex flex-direction text-center padding-lr padding-tb-xs radius">
+          <text class="text-sm">分数</text>
+          <text class="text-xxl text-white text-bold">{{score}}</text>
+        </view>
+        <view class="score flex flex-direction text-center padding-lr padding-tb-xs radius margin-left-sm">
+          <text class="text-sm">最佳</text>
+          <text class="text-xxl text-white text-bold">{{bestScore}}</text>
+        </view>
+      </view>
+      
+      <text class="margin-top bg-gradual-{{ColorList[theme].name}} padding-tb-xs padding-lr-sm radius text-sm" bindtap="gameStart">{{start}}</text>
+    </view>
+  </view>
+
+  <view class="game"> 
+    <!-- 矩阵 -->
+    <view bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+      <view class="row" wx:for="{{num}}" wx:for-item="row" wx:key="row.key" >
+        <view class="cell" wx:for="{{row}}" wx:for-item="cell" wx:key="cell.key">
+          <view class="cell-con cell-con-{{cell}}">
+            {{cell}}
+          </view>
+        </view>
+      </view> 
+    </view>
+
+    <!-- game over -->
+    <view class="game-over" hidden="{{!over}}">
+      <text class="nowScore">历史最高分：{{bestScore}}</text>
+      <text class="nowScore">本次成绩：{{score}}</text>
+      <text class="pro">{{endMsg}}</text> 
+      <button class="margin-top bg-grey" bindtap="confirm">确定</button>
+    </view> 
+  </view>
+
+  <view class="margin font-lg text-indent">
+    <text>如何玩: 用手指滑动方向移动方块。当两个具有相同数字的方块接触时，它们会合并为一个！数字到达2048即为胜利~</text>
+  </view>
+</view>

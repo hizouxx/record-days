@@ -33,8 +33,6 @@ Page({
       '../../images/screenshot/8-2.png',
       '../../images/screenshot/9-1.png',
       '../../images/screenshot/9-2.png',
-      '../../images/screenshot/10-1.png',
-      '../../images/screenshot/10-2.png'
     ]
 
   },

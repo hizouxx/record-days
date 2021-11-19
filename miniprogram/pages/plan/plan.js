@@ -201,7 +201,7 @@ Page({
         // console.log(res.tapIndex)
         wx.showLoading()
         wx.cloud.callFunction({
-          name: 'deleteAgreement',
+          name: 'deletePlan',
           data: {
             id: _id
           },

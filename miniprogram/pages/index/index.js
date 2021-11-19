@@ -21,33 +21,51 @@ let defaultList = [{
   },
   {
     icon: 'likefill',
-    color: 'green',
+    color: 'olive',
     path: 'wish',
     name: '家庭心愿'
   },
   {
     icon: 'newshotfill',
-    color: 'cyan',
+    color: 'green',
     path: 'agreement',
     name: '家庭协议'
   },
   {
     icon: 'formfill',
-    color: 'blue',
+    color: 'cyan',
     path: 'plan',
     name: '家庭计划'
   },
   {
     icon: 'writefill',
-    color: 'mauve',
+    color: 'blue',
     path: 'log',
     name: '家庭日记'
   },
   {
     icon: 'myfill',
-    color: 'brown',
+    color: 'purple',
     path: 'info',
     name: '账户信息'
+  },
+  {
+    icon: 'infofill',
+    color: 'mauve',
+    path: 'about',
+    name: '程序介绍'
+  },
+  {
+    icon: 'mobilefill',
+    color: 'pink',
+    path: 'demo',
+    name: '使用演示'
+  },
+  {
+    icon: 'upstagefill',
+    color: 'brown',
+    path: 'game',
+    name: '休闲游戏'
   },
   {
     icon: 'settingsfill',
