@@ -34,14 +34,14 @@ let defaultList = [{
   {
     icon: 'formfill',
     color: 'blue',
-    path: 'log',
-    name: '家庭日记'
+    path: 'plan',
+    name: '家庭计划'
   },
   {
-    icon: 'skinfill',
+    icon: 'writefill',
     color: 'mauve',
-    path: 'doodling',
-    name: '画板工具'
+    path: 'log',
+    name: '家庭日记'
   },
   {
     icon: 'myfill',
