@@ -15,6 +15,7 @@
     "pages/qrCode/qrCode",
     "pages/demo/demo",
     "pages/plan/plan",
+    "pages/setting/setting",
     "pages/game/game"
   ],
   "window": {
