@@ -18,7 +18,6 @@ exports.main = async (event, context) => {
         nickName: event.nickName,
         avatarUrl: event.avatarUrl,
         createTime: event.createTime,
-        emoji: event.emoji,
         remark: event.remark,
       }
     })

@@ -4,10 +4,8 @@ textarea{
   width: 750rpx;
   box-sizing: border-box;
 }
-image.emoji{
-  width: 28rpx;
-  height: 28rpx;
-  margin: 0 auto;
+.emoji{
+  font-size: 45rpx;
 }
 image.emoji2{
   width: 28rpx;

@@ -8,7 +8,7 @@ Page({
   data: {
     CustomBar: app.globalData.CustomBar,
     ColorList: app.globalData.ColorList,
-    lunarDate: "", // 农历日前
+    lunarDate: "", // 农历日期
     week: utils.getWeekByDate(new Date()), // 星期几
     theme: 0,
     today: utils.formatDate(new Date()),
@@ -16,8 +16,15 @@ Page({
     loading: true,
     btnDisabled: false,
     btnLoading: false,
-    emoji: 0, // 表情
-    remark: '', // 备注
+    emojiList: [
+      '😀','😁','😂','😃','😄','😅','😆','😉','😊','😋',
+      '😎','😍','😘','😗','😙','😚','😇','😐','😑','😶',
+      '😏','😣','😥','😮','😯','😪','😫','😴','😌','😛',
+      '😜','😝','😒','😓','😔','😕','😲','😷','😖','😞',
+      '😟','😤','😢','😭','😦','😧','😨','😬','😰','😱',
+      '😳','😵','😡','😠'
+    ],
+    remark: '', // 内容
     dataList: [] // 列表
   },
 
@@ -89,7 +96,7 @@ Page({
   },
 
   /**
-   * 获取纪念日列表
+   * 获取数据列表
    */
   getDataList() {
     wx.cloud.callFunction({
@@ -156,13 +163,13 @@ Page({
 
 
   /**
-   * 选择心情类型
+   * 输入表情
    */
   clickEmoji(e) {
     console.log(e)
     let {emoji} = e.currentTarget.dataset
     this.setData({
-      emoji: this.data.emoji === emoji ? 0 : emoji
+      remark: this.data.remark + emoji
     })
   },
   /**
@@ -225,7 +232,7 @@ Page({
    * 提交
    */
   submit() {
-    let { emoji, remark} = this.data
+    let { remark } = this.data
     //调用云函数
     wx.cloud.callFunction({
       name: 'addLog',
@@ -234,7 +241,6 @@ Page({
         createTime: new Date().getTime(),
         nickName: app.globalData.userInfo.nickName,
         avatarUrl: app.globalData.userInfo.avatarUrl,
-        emoji,
         remark,
       },
       success: res => {

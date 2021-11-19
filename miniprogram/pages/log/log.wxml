@@ -14,11 +14,11 @@
       bindinput="remarkInput" />
 
     <view class="flex flex-wrap justitfy-between padding bg-white margin-top animation-fade">
-      <block wx:for="{{48}}" wx:key wx:for-index='index'>
+      <block wx:for="{{emojiList}}" wx:key wx:for-item='item' wx:for-index='index'>
         <view class="basis-ss">
-          <view class="padding-tb-sm radius bg-{{emoji === (index+1) ? 'gray': ''}}"
-            data-emoji="{{index+1}}" bindtap="clickEmoji">
-            <image class="emoji" src="{{'../../images/face/'+(index+1)+'.gif'}}"></image>
+          <view class="padding-tb-xs radius flex align-center justify-center"
+            data-emoji="{{item}}" bindtap="clickEmoji">
+            <text class="emoji">{{item}}</text>
           </view>
         </view>
       </block>
@@ -42,7 +42,6 @@
           <view>{{item.date}} {{item.time}}</view>
           <view class="padding-top-sm flex flex-wrap align-center">
             <text class="text-df margin-right-xs">{{item.remark}}</text>
-            <image wx:if="{{item.emoji}}" class="emoji2" src="{{'../../images/face/'+(item.emoji)+'.gif'}}"></image>
           </view>
         </view>
       </view>
