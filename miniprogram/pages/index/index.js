@@ -62,14 +62,8 @@ let defaultList = [{
     name: '使用演示'
   },
   {
-    icon: 'upstagefill',
-    color: 'brown',
-    path: 'game',
-    name: '休闲游戏'
-  },
-  {
     icon: 'settingsfill',
-    color: 'black',
+    color: 'brown',
     path: 'setting',
     name: '设置'
   }
