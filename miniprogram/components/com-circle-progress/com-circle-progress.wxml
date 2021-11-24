@@ -1,0 +1,11 @@
+<!--components/com-circle-progress/com-circle-progress.wxml-->
+<view class='circle-progress-container' style="width: {{size}}rpx;height: {{size}}rpx;">
+  <view class="circle-progress-outter-circle" style="width: {{size}}rpx;height: {{size}}rpx;border: {{borderSize}}rpx solid {{normalColor}};">
+  </view>
+  <view class='circle-progress-half-rect right-rect' style="width: {{size/2+1}}rpx;height: {{size}}rpx;">
+    <view wx:if="{{currentProgress>0}}" class='circle-progress-half-circle right-circle' style="transform: rotate({{rightCircleRadius}}deg);width: {{size}}rpx;height: {{size}}rpx; border: {{borderSize}}rpx solid transparent;border-right: {{borderSize}}rpx solid {{borderColor}};border-bottom: {{borderSize}}rpx solid {{borderColor}};" ></view>
+  </view>
+  <view class='circle-progress-half-rect left-rect' style="width: {{size/2+1}}rpx;height: {{size}}rpx;">
+    <view wx:if="{{currentProgress>0.5}}" class='circle-progress-half-circle left-circle' style="transform: rotate({{leftCircleRadius}}deg);width: {{size}}rpx;height: {{size}}rpx; border: {{borderSize}}rpx solid transparent;border-left: {{borderSize}}rpx solid {{borderColor}};border-top: {{borderSize}}rpx solid {{borderColor}};"></view>
+  </view>
+</view>

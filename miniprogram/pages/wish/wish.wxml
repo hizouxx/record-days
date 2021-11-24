@@ -11,7 +11,7 @@
     <view class="margin-bottom padding bg-white radius" wx:for="{{list}}" wx:key
       wx:for-index="index" data-item="{{item}}" bindtap="wishDetail" bindlongtap="deleteWish">
       <view class="{{item.achieve ? 'text-linethrough': ''}} margin-tb-sm">
-        {{item.createDate}} :{{item.value}}
+        「{{item.createDate}}」:{{item.value}}
       </view>
       <view wx:if="{{item.achieveDate}}" class="text-right text-gray text-sm">
         于{{item.achieveDate}}完成

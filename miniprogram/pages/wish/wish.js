@@ -177,7 +177,7 @@ Page({
       },
       success: res => {
         console.log('res', res)
-        let list = res.result.data.map(i=>{
+        let list = res.result.map(i=>{
           i.createDate = utils.formatDate(new Date(i.createTime))
           i.achieveDate = i.achieveDate ? utils.formatDate(new Date(i.achieveDate)) : null
           return i

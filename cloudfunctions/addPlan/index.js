@@ -18,7 +18,11 @@ exports.main = async (event, context) => {
         nickName: event.nickName,
         avatarUrl: event.avatarUrl,
         createTime: event.createTime, // 创建日期
-        value: event.value, // 内容
+        year: event.year,
+        plan: event.plan,
+        remark: event.remark,
+        achieve: event.achieve, // 是否实现
+        achieveDate: event.achieveDate, // 实现日期
       }
     })
   } catch (err) {

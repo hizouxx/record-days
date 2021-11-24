@@ -1,0 +1,32 @@
+/* components/com-circle-progress/com-circle-progress.wxss */
+.circle-progress-outter-circle{
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.circle-progress-half-rect{
+  position: absolute;
+  overflow: hidden;
+}
+.right-rect{
+  top: 0;
+  right: 0;
+}
+.left-rect{
+  top: 0;
+  left: 0;
+}
+.circle-progress-half-circle{
+  border-radius: 50%;
+  box-sizing: border-box;
+  position: absolute;   
+}
+.right-circle{
+  top:0;  
+  right: 0;
+  transform: rotate(-45deg);
+}
+.left-circle{
+  top:0;  
+  left: 0;
+  transform: rotate(-45deg);
+}

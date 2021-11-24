@@ -7,7 +7,3 @@ textarea{
 .emoji{
   font-size: 45rpx;
 }
-image.emoji2{
-  width: 28rpx;
-  height: 28rpx;
-}

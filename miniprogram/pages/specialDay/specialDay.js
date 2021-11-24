@@ -87,7 +87,7 @@ Page({
       },
       success: res => {
         console.log('res', res)
-        let dataList = res.result.data && res.result.data.map( i =>{
+        let dataList = res.result && res.result.map( i =>{
           i.date2 = utils.formatDate(new Date(i.date))
           i.days = Math.ceil((new Date(i.date).getTime() - new Date().getTime()) / 86400000)
           if(i.days < 0) {

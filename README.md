@@ -10,7 +10,7 @@
 - 家庭心愿：增、删；
 - 家庭协议：增、删；
 - 家庭日记：增、删；
-- 家庭计划：增、删；
+- 家庭计划：增、删、改、查；
 - 休闲游戏：2048；
 - 使用演示；
 - 程序介绍；
@@ -35,21 +35,5 @@
 ![效果图](miniprogram/images/screenshot/3-2.png)
 ![效果图](miniprogram/images/screenshot/3-3.png)
 ![效果图](miniprogram/images/screenshot/3-4.png)
-![效果图](miniprogram/images/screenshot/4-1.png)
-![效果图](miniprogram/images/screenshot/4-2.png)
-![效果图](miniprogram/images/screenshot/4-3.png)
-![效果图](miniprogram/images/screenshot/4-4.png)
-![效果图](miniprogram/images/screenshot/5-1.png)
-![效果图](miniprogram/images/screenshot/5-2.png)
-![效果图](miniprogram/images/screenshot/5-3.png)
-![效果图](miniprogram/images/screenshot/6-1.png)
-![效果图](miniprogram/images/screenshot/6-2.png)
-![效果图](miniprogram/images/screenshot/6-3.png)
-![效果图](miniprogram/images/screenshot/6-4.png)
-![效果图](miniprogram/images/screenshot/7-1.png)
-![效果图](miniprogram/images/screenshot/7-2.png)
-![效果图](miniprogram/images/screenshot/8-1.png)
-![效果图](miniprogram/images/screenshot/8-2.png)
-![效果图](miniprogram/images/screenshot/9-1.png)
-![效果图](miniprogram/images/screenshot/9-2.png)
+![效果图](miniprogram/images/screenshot/3-5.png)
 

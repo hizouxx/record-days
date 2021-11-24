@@ -175,7 +175,7 @@ Page({
       success: res => {
         // console.log('res', res)
         this.setData({
-          list: res.result.data,
+          list: res.result,
           loading: false
         })
       },

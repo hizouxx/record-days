@@ -11,21 +11,22 @@ Page({
     lunarDate: "", // 农历日期
     week: utils.getWeekByDate(new Date()), // 星期几
     theme: 0,
-    today: utils.formatDate(new Date()),
+    today: utils.formatDate3(new Date()),
     current: 0, // 当前swiper索引值
     loading: true,
     btnDisabled: false,
     btnLoading: false,
+    showEmoji: false, // 收起/展示表情
     emojiList: [
       '😀','😁','😂','😃','😄','😅','😆','😉','😊','😋',
       '😎','😍','😘','😗','😙','😚','😇','😐','😑','😶',
       '😏','😣','😥','😮','😯','😪','😫','😴','😌','😛',
       '😜','😝','😒','😓','😔','😕','😲','😷','😖','😞',
-      '😟','😤','😢','😭','😦','😧','😨','😬','😰','😱',
-      '😳','😵','😡','😠'
+      '😟','😤','😢','😭','😦','😧','😵','😬','😰','😳',
     ],
     remark: '', // 内容
-    dataList: [] // 列表
+    dataList: [], // 列表
+    page: 1, //当前页
   },
 
   /**
@@ -99,16 +100,17 @@ Page({
    * 获取数据列表
    */
   getDataList() {
+    const {page} = this.data
     wx.cloud.callFunction({
       name: 'getLogList',
       data: {
         couple: [app.globalData.openid, app.globalData.bindOpenid],
+        page,
       },
       success: res => {
         console.log('res', res)
-        let dataList = res.result.data && res.result.data.map( i =>{
-          i.date = utils.formatDateTime(new Date(i.createTime)).split(' ')[0]
-          i.time = utils.formatDateTime(new Date(i.createTime)).split(' ')[1]
+        let dataList = res.result && res.result.map( i =>{
+          i.date = utils.formatDate2(new Date(i.createTime))
           return i
         })
         this.setData({
@@ -160,7 +162,14 @@ Page({
       }
     })
   },
-
+  /**
+   * 显示/隐藏表情
+   */
+  toggleShowEmoji() {
+    this.setData({
+      showEmoji: !this.data.showEmoji
+    })
+  },
 
   /**
    * 输入表情

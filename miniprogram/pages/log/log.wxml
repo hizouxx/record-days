@@ -5,15 +5,15 @@
 <swiper class="swiper" style="height: calc(100vh - {{CustomBar}}px)" current="{{current}}" bindchange="swiperChange">
   <swiper-item class="swiper-item">
 
-    <view class="margin-tb-xs padding-sm flex justify-between align-center bg-white">
+    <view class="margin-tb-sm padding flex justify-between align-center bg-white text-lg">
       <text>{{today}}</text>
       <text>农历{{lunarDate}} {{week}}</text>
     </view>
 
-    <textarea class="padding bg-white" value="{{remark}}" placeholder="写点什么（200字符）" maxlength="200"
+    <textarea class="padding bg-white text-lg" value="{{remark}}" placeholder="写点什么（200字符）" maxlength="200"
       bindinput="remarkInput" />
 
-    <view class="flex flex-wrap justitfy-between padding bg-white margin-top animation-fade">
+    <view wx:if="{{showEmoji}}" class="flex flex-wrap justitfy-between padding-sm bg-white margin-top-sm animation-fade">
       <block wx:for="{{emojiList}}" wx:key wx:for-item='item' wx:for-index='index'>
         <view class="basis-ss">
           <view class="padding-tb-xs radius flex align-center justify-center"
@@ -23,25 +23,28 @@
         </view>
       </block>
     </view>
+    <view class="cuIcon-{{showEmoji ? 'fold':'unfold'}} text-grey padding-top text-center text-xl" bindtap="toggleShowEmoji"></view>
 
     <view class="fixed-bottom flex justitfy-center padding-bottom">
-      <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius" disabled="{{btnDisabled}}" bindtap="checkMsg">
-        <text wx:if="{{btnLoading}}" class="cuIcon-loading2 iconfont-spi text-lgn margin-right-xs"></text>
+      <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg" disabled="{{btnDisabled}}" bindtap="checkMsg">
+        <text wx:if="{{btnLoading}}" class="cuIcon-loading2 iconfont-spi text-xl margin-right-xs"></text>
         <text>提交</text>
       </button>
     </view>
 
   </swiper-item>
-  <swiper-item class="swiper-item">
+  <swiper-item class="swiper-item bg-white">
     <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
       <view wx:if="{{loading}}" class="loading-gif">
         <image src="../../images/icon-loading.gif" mode="aspectFit"></image>
       </view>
       <view wx:if="{{!loading && dataList.length > 0}}" class="cu-timeline" wx:for="{{dataList}}" wx:key>
-        <view class="margin padding radius bg-white" data-id="{{item._id}}" bindlongpress="deleteLog">
-          <view>{{item.date}} {{item.time}}</view>
-          <view class="padding-top-sm flex flex-wrap align-center">
-            <text class="text-df margin-right-xs">{{item.remark}}</text>
+        <view class="cu-timeline">
+          <view class="cu-time">{{item.date}}</view>
+          <view class="cu-item cur cuIcon-writefill">
+            <view class="content bg-{{ColorList[theme].name}} shadow-blur" data-id="{{item._id}}" bindlongpress="deleteLog">
+              {{item.remark}}
+            </view>
           </view>
         </view>
       </view>

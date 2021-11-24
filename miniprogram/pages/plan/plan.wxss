@@ -1,1 +1,26 @@
 /* pages/plan/plan.wxss */
+.year{
+  height: 200rpx;
+  width: 330rpx;
+}
+.progress{
+  height: 200rpx;
+  width: 330rpx;
+}
+.progress-circle{
+  height: 160rpx;
+  width: 160rpx;
+  position: relative;
+}
+.progress-circle-rate{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.icon-achieve{
+  height: 80rpx;
+  width: 80rpx;
+}

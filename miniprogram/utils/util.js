@@ -14,6 +14,7 @@ const formatDateTime = date => {
 }
 /**
  * 日期格式化
+ * 如：2020-01-01
  * @param {*} date 
  */
 const formatDate = date => {
@@ -22,6 +23,30 @@ const formatDate = date => {
   const day = date.getDate()
 
   return [year, month, day].map(formatNumber).join('-')
+}
+/**
+ * 日期格式化2
+ * 如：2020.01.01
+ * @param {*} date 
+ */
+const formatDate2 = date => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+
+  return [year, month, day].map(formatNumber).join('.')
+}
+/**
+ * 日期格式化3
+ * 如：2020年01月01日
+ * @param {*} date 
+ */
+const formatDate3 = date => {
+  const year = date.getFullYear() + '年'
+  const month = date.getMonth() + 1 + '月'
+  const day = date.getDate() + '日'
+
+  return [year, month, day].map(formatNumber).join('')
 }
 /**
  * 获取:当月的月首与月尾日期
@@ -109,6 +134,8 @@ const getWeekByDate = dates => {
 module.exports = {
   formatDateTime: formatDateTime,
   formatDate: formatDate,
+  formatDate2: formatDate2,
+  formatDate3: formatDate3,
   getCurMonthStartAndEnd: getCurMonthStartAndEnd,
   getLastMonthStartAndEnd: getLastMonthStartAndEnd,
   getCurYearStartAndEnd: getCurYearStartAndEnd,

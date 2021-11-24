@@ -9,10 +9,10 @@ Page({
     ColorList: app.globalData.ColorList,
     theme: 0,
     loading: true,
-    btnDisabled: true, // 新增按钮可点状态
-    showModal: false, // 是否显示新增计划的弹框
-    inputValue: '', // 计划内容
-    list: [],
+    year: new Date().getFullYear(), // 今年年份
+    achieveList: [], // 已实现计划列表
+    unAchieveList: [], // 未实现计划列表
+    achieveRate: 0, // 实现率
   },
 
   /**
@@ -23,7 +23,6 @@ Page({
     this.setData({
       theme
     })
-    this.getList()
   },
 
   /**
@@ -36,6 +35,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    // 因为自页面用了navigateBack。为了确保返回后刷新数据，所以接口调用放onShow而不放在onLoad里
+    this.getPlanList()
   },
 
   /**
@@ -69,132 +70,95 @@ Page({
   },
 
   /**
-   * 显示｜隐藏弹框
+   * 跳转添加计划页
    */
-  toggleModal() {
-    this.setData({
-      showModal: !this.data.showModal
+  add() {
+    wx.navigateTo({
+      url: '/pages/planAdd/planAdd',
     })
   },
   /**
-   * 输入框
-   * @param {*} e 
+   * 获取计划列表
    */
-  input(e) {
-    this.setData({
-      inputValue: e.detail.value,
-       btnDisabled: e.detail.value == '' ? true : false
-    })
-  },
-  /**
-   * 调用云函数进行审核
-   */
-  checkMsg() {
-    wx.showLoading()
-    this.setData({
-      btnDisabled: true
-    })
-    wx.cloud.callFunction({
-      name: 'checkMsg' ,
-      data:{
-        'content': this.data.inputValue
-      },
-      success: res => {
-        // console.log(res)
-        //获取状态码  0-正常   87014-违规
-        if(res.result.errCode != 0) {
-          wx.hideLoading()
-          this.setData({
-            btnDisabled: false
-          })
-          wx.showToast({
-            title: '输入的内容违规',
-            icon: 'none'
-          })
-        } else {
-          this.submit()
-        }
-      },
-      fail: err => {
-        console.error('err', err)
-        wx.hideLoading()
-        this.setData({
-          btnDisabled: false
-        })
-      }
-    }) 
-  },
-  /**
-   * 提交
-   */
-  submit() {
-    let {inputValue} = this.data
-    //调用云函数
-    wx.cloud.callFunction({
-      name: 'addPlan',
-      data: {
-        openid: app.globalData.openid,
-        nickName: app.globalData.userInfo.nickName,
-        avatarUrl: app.globalData.userInfo.avatarUrl,
-        createTime: new Date().getTime(),
-        value: inputValue,
-      },
-      success: res => {
-        // console.log(res)
-        wx.hideLoading()
-        this.setData({
-          inputValue: '',
-          btnDisabled: false,
-        })
-        wx.showToast({
-          title: '添加成功',
-        })
-        this.toggleModal()
-        this.getList()
-      },
-      fail: err => {
-        console.log(err)
-        wx.hideLoading()
-        this.setData({
-          btnDisabled: false
-        })
-      }
-    })
-  },
-  /**
-   * 获取数据列表
-   */
-  getList() {
-    // console.log(app.globalData)
-    // 调用云函数
+  getPlanList() {
+    const { year } = this.data
     wx.cloud.callFunction({
       name: 'getPlanList',
       data: {
         couple: [app.globalData.openid, app.globalData.bindOpenid],
+        year,
       },
       success: res => {
         // console.log('res', res)
+        let achieveList = res.result.data && res.result.data.filter( i => i.achieve)
+        let unAchieveList = res.result.data && res.result.data.filter( i => !i.achieve)
         this.setData({
-          list: res.result.data,
+          achieveList,
+          unAchieveList,
+          achieveRate: Math.round(achieveList.length / (achieveList.length + unAchieveList.length) * 100) || 0,
           loading: false
         })
       },
       fail: err => {
-        console.log(err)
+        console.log('err', err)
         this.setData({
           loading: false
         })
       }
     })
   },
+
+
   /**
-   * 删除某条
+   * 计划编辑（达成？）
    * @param {*} e 
    */
-  delete(e) {
+  planDetail(e) {
+    console.log(11, e)
+    let { id } = e.currentTarget.dataset
+    wx.showModal({
+      title: '计划',
+      content: '是否达成了计划？',
+      confirmText: "计划达成",
+      canaclText: "尚未",
+      success: res=> {
+        if (res.confirm) {
+          // console.log('用户点击确定')
+          wx.showLoading()
+          // 调用云函数
+          wx.cloud.callFunction({
+            name: 'editPlan',
+            data: {
+              id,
+              achieve: true,
+              achieveDate: new Date().getTime(),
+            },
+            success: res => {
+              console.log('res', res)
+              wx.hideLoading()
+              wx.showToast({
+                title: '计划达成',
+              })
+              this.getPlanList()
+            },
+            fail: err => {
+              wx.hideLoading()
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })    
+  },
+
+  /**
+   * 删除某一条计划
+   * @param {} e 
+   */
+  deletePlan(e) {
     wx.vibrateShort()
-    // console.log(e)
-    let { _id } = e.currentTarget.dataset.item
+    let { id } = e.currentTarget.dataset
     wx.showActionSheet({
       itemList: ['删除'],
       success: res => {
@@ -203,7 +167,7 @@ Page({
         wx.cloud.callFunction({
           name: 'deletePlan',
           data: {
-            id: _id
+            id
           },
           success: res => {
             // console.log('res', res)
@@ -211,11 +175,10 @@ Page({
             wx.showToast({
               title: '删除成功',
             })
-            this.getList()
+            this.getPlanList()
           },
           fail: err => {
             wx.hideLoading()
-            console.log(err)
           }
         })
       },
@@ -223,5 +186,15 @@ Page({
         console.log(res.errMsg)
       }
     })
-  }
+  },
+  /**
+   * 选择计划年份
+   * @param {*} e 
+   */
+  yearChange(e) {
+    this.setData({
+      year: Number(e.detail.value)
+    })
+    this.getPlanList()
+  },
 })

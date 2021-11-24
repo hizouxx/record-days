@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "com-circle-progress": "../../components/com-circle-progress/com-circle-progress"
+  }
 }

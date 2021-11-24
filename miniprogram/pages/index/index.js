@@ -14,28 +14,28 @@ let defaultList = [{
     name: '家庭纪念日'
   },
   {
-    icon: 'camerafill',
+    icon: 'formfill',
     color: 'yellow',
+    path: 'plan',
+    name: '家庭计划'
+  },
+  {
+    icon: 'camerafill',
+    color: 'olive',
     path: 'photoWall',
     name: '家庭相册'
   },
   {
     icon: 'likefill',
-    color: 'olive',
+    color: 'green',
     path: 'wish',
     name: '家庭心愿'
   },
   {
     icon: 'newshotfill',
-    color: 'green',
+    color: 'cyan',
     path: 'agreement',
     name: '家庭协议'
-  },
-  {
-    icon: 'formfill',
-    color: 'cyan',
-    path: 'plan',
-    name: '家庭计划'
   },
   {
     icon: 'writefill',
@@ -44,10 +44,10 @@ let defaultList = [{
     name: '家庭日记'
   },
   {
-    icon: 'myfill',
-    color: 'purple',
-    path: 'info',
-    name: '账户信息'
+    icon: 'mobilefill',
+    color: 'pink',
+    path: 'demo',
+    name: '使用演示'
   },
   {
     icon: 'infofill',
@@ -56,10 +56,10 @@ let defaultList = [{
     name: '程序介绍'
   },
   {
-    icon: 'mobilefill',
-    color: 'pink',
-    path: 'demo',
-    name: '使用演示'
+    icon: 'myfill',
+    color: 'purple',
+    path: 'info',
+    name: '账户信息'
   },
   {
     icon: 'settingsfill',

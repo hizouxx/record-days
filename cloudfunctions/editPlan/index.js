@@ -6,13 +6,21 @@ cloud.init({
 })
 
 const db = cloud.database()
-const _ = db.command
 
 // 云函数入口函数
 exports.main = async (event, context) => {
   // const wxContext = cloud.getWXContext()
-  return await db.collection('plan').where({
-    openid: _.in(event.couple),
-    year: event.year,
-  }).orderBy('createTime', 'asc').get()
+
+  try {
+    return await db.collection('plan').where({
+      _id: event.id
+    }).update({
+      data:{
+        achieve: event.achieve,
+        achieveDate: event.achieveDate,
+      }
+    })
+  } catch (err) {
+    console.log(err)
+  }
 }
