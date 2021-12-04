@@ -125,7 +125,7 @@ Page({
     if(!utils.regExpName(remark)) {
       let title = type == 'pay' ? '支出去向' : '收入来源'
       wx.showToast({
-        title: title + '由1-12位中英文或数字组成',
+        title: title + '由1-12位字符组成',
         icon: 'none'
       })
       return

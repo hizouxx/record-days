@@ -19,7 +19,7 @@
   </view>
 
   <view class="margin padding radius bg-white">
-    <input value="{{remark}}" placeholder="纪念日名称(1-12位中英文或数字)" bindinput="remarkInput" />
+    <input value="{{remark}}" placeholder="纪念日名称(1-12位字符组成)" bindinput="remarkInput" />
   </view>
 
   <view class="cu-form-group margin radius bg-white">

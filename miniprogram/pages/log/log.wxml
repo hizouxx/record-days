@@ -40,10 +40,18 @@
       </view>
       <view wx:if="{{!loading && dataList.length > 0}}" class="cu-timeline" wx:for="{{dataList}}" wx:key>
         <view class="cu-timeline">
-          <view class="cu-time">{{item.date}}</view>
+          <!-- <view class="cu-time">{{item.date}}</view> -->
           <view class="cu-item cur cuIcon-writefill">
             <view class="content bg-{{ColorList[theme].name}} shadow-blur" data-id="{{item._id}}" bindlongpress="deleteLog">
-              {{item.remark}}
+              <view class="cu-capsule radius">
+                <view class="cu-tag bg-white text-{{ColorList[theme].name}}">
+                  {{item.date}}
+                </view>
+                <view class="cu-tag line-white">
+                  {{item.time}}
+                </view>
+              </view>
+              <view class="margin-top">{{item.remark}}</view>
             </view>
           </view>
         </view>

@@ -315,7 +315,7 @@ Page({
     let { photosName } = this.data
     if(!utils.regExpName(photosName)) {
       wx.showToast({
-        title: '相册名由1-12位中英文或数字组成',
+        title: '相册名由1-12位字符组成',
         icon: 'none'
       })
       return

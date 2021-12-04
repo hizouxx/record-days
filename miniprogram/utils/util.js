@@ -1,6 +1,7 @@
 /**
  * 日期时间格式化
  * @param {*} date 
+ * 如：2020-01-01 12:00:00
  */
 const formatDateTime = date => {
   const year = date.getFullYear()
@@ -47,6 +48,18 @@ const formatDate3 = date => {
   const day = date.getDate() + '日'
 
   return [year, month, day].map(formatNumber).join('')
+}
+/**
+ * 时间格式化
+ * 如：12:00:00
+ * @param {*} date 
+ */
+const formatTime = date => {
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+  const second = date.getSeconds()
+
+  return [hour, minute, second].map(formatNumber).join(':')
 }
 /**
  * 获取:当月的月首与月尾日期
@@ -102,17 +115,12 @@ const getRandomInt = (min, max) => {
 }
 
 /**
- * 正则：1-12位中英文或数字组成
+ * 正则：由1-12位字符组成
  */
 const regExpName = (val) => {
-  return /^[\u4e00-\u9fa5A-Za-z\d]{1,12}$/.test(val)
+  return /^.{1,12}$/.test(val)
 }
-/**
- * 正则：4为数字
- */
-const regExpPwd = (val) => {
-  return /^[0-9]{4}$/.test(val)
-}
+
 /**
  * 正则：保留两位小数的金额
  */
@@ -136,12 +144,12 @@ module.exports = {
   formatDate: formatDate,
   formatDate2: formatDate2,
   formatDate3: formatDate3,
+  formatTime: formatTime,
   getCurMonthStartAndEnd: getCurMonthStartAndEnd,
   getLastMonthStartAndEnd: getLastMonthStartAndEnd,
   getCurYearStartAndEnd: getCurYearStartAndEnd,
   getRandomInt: getRandomInt,
   regExpName: regExpName,
   regExpMoney: regExpMoney,
-  regExpPwd: regExpPwd,
   getWeekByDate: getWeekByDate,
 }

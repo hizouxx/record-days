@@ -44,12 +44,6 @@ let defaultList = [{
     name: '家庭日记'
   },
   {
-    icon: 'mobilefill',
-    color: 'pink',
-    path: 'demo',
-    name: '使用演示'
-  },
-  {
     icon: 'infofill',
     color: 'mauve',
     path: 'about',

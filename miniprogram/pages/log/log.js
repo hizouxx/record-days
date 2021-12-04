@@ -110,7 +110,8 @@ Page({
       success: res => {
         console.log('res', res)
         let dataList = res.result && res.result.map( i =>{
-          i.date = utils.formatDate2(new Date(i.createTime))
+          i.date = utils.formatDate(new Date(i.createTime))
+          i.time = utils.formatTime(new Date(i.createTime))
           return i
         })
         this.setData({

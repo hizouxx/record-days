@@ -27,7 +27,7 @@
   <view class="cu-dialog bg-white padding-lr" catchtap>
     <view class="text-lg title margin-tb">设置相册名称</view>
     <view class="padding margin solids radius">
-      <input type="text" value="{{photosName}}" focus="{{showModal}}" placeholder="相册名（1-12位中英文或数字组成）" bindinput="onInput"></input>
+      <input type="text" value="{{photosName}}" focus="{{showModal}}" placeholder="相册名（1-12位字符组成）" bindinput="onInput"></input>
     </view>
     <button class="margin-tb radius bg-{{ColorList[theme].name}}" disabled="{{editBtnDisabled}}" bindtap="checkMsg">确定</button>
   </view>

@@ -106,7 +106,7 @@ Page({
     let { remark } = this.data
     if(!utils.regExpName(remark)) {
       wx.showToast({
-        title: '纪念日由1-12位中英文或数字组成',
+        title: '纪念日由1-12位字符组成',
         icon: 'none'
       })
       return
