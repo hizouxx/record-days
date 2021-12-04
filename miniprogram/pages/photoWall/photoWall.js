@@ -251,10 +251,10 @@ Page({
       },
       success: res => {
         console.log('res', res)
-        let dataList = res.result.data.map(i => {
+        let dataList = res.result && res.result.map(i => {
           i.date = utils.formatDate(new Date(i.createTime))
           return i
-        })
+        }) || []
         this.setData({
           dataList,
           loading: false

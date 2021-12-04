@@ -5,18 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
+    theme: 0,
+    ColorList: [], // 主题色列表
     CustomBar: app.globalData.CustomBar,
     cardCur: 0,
     swiperList: [
-      '../../images/screenshot/1-1.png',
-      '../../images/screenshot/1-2.png',
-      '../../images/screenshot/2-1.png',
-      '../../images/screenshot/2-2.png',
-      '../../images/screenshot/3-1.png',
-      '../../images/screenshot/3-2.png',
-      '../../images/screenshot/3-3.png',
-      '../../images/screenshot/3-4.png',
-      '../../images/screenshot/3-5.png',
+      '../../images/screenshot/01.png',
+      '../../images/screenshot/02.png',
+      '../../images/screenshot/03.png',
+      '../../images/screenshot/04.png',
+      '../../images/screenshot/05.png',
+      '../../images/screenshot/06.png',
+      '../../images/screenshot/07.png',
     ]
 
   },
@@ -25,7 +25,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      theme: wx.getStorageSync('theme') || 0, //主题
+      ColorList: app.globalData.ColorList, // 主题色列表
+    })
   },
 
   /**

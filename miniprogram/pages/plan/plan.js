@@ -90,8 +90,8 @@ Page({
       },
       success: res => {
         // console.log('res', res)
-        let achieveList = res.result.data && res.result.data.filter( i => i.achieve)
-        let unAchieveList = res.result.data && res.result.data.filter( i => !i.achieve)
+        let achieveList = res.result && res.result.filter( i => i.achieve) || []
+        let unAchieveList = res.result && res.result.filter( i => !i.achieve) || []
         this.setData({
           achieveList,
           unAchieveList,

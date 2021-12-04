@@ -2,8 +2,7 @@
 <cu-custom isBack="{{true}}" bg-color="bg-white">
   <view slot="content">演示</view>
 </cu-custom>
-<swiper class="card-swiper round-dot" style="height: calc(100vh - {{CustomBar}}px) !important" indicator-dots="true" circular="true" autoplay="true" interval="5000"
-  duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+<swiper class="card-swiper round-dot" style="height: calc(100vh - {{CustomBar}}px) !important" indicator-dots="true" circular="true" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="{{ColorList[theme].name}}">
   <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
     <view class="swiper-item padding bg-white shadow">
       <image src="{{item}}" mode="aspectFit"></image>

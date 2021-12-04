@@ -267,6 +267,14 @@ Page({
   authorizeSetting() {
     wx.openSetting()
   },
+  /**
+   * 演示指引
+   */
+  showDemo() {
+    wx.navigateTo({
+      url: '/pages/demo/demo'
+    })
+  },
 
   /**
    * 切换用户
