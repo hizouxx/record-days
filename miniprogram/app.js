@@ -20,7 +20,6 @@ App({
       userInfo: {}, // 用户数据
       openid: '', //openid
       bindOpenid: '', // 绑定对象的openid
-      lunarDate: '', // 农历日期
       // 主题色
       ColorList: [
         {

@@ -25,7 +25,7 @@
   <view class="cu-form-group margin radius bg-white">
     <view class="title">日期选择</view>
     <picker mode="date" value="{{date}}" start="1970-01-01" end="2050-01-01" bindchange="dateChange">
-      <view class="picker">{{date}}</view>
+      <view class="picker">{{date}}（{{lunarDate.gzYear}}年{{lunarDate.IMonthCn}}{{lunarDate.IDayCn}}）</view>
     </picker>
   </view>
 

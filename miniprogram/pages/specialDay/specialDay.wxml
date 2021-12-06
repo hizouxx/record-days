@@ -10,6 +10,7 @@
       <view class="margin-bottom padding radius bg-white flex align-center justify-between" data-id="{{item._id}}" bindlongtap="deleteSpecialDay">
         <view class="cuIcon-{{SpecialDayList[item.name].icon}}">
           <text class="margin-left-xs">{{item.remark}}</text>
+          <view class="margin-top-xs text-sm text-gray">{{item.date2}}（{{item.lunarDate.gzYear}}年{{item.lunarDate.IMonthCn}}{{item.lunarDate.IDayCn}}）</view>
         </view>
         <view class="text-right">
           <view class="margin-bottom-sm">
@@ -21,7 +22,6 @@
             </view>
             <view wx:if="{{item.days < 0}}">已经过去{{item.days2}}天</view>
           </view>
-          <view class="text-sm text-gray">{{item.date2}}</view>
         </view>
       </view>
     </view>

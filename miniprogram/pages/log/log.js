@@ -1,6 +1,7 @@
 // miniprogram/pages/specialDay/specialDay.js
 const app = getApp()
 const utils = require('../../utils/util.js')
+const {calendar} = require('../../utils/calendar.js')
 Page({
   /**
    * 页面的初始数据
@@ -8,7 +9,7 @@ Page({
   data: {
     CustomBar: app.globalData.CustomBar,
     ColorList: app.globalData.ColorList,
-    lunarDate: "", // 农历日期
+    lunarDate: calendar.solar2lunar(), // 农历日期
     week: utils.getWeekByDate(new Date()), // 星期几
     theme: 0,
     today: utils.formatDate3(new Date()),
@@ -37,7 +38,6 @@ Page({
     const theme = wx.getStorageSync('theme') || 0
     this.setData({
       theme,
-      lunarDate: app.globalData.lunarDate,
     })
   },
 

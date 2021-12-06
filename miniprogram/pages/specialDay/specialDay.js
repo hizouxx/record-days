@@ -1,6 +1,7 @@
 // miniprogram/pages/specialDay/specialDay.js
 const app = getApp()
 const utils = require('../../utils/util.js')
+const {calendar} = require('../../utils/calendar.js')
 Page({
   /**
    * 页面的初始数据
@@ -88,7 +89,9 @@ Page({
       success: res => {
         console.log('res', res)
         let dataList = res.result && res.result.map( i =>{
+          let year = new Date(i.date).getFullYear(), month = new Date(i.date).getMonth()+1, day = new Date(i.date).getDate();
           i.date2 = utils.formatDate(new Date(i.date))
+          i.lunarDate = calendar.solar2lunar(year, month, day)
           i.days = Math.ceil((new Date(i.date).getTime() - new Date().getTime()) / 86400000)
           if(i.days < 0) {
             i.days2 = Math.abs(i.days)

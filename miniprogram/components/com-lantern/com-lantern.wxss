@@ -1,0 +1,509 @@
+/* components/com-lantern/com-lantern.wxss */
+
+.container {
+  position: fixed;
+  width: 100%;
+  height: 500rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  perspective: 600rpx;
+  perspective-origin: center center;
+}
+
+.box {
+  position: relative;
+  width: 0;
+  height: 0;
+  animation: rotate 9s linear infinite;
+  transform-style: preserve-3d;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateY(0)
+  }
+
+  100% {
+    transform: rotateY(360deg)
+  }
+}
+
+.octagon {
+  position: relative;
+  width: 0rpx;
+  height: 0rpx;
+  transform-style: preserve-3d;
+}
+
+.octagon .surface {
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0% {
+    box-shadow: rgba(0, 0, 0, .1) 0 0 1rpx;
+  }
+
+  50% {
+    box-shadow: #fffea1 0 0 20rpx;
+  }
+
+  100% {
+    box-shadow: rgba(0, 0, 0, .1) 0 0 1rpx;
+  }
+
+}
+
+.surface {
+  position: absolute;
+  left: -40rpx;
+  top: -100rpx;
+  width: 80rpx;
+  height: 150rpx;
+  background: radial-gradient(#fffea1, #fffea1, #fbd342);
+  transform-origin: center;
+  overflow: hidden;
+}
+
+.surface::after {
+  position: absolute;
+  content: '';
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: #e36d00 solid 4rpx;
+  border-right-width: 2rpx;
+  border-left-width: 2rpx;
+  box-sizing: border-box;
+}
+
+.surface::before {
+  position: absolute;
+  left: 10rpx;
+  top: 10rpx;
+  width: 60rpx;
+  height: 130rpx;
+  box-sizing: border-box;
+  content: '';
+  border: solid 3rpx #e36d00;
+}
+
+.front {
+  transform: rotateY(0) translateZ(69rpx);
+}
+
+.right-front {
+  transform: rotateY(60deg) translateZ(69rpx);
+}
+
+.right-rear {
+  transform: rotateY(120deg) translateZ(69rpx);
+}
+
+.rear {
+  transform: rotateY(180deg) translateZ(69rpx);
+}
+
+.left-rear {
+  transform: rotateY(-120deg) translateZ(69rpx);
+}
+
+.left-front {
+  transform: rotateY(-60deg) translateZ(69rpx);
+}
+
+.surface.up {
+  left: -80rpx;
+  top: -100rpx;
+  width: 160rpx;
+  height: 0;
+  transform: rotateX(90deg);
+  overflow: visible;
+}
+
+.surface.bottom {
+  left: -80rpx;
+  top: 50rpx;
+  width: 160rpx;
+  height: 0;
+  transform: rotateX(90deg);
+  overflow: visible;
+}
+
+.surface.bottom::after,
+.surface.up::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 160rpx;
+  height: 0;
+  border: none;
+  border-top: #e36d00 solid 69rpx;
+  border-left: 40rpx solid transparent;
+  border-right: 40rpx solid transparent;
+  border-bottom: none;
+}
+
+.surface.bottom::before,
+.surface.up::before {
+  position: absolute;
+  left: 0 !important;
+  top: -69rpx !important;
+  width: 160rpx;
+  height: 0;
+  content: '';
+  border: none;
+  border-bottom: #e36d00 solid 69rpx;
+  border-left: 40rpx solid transparent;
+  border-right: 40rpx solid transparent;
+  box-sizing: border-box;
+}
+
+.surface-decoration {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: solid 3rpx #e36d00;
+}
+
+.surface-decoration.left-top {
+  left: -20rpx;
+  top: -20rpx;
+}
+
+.surface-decoration.right-top {
+  right: -20rpx;
+  top: -20rpx;
+}
+
+.surface-decoration.left-bottom {
+  left: -20rpx;
+  bottom: -20rpx;
+}
+
+.surface-decoration.right-bottom {
+  right: -20rpx;
+  bottom: -20rpx;
+}
+
+.extra {
+  position: absolute;
+  top: -100rpx;
+  width: 96rpx;
+  height: 150rpx;
+  transform-origin: left center;
+}
+
+.extra::before {
+  position: absolute;
+  right: 0rpx;
+  top: 0rpx;
+  width: 20rpx;
+  height: 15rpx;
+  content: '';
+  border: solid 3rpx #e36d00;
+}
+
+.extra::after {
+  position: absolute;
+  right: 8rpx;
+  top: 10rpx;
+  width: 10rpx;
+  height: 15rpx;
+  content: '';
+  border: solid 3rpx #e36d00;
+}
+
+.extra-60 {
+  transform: rotateY(60deg);
+}
+
+.extra-120 {
+  transform: rotateY(120deg);
+}
+
+.extra-180 {
+  transform: rotateY(180deg);
+}
+
+.extra-240 {
+  transform: rotateY(240deg);
+}
+
+.extra-300 {
+  transform: rotateY(300deg);
+}
+
+/*重写顶部样式*/
+.octagon.octagon-top {
+  top: -40rpx;
+}
+
+.octagon-top .surface {
+  left: -50rpx;
+  height: 40rpx;
+  width: 100rpx;
+}
+
+.octagon-top .surface::before {
+  width: 80rpx;
+  height: 20rpx;
+}
+
+.octagon-top .surface.up {
+  height: 0;
+}
+
+.octagon-top .front {
+  transform: rotateY(0) translateZ(86rpx);
+}
+
+.octagon-top .right-front {
+  transform: rotateY(60deg) translateZ(86rpx);
+}
+
+.octagon-top .right-rear {
+  transform: rotateY(120deg) translateZ(86rpx);
+}
+
+.octagon-top .rear {
+  transform: rotateY(180deg) translateZ(86rpx);
+}
+
+.octagon-top .left-rear {
+  transform: rotateY(-120deg) translateZ(86rpx);
+}
+
+.octagon-top .left-front {
+  transform: rotateY(-60deg) translateZ(86rpx);
+}
+
+.octagon-top .surface.bottom,
+.octagon-top .surface.up {
+  left: -100rpx;
+  top: -100rpx;
+  width: 200rpx;
+}
+
+.octagon-top .surface.up {
+  top: -60rpx;
+  z-index: 1;
+}
+
+
+.octagon-top .surface.bottom::after,
+.octagon-top .surface.up::after {
+  width: 200rpx;
+  border-top: #e36d00 solid 86rpx;
+  border-left: 50rpx solid transparent;
+  border-right: 50rpx solid transparent;
+}
+
+.octagon-top .surface.bottom::before,
+.octagon-top .surface.up::before {
+  top: -86rpx !important;
+  width: 200rpx;
+  border-bottom: #e36d00 solid 86rpx;
+  border-left: 50rpx solid transparent;
+  border-right: 50rpx solid transparent;
+}
+
+.octagon-top .extra {
+  width: 120rpx;
+  transform-style: preserve-3d;
+  z-index: 1;
+}
+
+/*重写底部样式*/
+.octagon.octagon-bottom {
+  top: 148rpx;
+  z-index: -1;
+}
+
+.octagon-bottom .surface {
+  left: -40rpx;
+  height: 20rpx;
+  width: 80rpx;
+}
+
+.pendant {
+  position: absolute;
+  right: -6rpx;
+  transform-style: preserve-3d;
+}
+
+.pendant::before {
+  position: absolute;
+  width: 6rpx;
+  height: 3rpx;
+  background: #e36d00;
+  left: -6rpx;
+  content: '';
+}
+
+.pendant::after {
+  position: absolute;
+  width: 2rpx;
+  height: 40rpx;
+  left: -1rpx;
+  width: 2rpx;
+  background: #F00;
+  content: '';
+}
+
+.pendant .line {
+  position: absolute;
+  bottom: 0;
+  left: -1rpx;
+  width: 0;
+  top: 40rpx;
+  transform-style: preserve-3d;
+}
+
+.knot {
+  position: absolute;
+  left: -4rpx;
+  border-top-left-radius: 4rpx;
+  border-top-right-radius: 4rpx;
+  width: 10rpx;
+  height: 60rpx;
+  background: linear-gradient(#f00, #e36d00 3rpx, #fbd342 5rpx, #e36d00 8rpx, #e36d00 12rpx, #f00 16rpx, rgba(255, 0, 0, .8) 26rpx, rgba(255, 0, 0, .6));
+}
+
+.knot-rotate-60 {
+  transform: rotateY(60deg)
+}
+
+.knot-rotate-120 {
+  transform: rotateY(120deg)
+}
+
+.octagon-bottom .pendant {
+  position: absolute;
+  left: 0;
+  top: -80rpx;
+  transform-style: preserve-3d;
+}
+
+.octagon-bottom .pendant::before {
+  position: absolute;
+  width: 2rpx;
+  height: 80rpx;
+  left: -1rpx;
+  width: 2rpx;
+  background: #F00;
+  content: '';
+  transform: rotateY(90deg);
+}
+
+.octagon-bottom .pendant::after {
+  height: 90rpx;
+}
+
+.octagon-bottom .line {
+  top: 90rpx;
+}
+
+.top-line {
+  position: absolute;
+  left: -1rpx;
+  top: -200rpx;
+  width: 2rpx;
+  background: #F00;
+  height: 100rpx;
+}
+
+.top-line-60 {
+  transform: rotateY(60deg);
+}
+
+.top-line-120 {
+  transform: rotateY(60deg);
+}
+
+.octagon-bottom .pendant .chinese-knot {
+  position: absolute;
+  left: -15rpx;
+  width: 30rpx;
+  top: 40rpx;
+  height: 30rpx;
+}
+
+.chinese-knot-45 {
+  position: absolute;
+  width: 30rpx;
+  height: 30rpx;
+  transform: rotateZ(45deg);
+}
+
+.chinese-knot--45 {
+  position: absolute;
+  width: 30rpx;
+  height: 30rpx;
+  transform: rotateZ(-45deg);
+}
+
+.chinese-knot-45::before {
+  position: absolute;
+  right: -8rpx;
+  top: -8rpx;
+  width: 10rpx;
+  height: 10rpx;
+  border: solid 2rpx #F00;
+  content: '';
+  border-radius: 50%;
+  border-left-color: transparent;
+  transform: rotate(-45deg);
+}
+
+.chinese-knot-45::after {
+  position: absolute;
+  right: -15rpx;
+  top: -15rpx;
+  width: 24rpx;
+  height: 24rpx;
+  border: solid 2rpx #F00;
+  border-left-color: transparent;
+  content: '';
+  border-radius: 50%;
+  transform: rotate(-45deg);
+}
+
+.chinese-knot--45::before {
+  position: absolute;
+  left: -8rpx;
+  top: -8rpx;
+  width: 10rpx;
+  height: 10rpx;
+  border: solid 2rpx #F00;
+  content: '';
+  border-radius: 50%;
+  border-right-color: transparent;
+  transform: rotate(45deg);
+}
+
+.chinese-knot--45::after {
+  position: absolute;
+  left: -15rpx;
+  top: -15rpx;
+  width: 24rpx;
+  height: 24rpx;
+  border: solid 2rpx #F00;
+  border-right-color: transparent;
+  content: '';
+  border-radius: 50%;
+  transform: rotate(45deg);
+}
+
+.chinese-knot .oval {
+  width: 32rpx;
+  margin-left: -3rpx;
+  height: 2rpx;
+  border: solid 2rpx #f00;
+  border-radius: 2rpx;
+  margin-top: 1rpx;
+}

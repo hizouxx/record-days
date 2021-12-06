@@ -7,7 +7,7 @@
 
     <view class="margin-tb-sm padding flex justify-between align-center bg-white text-lg">
       <text>{{today}}</text>
-      <text>农历{{lunarDate}} {{week}}</text>
+      <text>农历{{lunarDate.IMonthCn}}{{lunarDate.IDayCn}} {{week}}</text>
     </view>
 
     <textarea class="padding bg-white text-lg" value="{{remark}}" placeholder="写点什么（200字符）" maxlength="200"

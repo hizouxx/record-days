@@ -9,11 +9,18 @@
 
     <!-- 时间 -->
     <view class="margin-top-xl text-grey">
-      <view class="text-xsl text-center">{{clock}}</view>
+      <view class="text-xxl text-center text-bold">
+        农历{{lunarDate.IMonthCn}}{{lunarDate.IDayCn}}
+      </view>
       <view class="text-center text-bold">
-        农历{{lunarDate}} {{week}}
+        {{lunarDate.gzYear}}年{{lunarDate.gzMonth}}月{{lunarDate.gzDay}}日
       </view>
     </view>
+
+    <!-- 节日灯笼 -->
+    <block wx:if="{{isSpringFestival}}">
+      <com-lantern></com-lantern>
+    </block>
 
   </swiper-item>
 
@@ -21,6 +28,11 @@
   <swiper-item class="swiper-item">
     <!-- Header -->
     <cu-custom></cu-custom>
+
+    <!-- 节日灯笼2 -->
+    <block wx:if="{{isSpringFestival}}">
+      <com-lantern2></com-lantern2>
+    </block>
 
     <!-- Drag -->
     <view class="margin">

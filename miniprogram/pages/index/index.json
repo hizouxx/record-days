@@ -1,6 +1,8 @@
 {
 	"usingComponents": {
 		"drag": "../../components/drag/index",
-		"drag-item": "./drag-item/index"
+		"drag-item": "./drag-item/index",
+		"com-lantern": "../../components/com-lantern/com-lantern",
+		"com-lantern2": "../../components/com-lantern2/com-lantern2"
 	}
 }

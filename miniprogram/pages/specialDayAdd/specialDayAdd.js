@@ -1,6 +1,7 @@
 // miniprogram/pages/specialDayAdd/specialDayAdd.js
 const app = getApp();
 const utils = require('../../utils/util.js')
+const {calendar} = require('../../utils/calendar.js')
 Page({
   /**
    * 页面的初始数据
@@ -15,12 +16,14 @@ Page({
     name: 0, // 纪念日名称
     remark: '', // 备注
     date: utils.formatDate(new Date()), // 今天日期
+    lunarDate: calendar.solar2lunar(), // 农历日期
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(calendar.solar2lunar())
     const theme = wx.getStorageSync('theme') || 0
     this.setData({
       theme
@@ -95,8 +98,11 @@ Page({
    * @param {*} e 
    */
   dateChange(e) {
+    console.log(e.detail.value)
+    let dateArr = e.detail.value.split("-")
     this.setData({
-      date: e.detail.value
+      date: e.detail.value,
+      lunarDate: calendar.solar2lunar(dateArr[0], dateArr[1], dateArr[2])
     })
   },
   /**
