@@ -24,3 +24,7 @@
   height: 80rpx;
   width: 80rpx;
 }
+.in-progress{
+  width: 120rpx;
+  text-align: right;
+}

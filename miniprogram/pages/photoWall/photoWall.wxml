@@ -6,7 +6,7 @@
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
   <view class="padding-lr padding-top">
     <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
-    <com-nodata wx:if="{{!loading && dataList.length == 0}}" content="注意：图片文件过大将导致上传失败。"></com-nodata>
+    <com-nodata wx:if="{{!loading && dataList.length == 0}}" content="注意：图片文件过大将导致上传失败哦。"></com-nodata>
     <view wx:if="{{!loading && dataList.length > 0}}">
       <view class="margin-bottom padding bg-white radius flex align-center justify-between" wx:for="{{dataList}}" wx:key wx:item="item" data-id="{{item._id}}" bindtap="pageToDetail" bindlongtap="actionPhoto">
         <view class="text-lg">{{item.name}}</view>
@@ -27,7 +27,7 @@
   <view class="cu-dialog bg-white padding-lr" catchtap>
     <view class="text-lg title margin-tb">设置相册名称</view>
     <view class="padding margin solids radius">
-      <input type="text" value="{{photosName}}" focus="{{showModal}}" placeholder="相册名（1-12位字符组成）" bindinput="onInput"></input>
+      <input type="text" value="{{photosName}}" focus="{{showModal}}" maxlength="12" placeholder="相册名12位字符组成）" bindinput="onInput"></input>
     </view>
     <button class="margin-tb radius bg-{{ColorList[theme].name}}" disabled="{{editBtnDisabled}}" bindtap="checkMsg">确定</button>
   </view>

@@ -109,14 +109,6 @@ Page({
    * 调用云函数进行审核
    */
   checkMsg(){
-    let { remark } = this.data
-    if(!utils.regExpName(remark)) {
-      wx.showToast({
-        title: '纪念日由1-12位字符组成',
-        icon: 'none'
-      })
-      return
-    }
     this.setData({
       btnDisabled: true,
       btnLoading: true,

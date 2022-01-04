@@ -91,21 +91,6 @@ Page({
    * 调用云函数进行审核
    */
   checkMsg(){
-    let { remark, plan } = this.data
-    if(!utils.regExpName(plan)) {
-      wx.showToast({
-        title: '计划内容由1-12位字符组成',
-        icon: 'none'
-      })
-      return
-    }
-    if(!utils.regExpName(remark)) {
-      wx.showToast({
-        title: '完成奖励由1-12位字符组成',
-        icon: 'none'
-      })
-      return
-    }
     this.setData({
       btnDisabled: true,
       btnLoading: true,

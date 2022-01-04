@@ -122,14 +122,6 @@ Page({
       return
     }
     let { type, amount, remark } = this.data
-    if(!utils.regExpName(remark)) {
-      let title = type == 'pay' ? '支出去向' : '收入来源'
-      wx.showToast({
-        title: title + '由1-12位字符组成',
-        icon: 'none'
-      })
-      return
-    }
     if(!utils.regExpMoney(amount)) {
       wx.showToast({
         title: '请输入正确金额',

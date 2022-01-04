@@ -115,13 +115,6 @@ const getRandomInt = (min, max) => {
 }
 
 /**
- * 正则：由1-12位字符组成
- */
-const regExpName = (val) => {
-  return /^.{1,12}$/.test(val)
-}
-
-/**
  * 正则：保留两位小数的金额
  */
 const regExpMoney = (val) => {
@@ -149,7 +142,6 @@ module.exports = {
   getLastMonthStartAndEnd: getLastMonthStartAndEnd,
   getCurYearStartAndEnd: getCurYearStartAndEnd,
   getRandomInt: getRandomInt,
-  regExpName: regExpName,
   regExpMoney: regExpMoney,
   getWeekByDate: getWeekByDate,
 }

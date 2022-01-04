@@ -25,7 +25,7 @@
     </view>
 
     <view class="margin padding radius bg-white">
-      <input value="{{remark}}" placeholder="{{type == 'pay' ? '支出去向（由1-12位字符组成）' : '收入来源（由1-12位字符组成）'}}" bindinput="remarkInput" />
+      <input value="{{remark}}" maxlength="12" placeholder="{{type == 'pay' ? '支出去向（由1-12位字符组成）' : '收入来源（由1-12位字符组成）'}}" bindinput="remarkInput" />
     </view>
     <view class="margin padding radius bg-white">
       <input type="digit" value="{{amount}}" placeholder="{{type == 'income' ? '收入金额（最多保留小数点后两位）' : '支出金额（最多保留小数点后两位）'}}" bindinput="amountInput" />

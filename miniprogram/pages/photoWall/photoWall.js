@@ -312,14 +312,6 @@ Page({
    * 调用云函数进行审核
    */
   checkMsg(){
-    let { photosName } = this.data
-    if(!utils.regExpName(photosName)) {
-      wx.showToast({
-        title: '相册名由1-12位字符组成',
-        icon: 'none'
-      })
-      return
-    }
     this.setData({
       editBtnDisabled: true
     })

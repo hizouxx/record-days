@@ -98,7 +98,7 @@
 
     <view class="margin-lg radius padding-lg bg-white">
       <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
-      <view wx:if="{{!loading && dataList.length == 0}}" class="text-center text-gray">无账单数据</view>
+      <view wx:if="{{!loading && dataList.length == 0}}" class="text-center text-gray">还没有账单数据哦</view>
       <view wx:if="{{!loading && dataList.length > 0}}">
         <view wx:for="{{dataList}}" wx:key wx:for-item='item'>
           <view>{{item.date}}</view>
