@@ -24,6 +24,7 @@ exports.main = async (event, context) => {
   for (let index = 0; index < count; index += 100) {
     const list = await db.collection('plan').where({
       openid: _.in(event.couple),
+      year: event.year,
     }).orderBy('createTime', 'asc').skip(index).get()
     all = all.concat(list.data)
   }
