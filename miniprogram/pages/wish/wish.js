@@ -201,7 +201,8 @@ Page({
    */
   wishDetail(e) {
     // console.log(e)
-    let {_id} = e.currentTarget.dataset.item
+    let {_id, achieve} = e.currentTarget.dataset.item
+    if(achieve) return
     wx.showModal({
       title: '心愿卡',
       content: '是否达成了心愿？',
