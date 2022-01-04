@@ -1,5 +1,5 @@
 <!--pages/planAdd/planAdd.wxml-->
-<cu-custom isBack="{{true}}" bg-color="bg-white">
+<cu-custom isCustom bg-color="bg-white">
   <view slot="content">新增计划</view>
 </cu-custom>
 

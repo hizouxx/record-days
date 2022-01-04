@@ -1,5 +1,5 @@
 <!--miniprogram/pages/photoWallDetail/photoWallDetail.wxml-->
-<cu-custom isBack="{{true}}" bg-color="bg-white">
+<cu-custom isCustom bg-color="bg-white">
   <view slot="content">相册详情</view>
 </cu-custom>
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">

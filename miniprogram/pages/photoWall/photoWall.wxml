@@ -1,5 +1,5 @@
 <!--miniprogram/pages/photoWall/photoWall.wxml-->
-<cu-custom isBack="{{true}}" bg-color="bg-white">
+<cu-custom isCustom bg-color="bg-white">
   <view slot="content">家庭相册</view>
 </cu-custom>
 

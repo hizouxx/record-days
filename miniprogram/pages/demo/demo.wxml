@@ -1,5 +1,5 @@
 <!--miniprogram/pages/demo/demo.wxml-->
-<cu-custom isBack="{{true}}" bg-color="bg-white">
+<cu-custom isCustom bg-color="bg-white">
   <view slot="content">演示</view>
 </cu-custom>
 <swiper class="card-swiper round-dot" style="height: calc(100vh - {{CustomBar}}px) !important" indicator-dots="true" circular="true" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="{{ColorList[theme].name}}">
