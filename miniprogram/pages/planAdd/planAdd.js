@@ -91,6 +91,21 @@ Page({
    * 调用云函数进行审核
    */
   checkMsg(){
+    let { remark, plan } = this.data
+    if(plan.trim() === '') {
+      wx.showToast({
+        title: '计划内容不能为空',
+        icon: 'none'
+      })
+      return
+    }
+    if(remark.trim() === '') {
+      wx.showToast({
+        title: '完成奖励不能为空',
+        icon: 'none'
+      })
+      return
+    }
     this.setData({
       btnDisabled: true,
       btnLoading: true,

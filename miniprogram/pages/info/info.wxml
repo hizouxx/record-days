@@ -14,7 +14,7 @@
     </view>
 
     <!-- 我 -->
-    <view wx:if="{{tabIndex == 0}}" class="margin-lr padding-sm bg-{{ColorList[theme].name}} shadow-blur radius">
+    <view wx:if="{{tabIndex == 0}}" class="margin-lr padding-sm bg-{{ColorList[theme].name}} shadow-blur radius" bindtap="pageToQRCode">
       <view class="flex align-center justify-between padding-tb padding-lr">
         <view class="flex align-center">
           <view class="cu-avatar lg round">
@@ -25,7 +25,7 @@
           </view>
           <view class="text-xl margin-left">{{userInfo.nickName || '未获取昵称'}}</view>
         </view>
-        <view bindtap="pageToQRCode">
+        <view>
           <text class="cuIcon-qrcode margin-right-sm"></text>
           <text class="cuIcon-right"></text>
         </view>

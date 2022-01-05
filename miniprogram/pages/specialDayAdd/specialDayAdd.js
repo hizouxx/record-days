@@ -109,6 +109,14 @@ Page({
    * 调用云函数进行审核
    */
   checkMsg(){
+    let { remark } = this.data
+    if(remark.trim() === '') {
+      wx.showToast({
+        title: '纪念日不能为空',
+        icon: 'none'
+      })
+      return
+    }
     this.setData({
       btnDisabled: true,
       btnLoading: true,

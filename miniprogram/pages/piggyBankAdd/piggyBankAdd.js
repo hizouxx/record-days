@@ -122,6 +122,14 @@ Page({
       return
     }
     let { type, amount, remark } = this.data
+    if(remark.trim() === '') {
+      let title = type == 'pay' ? '支出去向' : '收入来源'
+      wx.showToast({
+        title: title + '字段不能为空',
+        icon: 'none'
+      })
+      return
+    }
     if(!utils.regExpMoney(amount)) {
       wx.showToast({
         title: '请输入正确金额',

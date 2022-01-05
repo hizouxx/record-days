@@ -8,7 +8,7 @@
     <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
     <com-nodata wx:if="{{!loading && dataList.length == 0}}" content="注意：图片文件过大将导致上传失败哦。"></com-nodata>
     <view wx:if="{{!loading && dataList.length > 0}}">
-      <view class="margin-bottom padding bg-white radius flex align-center justify-between" wx:for="{{dataList}}" wx:key wx:item="item" data-id="{{item._id}}" bindtap="pageToDetail" bindlongtap="actionPhoto">
+      <view class="margin-bottom padding bg-white radius flex align-center justify-between" wx:for="{{dataList}}" wx:key wx:item="item" data-id="{{item._id}}" bindtap="pageToDetail" bindlongpress="actionPhoto">
         <view class="text-lg">{{item.name}}</view>
         <view class="text-right">
           <view class="margin-tb-sm">

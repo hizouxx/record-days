@@ -9,7 +9,7 @@
 <scroll-view scroll-y wx:if="{{!loading && list.length > 0}}">
   <view class="padding-lg">
     <view class="margin-bottom padding bg-white radius" wx:for="{{list}}" wx:key
-      wx:for-index="index" data-item="{{item}}" bindtap="wishDetail" bindlongtap="deleteWish">
+      wx:for-index="index" data-item="{{item}}" bindlongpress="longpressWish">
       <view class="{{item.achieve ? 'text-linethrough': ''}} margin-tb-sm">
         「{{item.createDate}}」:{{item.value}}
       </view>

@@ -27,7 +27,7 @@
     <view wx:if="{{!loading && (achieveList.length + unAchieveList.length) === 0}}" class="margin-top padding bg-white text-center text-gray">当前年份还没有计划哦</view>
     <view wx:if="{{!loading && (achieveList.length + unAchieveList.length) > 0}}">
       <view wx:for="{{achieveList}}" wx:key wx:for-item='item'>
-        <view class="margin-tb padding radius bg-white flex justify-between align-center" data-id="{{item._id}}" bindlongtap="deletePlan">
+        <view class="margin-tb padding radius bg-white flex justify-between align-center" data-item="{{item}}" bindlongpress="longpressPlay">
           <view>
             <text class="margin-left-xs cuIcon-title"> {{item.plan}}</text>
             <view class="margin-left-xs cuIcon-medal"> 计划完成！奖励：{{item.remark}}</view>
@@ -36,7 +36,7 @@
         </view>
       </view>
       <view wx:for="{{unAchieveList}}" wx:key wx:for-item='item'>
-        <view class="margin-tb padding radius bg-white" data-id="{{item._id}}" bindtap="planDetail" bindlongtap="deletePlan">
+        <view class="margin-tb padding radius bg-white" data-item="{{item}}" bindlongpress="longpressPlay">
           <view class="flex justify-between align-center">
             <text class="margin-left-xs cuIcon-title"> {{item.plan}}</text>
             <view class="in-progress">进行中</view>

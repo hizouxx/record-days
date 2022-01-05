@@ -197,16 +197,13 @@ Page({
   },
   /**
    * 心愿编辑（达成？）
-   * @param {*} e 
+   * @param {*} id
    */
-  wishDetail(e) {
-    // console.log(e)
-    let {_id, achieve} = e.currentTarget.dataset.item
-    if(achieve) return
+  wishDetail(_id) {
     wx.showModal({
-      title: '心愿卡',
-      content: '是否达成了心愿？',
-      confirmText: "心愿达成",
+      title: '心愿',
+      content: '确定达成了心愿？',
+      confirmText: "确定",
       canaclText: "尚未",
       success: res=> {
         if (res.confirm) {
@@ -242,35 +239,40 @@ Page({
     })    
   },
   /**
-   * 删除某条心愿
+   * 长按心愿
    * @param {*} e 
    */
-  deleteWish(e) {
+  longpressWish(e) {
     wx.vibrateShort()
-    let { _id } = e.currentTarget.dataset.item
+    let { _id, achieve } = e.currentTarget.dataset.item
+    let itemList =  achieve ? ['删除'] : ['删除', '心愿达成']
     wx.showActionSheet({
-      itemList: ['删除'],
+      itemList,
       success: res => {
         console.log(res.tapIndex)
-        wx.showLoading()
-        wx.cloud.callFunction({
-          name: 'deleteWish',
-          data: {
-            id: _id
-          },
-          success: res => {
-            console.log('res', res)
-            wx.hideLoading()
-            wx.showToast({
-              title: '删除成功',
-            })
-            this.getWishList()
-          },
-          fail: err => {
-            wx.hideLoading()
-            console.log(err)
-          }
-        })
+        if (res.tapIndex == 0) {
+          wx.showLoading()
+          wx.cloud.callFunction({
+            name: 'deleteWish',
+            data: {
+              id: _id
+            },
+            success: res => {
+              console.log('res', res)
+              wx.hideLoading()
+              wx.showToast({
+                title: '删除成功',
+              })
+              this.getWishList()
+            },
+            fail: err => {
+              wx.hideLoading()
+              console.log(err)
+            }
+          })
+        } else if (res.tapIndex == 1) {
+          this.wishDetail(_id)
+        }
       },
       fail: res => {
         console.log(res.errMsg)

@@ -102,7 +102,7 @@
       <view wx:if="{{!loading && dataList.length > 0}}">
         <view wx:for="{{dataList}}" wx:key wx:for-item='item'>
           <view>{{item.date}}</view>
-          <view class="padding flex align-center justify-between" data-id="{{item._id}}" bindlongtap="deleteBill">
+          <view class="padding flex align-center justify-between" data-id="{{item._id}}" bindlongpress="deleteBill">
             <view>
               <view class="cuIcon-{{item.type == 'pay' ? PayList[item.purpose].icon : IncomeList[item.purpose].icon}}">
                 {{ item.remark }}

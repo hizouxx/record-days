@@ -125,7 +125,7 @@ Page({
         this.checkImg()
       },
       fail: err => {
-        console.error(err)
+        console.log('取消上传')
       }
     })
   },
@@ -312,6 +312,14 @@ Page({
    * 调用云函数进行审核
    */
   checkMsg(){
+    let { photosName } = this.data
+    if(photosName.trim() === '') {
+      wx.showToast({
+        title: '相册名不能为空',
+        icon: 'none'
+      })
+      return
+    }
     this.setData({
       editBtnDisabled: true
     })

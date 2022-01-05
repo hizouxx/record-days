@@ -7,7 +7,7 @@
     <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
     <com-nodata wx:if="{{!loading && dataList.length == 0}}" content="每一个特殊的日子都值得被纪念。"></com-nodata>
     <view wx:if="{{!loading && dataList.length > 0}}" wx:for="{{dataList}}" wx:key wx:for-item='item'>
-      <view class="margin-bottom padding radius bg-white flex align-center justify-between" data-id="{{item._id}}" bindlongtap="deleteSpecialDay">
+      <view class="margin-bottom padding radius bg-white flex align-center justify-between" data-id="{{item._id}}" bindlongpress="deleteSpecialDay">
         <view class="cuIcon-{{SpecialDayList[item.name].icon}}">
           <text class="margin-left-xs">{{item.remark}}</text>
           <view class="margin-top-xs text-sm text-gray">{{item.date2}}（{{item.lunarDate.gzYear}}年{{item.lunarDate.IMonthCn}}{{item.lunarDate.IDayCn}}）</view>

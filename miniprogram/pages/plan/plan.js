@@ -111,15 +111,13 @@ Page({
 
   /**
    * 计划编辑（达成？）
-   * @param {*} e 
+   * @param {*} id
    */
-  planDetail(e) {
-    console.log(11, e)
-    let { id } = e.currentTarget.dataset
+  planDetail(id) {
     wx.showModal({
       title: '计划',
-      content: '是否达成了计划？',
-      confirmText: "计划达成",
+      content: '确认达成了计划？',
+      confirmText: "是的",
       canaclText: "尚未",
       success: res=> {
         if (res.confirm) {
@@ -153,34 +151,39 @@ Page({
   },
 
   /**
-   * 删除某一条计划
+   * 长按计划
    * @param {} e 
    */
-  deletePlan(e) {
+  longpressPlay(e) {
     wx.vibrateShort()
-    let { id } = e.currentTarget.dataset
+    let { _id, achieve } = e.currentTarget.dataset.item
+    let itemList = achieve ? ['删除'] : ['删除', '计划达成']
     wx.showActionSheet({
-      itemList: ['删除'],
+      itemList,
       success: res => {
         // console.log(res.tapIndex)
-        wx.showLoading()
-        wx.cloud.callFunction({
-          name: 'deletePlan',
-          data: {
-            id
-          },
-          success: res => {
-            // console.log('res', res)
-            wx.hideLoading()
-            wx.showToast({
-              title: '删除成功',
-            })
-            this.getPlanList()
-          },
-          fail: err => {
-            wx.hideLoading()
-          }
-        })
+        if (res.tapIndex == 0) {
+          wx.showLoading()
+          wx.cloud.callFunction({
+            name: 'deletePlan',
+            data: {
+              id: _id
+            },
+            success: res => {
+              // console.log('res', res)
+              wx.hideLoading()
+              wx.showToast({
+                title: '删除成功',
+              })
+              this.getPlanList()
+            },
+            fail: err => {
+              wx.hideLoading()
+            }
+          })
+        } else if(res.tapIndex == 1) {
+          this.planDetail(_id)
+        }
       },
       fail: res => {
         console.log(res.errMsg)

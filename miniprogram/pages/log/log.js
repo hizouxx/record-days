@@ -132,7 +132,7 @@ Page({
    * @param {} e 
    */
   deleteLog(e) {
-    wx.vibrateLong()
+    wx.vibrateShort()
     let { id } = e.currentTarget.dataset
     wx.showActionSheet({
       itemList: ['删除'],

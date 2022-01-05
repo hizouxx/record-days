@@ -46,19 +46,19 @@ let defaultList = [{
   },
   {
     icon: 'infofill',
-    color: 'mauve',
+    color: 'purple',
     path: 'about',
     name: '程序介绍'
   },
   {
     icon: 'myfill',
-    color: 'purple',
+    color: 'mauve',
     path: 'info',
     name: '账户信息'
   },
   {
     icon: 'settingsfill',
-    color: 'brown',
+    color: 'black',
     path: 'setting',
     name: '设置'
   }
