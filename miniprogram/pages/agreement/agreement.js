@@ -9,9 +9,6 @@ Page({
     ColorList: app.globalData.ColorList,
     theme: 0,
     loading: true,
-    btnDisabled: true, // 新增按钮可点状态
-    showModal: false, // 是否显示新增心愿的弹框
-    inputValue: '', // 协议内容
     list: [],
   },
 
@@ -23,7 +20,6 @@ Page({
     this.setData({
       theme
     })
-    this.getList()
   },
 
   /**
@@ -36,6 +32,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getList()
   },
 
   /**
@@ -69,96 +66,11 @@ Page({
   },
 
   /**
-   * 显示｜隐藏弹框
+   * add
    */
-  toggleModal() {
-    this.setData({
-      showModal: !this.data.showModal
-    })
-  },
-  /**
-   * 输入框
-   * @param {*} e 
-   */
-  input(e) {
-    this.setData({
-      inputValue: e.detail.value,
-       btnDisabled: e.detail.value == '' ? true : false
-    })
-  },
-  /**
-   * 调用云函数进行审核
-   */
-  checkMsg() {
-    wx.showLoading()
-    this.setData({
-      btnDisabled: true
-    })
-    wx.cloud.callFunction({
-      name: 'checkMsg' ,
-      data:{
-        'content': this.data.inputValue
-      },
-      success: res => {
-        // console.log(res)
-        //获取状态码  0-正常   87014-违规
-        if(res.result.errCode != 0) {
-          wx.hideLoading()
-          this.setData({
-            btnDisabled: false
-          })
-          wx.showToast({
-            title: '输入的内容违规',
-            icon: 'none'
-          })
-        } else {
-          this.submit()
-        }
-      },
-      fail: err => {
-        console.error('err', err)
-        wx.hideLoading()
-        this.setData({
-          btnDisabled: false
-        })
-      }
-    }) 
-  },
-  /**
-   * 提交
-   */
-  submit() {
-    let {inputValue} = this.data
-    //调用云函数
-    wx.cloud.callFunction({
-      name: 'addAgreement',
-      data: {
-        openid: app.globalData.openid,
-        nickName: app.globalData.userInfo.nickName,
-        avatarUrl: app.globalData.userInfo.avatarUrl,
-        createTime: new Date().getTime(),
-        value: inputValue,
-      },
-      success: res => {
-        // console.log(res)
-        wx.hideLoading()
-        this.setData({
-          inputValue: '',
-          btnDisabled: false,
-        })
-        wx.showToast({
-          title: '添加成功',
-        })
-        this.toggleModal()
-        this.getList()
-      },
-      fail: err => {
-        console.log(err)
-        wx.hideLoading()
-        this.setData({
-          btnDisabled: false
-        })
-      }
+  add() {
+    wx.navigateTo({
+      url: '/pages/agreementAdd/agreementAdd'
     })
   },
   /**

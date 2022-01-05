@@ -1,0 +1,5 @@
+/* pages/agreementAdd/agreementAdd.wxss */
+textarea{
+  width: 750rpx;
+  box-sizing: border-box;
+}

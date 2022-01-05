@@ -20,19 +20,7 @@
   </view>
 </scroll-view>
 
-<view class="cu-modal {{showModal ? 'show': '' }}" bindtap="toggleModal">
-  <view class="cu-dialog bg-white padding-lr" catchtap>
-    <view class="text-lg title margin-tb">心愿</view>
-    <view class="padding margin shadow-warp radius">
-      <input maxlength="80" value="{{inputValue}}" focus="{{showModal}}" bindinput="input"
-        placeholder="请输入心愿（80字符以内）"></input>
-    </view>
-    <button class="margin-tb radius bg-{{ColorList[theme].name}}" disabled="{{btnDisabled}}"
-      bindtap="checkMsg">发送</button>
-  </view>
-</view>
-
 <view class="add-btn padding-lg bg-gradual-{{ColorList[theme].name}} shadow-blur round flex justify-center align-center"
-  bindtap="toggleModal">
+  bindtap="add">
   <text class="cuIcon-add text-xxl"></text>
 </view>

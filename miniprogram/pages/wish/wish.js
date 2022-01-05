@@ -24,7 +24,6 @@ Page({
     this.setData({
       theme
     })
-    this.getWishList()
   },
 
   /**
@@ -37,6 +36,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getWishList()
   },
 
   /**
@@ -71,100 +71,14 @@ Page({
 
 
   /**
-   * 显示｜隐藏弹框
+   * add
    */
-  toggleModal() {
-    this.setData({
-      showModal: !this.data.showModal
+  add() {
+    wx.navigateTo({
+      url: '/pages/wishAdd/wishAdd'
     })
   },
-  /**
-   * 心愿输入框
-   * @param {*} e 
-   */
-  input(e) {
-    this.setData({
-      inputValue: e.detail.value,
-       btnDisabled: e.detail.value == '' ? true : false
-    })
-  },
-  /**
-   * 调用云函数进行审核
-   */
-  checkMsg() {
-    wx.showLoading()
-    this.setData({
-      btnDisabled: true
-    })
-    wx.cloud.callFunction({
-      name: 'checkMsg' ,
-      data:{
-        'content': this.data.inputValue
-      },
-      success: res => {
-        // console.log(res)
-        //获取状态码  0-正常   87014-违规
-        if(res.result.errCode != 0) {
-          wx.hideLoading()
-          this.setData({
-            btnDisabled: false
-          })
-          wx.showToast({
-            title: '输入的内容违规',
-            icon: 'none'
-          })
-        } else {
-          this.submit()
-        }
-      },
-      fail: err => {
-        // console.error('err', err)
-        wx.hideLoading()
-        this.setData({
-          btnDisabled: false
-        })
-      }
-    }) 
-  },
-  /**
-   * 提交
-   */
-  submit() {
-    let {inputValue} = this.data
-    //调用云函数
-    wx.cloud.callFunction({
-      name: 'addWish',
-      data: {
-        openid: app.globalData.openid,
-        nickName: app.globalData.userInfo.nickName,
-        avatarUrl: app.globalData.userInfo.avatarUrl,
-        createTime: new Date().getTime(),
-        value: inputValue,
-        achieve: false,
-        achieveDate: null
-      },
-      success: res => {
-        console.log(res)
-        wx.hideLoading()
-        this.setData({
-          inputValue: '',
-          btnDisabled: false,
-        })
-        wx.showToast({
-          title: '许愿成功',
-        })
-        this.toggleModal()
-        this.getWishList()
-      },
-      fail: err => {
-        console.log(err)
-        wx.hideLoading()
-        this.setData({
-          btnDisabled: false
-        })
-      }
-    })
-  },
+
   /**
    * 获取心愿数据列表
    */
