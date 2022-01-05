@@ -79,6 +79,7 @@ Page({
     loading: false,
     lunarDate: calendar.solar2lunar(), // 农历日期
     isSpringFestival: false, // 春节～元宵节
+    isNewYearEve: false, // 小年～除夕
   },
 
   /**
@@ -93,12 +94,14 @@ Page({
     let listSort = wx.getStorageSync('listSort')
     let lunarDate = calendar.solar2lunar()
     let dayArr = ['初一','初二','初三','初四','初五','初六','初七','初八','初九','初十','十一','十二','十三','十四','十五',]
+    let dayArr2 = ['廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十',]
     // console.log(calendar.solar2lunar())
     this.setData({
       list: listSort ? JSON.parse(listSort) : defaultList, //九宫格数据列表
       theme: wx.getStorageSync('theme') || 0, //主题
       ColorList: app.globalData.ColorList, // 主题色列表
       isSpringFestival: (lunarDate.IMonthCn === '正月' && dayArr.includes(lunarDate.IDayCn, 0)) ? true : false, // 春节～元宵节
+      isNewYearEve: (lunarDate.IMonthCn === '腊月' && dayArr2.includes(lunarDate.IDayCn, 0)) ? true : false, // 小年～除夕
     })
 
     // 获取openid

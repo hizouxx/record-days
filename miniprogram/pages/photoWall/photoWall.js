@@ -125,7 +125,10 @@ Page({
         this.checkImg()
       },
       fail: err => {
-        console.log('取消上传')
+        wx.showToast({
+          title: '取消上传',
+          icon: 'none'
+        })
       }
     })
   },
@@ -167,6 +170,10 @@ Page({
             this.setData({
               addBtnDisabled: false
             })
+            wx.showToast({
+              title: '上传图片过大，请压缩图片后上传',
+              icon: 'none'
+            })
           }
         })
       }
@@ -198,6 +205,10 @@ Page({
           wx.hideLoading()
           this.setData({
             addBtnDisabled: false
+          })
+          wx.showToast({
+            title: '上传图片到云存储失败，请稍后再试',
+            icon: 'none'
           })
         }
       })
@@ -235,6 +246,10 @@ Page({
         wx.hideLoading()
         this.setData({
           addBtnDisabled: false
+        })
+        wx.showToast({
+          title: '创建相册失败，请稍后再试',
+          icon: 'none'
         })
       }
     })

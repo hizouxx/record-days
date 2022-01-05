@@ -18,7 +18,7 @@
     </view>
 
     <!-- 节日灯笼 -->
-    <block wx:if="{{isSpringFestival}}">
+    <block wx:if="{{isNewYearEve || isSpringFestival}}">
       <com-lantern></com-lantern>
     </block>
 
