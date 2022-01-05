@@ -79,9 +79,9 @@ const getCurMonthStartAndEnd = () => {
  */
 const getLastMonthStartAndEnd = () => {
   const year = new Date().getFullYear()
-  const month = new Date().getMonth()
-  const monthStart = [year, month, 1].map(formatNumber).join('-')
-  const monthEnd = month === 12 ? [year + 1, 1, 1].map(formatNumber).join('-') : [year, month + 1, 1].map(formatNumber).join('-')
+  const month = new Date().getMonth() + 1
+  const monthStart = month === 1 ? [year - 1, 12, 1].map(formatNumber).join('-') : [year, month - 1, 1].map(formatNumber).join('-')
+  const monthEnd = [year, month, 1].map(formatNumber).join('-')
   return {
     start: monthStart,
     end: monthEnd,
