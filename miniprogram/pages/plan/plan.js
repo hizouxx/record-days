@@ -1,4 +1,5 @@
 // pages/plan/plan.js
+const utils = require('../../utils/util.js')
 const app = getApp()
 Page({
   /**
@@ -10,6 +11,7 @@ Page({
     theme: 0,
     loading: true,
     year: new Date().getFullYear(), // 今年年份
+    pickerYear: utils.formatDate(new Date()),
     achieveList: [], // 已实现计划列表
     unAchieveList: [], // 未实现计划列表
     achieveRate: 0, // 实现率

@@ -5,7 +5,7 @@
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
   <view class="padding-lr padding-top">
     <view class="flex justify-between">
-      <picker mode="date" fields="year" value="{{year}}" bindchange="yearChange">
+      <picker mode="date" fields="year" value="{{pickerYear}}" bindchange="yearChange">
         <view class="year flex justify-center align-center font-bold padding bg-white radius">
           <text class="text-sl">{{year}}</text>
           <text class="text-xxl cuIcon-triangledownfill"></text>
