@@ -122,7 +122,8 @@ Page({
           addBtnDisabled: true
         })
         wx.showLoading()
-        this.checkImg()
+        // this.checkImg()
+        this.doUpload()
       },
       fail: err => {
         wx.showToast({
