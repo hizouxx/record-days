@@ -55,19 +55,19 @@
   <view class="padding">
     <view class="margin-top padding-lg bg-white radius flex align-center" bindtap="getUserProfile">
       <text class="cuIcon-people text-xl"></text>
-      <text class="margin-left-sm text-lg text-bold text-black">获取微信头像、昵称等公开信息</text>
+      <text class="margin-left-sm text-lg text-black">获取微信头像、昵称等公开信息</text>
     </view>
     <view class="margin-top padding-lg bg-white radius flex align-center" bindtap="scanQRcode">
       <text class="cuIcon-scan text-xl"></text>
-      <text class="margin-left-sm text-lg text-bold text-black">扫一扫</text>
+      <text class="margin-left-sm text-lg text-black">扫一扫</text>
     </view>
     <view class="margin-top padding-lg bg-white radius flex align-center" bindtap="showDemo">
       <text class="cuIcon-mobile text-xl"></text>
-      <text class="margin-left-sm text-lg text-bold text-black">演示指引</text>
+      <text class="margin-left-sm text-lg text-black">演示指引</text>
     </view>
     <!-- <view class="margin-top padding-lg bg-white radius flex align-center" bindtap="authorizeSetting">
       <text class="cuIcon-settings text-xl"></text>
-      <text class="margin-left-sm text-lg text-bold text-black">授权信息</text>
+      <text class="margin-left-sm text-lg text-black">授权信息</text>
     </view> -->
   </view>
 
