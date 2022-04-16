@@ -1,0 +1,16 @@
+<!--pages/photoWallEdit/photoWallEdit.wxml-->
+<cu-custom isCustom bg-color="bg-white">
+  <view slot="content">编辑相册名</view>
+</cu-custom>
+
+<view class="margin padding radius bg-white">
+  <input type="text" auto-focus value="{{photosName}}" maxlength="12" placeholder="相册名（12位字符组成）" bindinput="onInput"></input>
+</view>
+
+<view class="fixed-bottom flex justitfy-center padding-bottom">
+  <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg" disabled="{{editBtnDisabled}}"
+    bindtap="checkMsg">
+    <text wx:if="{{btnLoading}}" class="cuIcon-loading2 iconfont-spin text-xl margin-right-xs"></text>
+    <text>提交</text>
+  </button>
+</view>

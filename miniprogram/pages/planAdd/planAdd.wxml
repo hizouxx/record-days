@@ -3,17 +3,14 @@
   <view slot="content">新增计划</view>
 </cu-custom>
 
-
-<scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
-
+<view>
   <view class="margin padding radius bg-white">
     <input value="{{plan}}" maxlength="20" placeholder="计划内容(1-20位字符组成)" bindinput="planInput" />
   </view>
   <view class="margin padding radius bg-white">
     <input value="{{remark}}" maxlength="20" placeholder="完成奖励(1-20位字符组成)" bindinput="remarkInput" />
   </view>
-
-</scroll-view>
+</view>
 
 <view class="fixed-bottom flex justitfy-center padding-bottom">
   <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg" disabled="{{btnDisabled}}"

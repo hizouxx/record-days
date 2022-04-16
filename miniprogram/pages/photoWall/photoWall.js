@@ -11,10 +11,6 @@ Page({
     theme: 0,
     loading: true,
     addBtnDisabled: false, // 新增按钮loading
-    editBtnDisabled: false, // 编辑（更改相册名称）按钮loading
-    showModal: false, // 是否展示编辑弹框
-    curId: '', // 当前选中（操作的相册id）
-    photosName: '', // 相册名称
     filePaths: [], // 照片临时路径列表
     filePathIds: [], // 照片上传到云存储-获得的id列表
     dataList: [] // 照片列表
@@ -28,7 +24,6 @@ Page({
     this.setData({
       theme
     })
-    this.getPhotoList()
   },
 
   /**
@@ -41,6 +36,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getPhotoList()
   },
 
   /**
@@ -72,31 +68,12 @@ Page({
    */
   onShareAppMessage: function () {
   },
-
-  /**
-   * 显示/关闭编辑弹框
-   */
-  toggleModal() {
-    this.setData({
-      showModal: !this.data.showModal
-    })
-  },
-  /**
-   * 相册名称输入框
-   * @param {*} e 
-   */
-  onInput(e) {
-    // console.log(e)
-    this.setData({
-      photosName: e.detail.value
-    })
-  },
   /**
    * 跳转详情页
    * @param {*} e 
    */
   pageToDetail(e) {
-    let {id} = e.currentTarget.dataset
+    const { id } = e.currentTarget.dataset
     wx.navigateTo({
       url: '/pages/photoWallDetail/photoWallDetail?id=' + id,
     })
@@ -114,7 +91,7 @@ Page({
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: res => {
-        console.log(res)
+        // console.log(res)
         this.setData({
           filePaths: res.tempFilePaths
         })
@@ -185,7 +162,7 @@ Page({
    * 上传图片到存储，并获取到ids
    */
   doUpload() {
-    let timestamp = new Date().getTime();
+    const timestamp = new Date().getTime();
     let arr = []
     this.data.filePaths.forEach((item, index) => {
       // 上传图片
@@ -195,7 +172,7 @@ Page({
         success: res => {
           arr.push(res.fileID)
           if (arr.length === this.data.filePaths.length) {
-            console.log('filePathIds', arr)
+            // console.log('filePathIds', arr)
             this.setData({
               filePathIds: arr
             })
@@ -232,7 +209,7 @@ Page({
         name: '未命名相册'
       },
       success: res => {
-        console.log('res', res)
+        // console.log('res', res)
         wx.hideLoading()
         this.setData({
           addBtnDisabled: false
@@ -266,7 +243,7 @@ Page({
         couple: [app.globalData.openid, app.globalData.bindOpenid],
       },
       success: res => {
-        console.log('res', res)
+        // console.log('res', res)
         let dataList = res.result && res.result.map(i => {
           i.date = utils.formatDate(new Date(i.createTime))
           return i
@@ -289,16 +266,15 @@ Page({
    */
   actionPhoto(e) {
     wx.vibrateShort()
-    let { id } = e.currentTarget.dataset
-    this.setData({
-      curId: id
-    })
+    const { id, name } = e.currentTarget.dataset
     wx.showActionSheet({
       itemList: ['编辑', '删除'],
       success: res => {
-        console.log(res.tapIndex)
+        // console.log(res.tapIndex)
         if (res.tapIndex == 0) {
-          this.toggleModal()
+          wx.navigateTo({
+            url: '/pages/photoWallEdit/photoWallEdit?id=' + id + '&name=' + name,
+          })
         } else if(res.tapIndex == 1) {
           wx.showLoading()
           wx.cloud.callFunction({
@@ -319,88 +295,8 @@ Page({
         }
       },
       fail: res => {
-        console.log(res.errMsg)
+        // console.log(res.errMsg)
       }
     })
   },
-
-  /**
-   * 调用云函数进行审核
-   */
-  checkMsg(){
-    let { photosName } = this.data
-    if(photosName.trim() === '') {
-      wx.showToast({
-        title: '相册名不能为空',
-        icon: 'none'
-      })
-      return
-    }
-    this.setData({
-      editBtnDisabled: true
-    })
-    wx.showLoading()
-    wx.cloud.callFunction({
-      name: 'checkMsg' ,
-      data:{
-        'content': this.data.photosName
-      },
-      success: res => {
-        // console.log(res)
-        //获取状态码  0-正常   87014-违规
-        if(res.result.errCode != 0) {
-          wx.hideLoading()
-          this.setData({
-            editBtnDisabled: false
-          })
-          wx.showToast({
-            title: '输入的内容违规',
-            icon: 'none'
-          })
-        } else {
-          this.confirmEdit()
-        }
-      },
-      fail: err => {
-        console.error('err', err)
-        wx.hideLoading()
-        this.setData({
-          editBtnDisabled: false
-        })
-      }
-    }) 
-  },
-  /**
-   * 编辑相册名称
-   */
-  confirmEdit() {
-    let { photosName, curId} = this.data
-    wx.cloud.callFunction({
-      name: 'editPhotoWall',
-      data: {
-        id: curId,
-        name: photosName,
-      },
-      success: res => {
-        console.log('res', res)
-        wx.hideLoading()
-        wx.showToast({
-          title: '修改成功',
-        })
-        this.setData({
-          editBtnDisabled: false,
-          photosName: '',
-          curId: ''
-        })
-        this.toggleModal()
-        this.getPhotoList()
-      },
-      fail: err => {
-        wx.hideLoading()
-        this.setData({
-          editBtnDisabled: false
-        })
-      }
-    })
-  }
 })

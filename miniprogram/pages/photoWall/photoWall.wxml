@@ -8,7 +8,7 @@
     <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
     <com-nodata wx:if="{{!loading && dataList.length == 0}}" content="注意：图片文件过大将导致上传失败哦。"></com-nodata>
     <view wx:if="{{!loading && dataList.length > 0}}">
-      <view class="margin-bottom padding bg-white radius flex align-center justify-between" wx:for="{{dataList}}" wx:key wx:item="item" data-id="{{item._id}}" bindtap="pageToDetail" bindlongpress="actionPhoto">
+      <view class="margin-bottom padding bg-white radius flex align-center justify-between" wx:for="{{dataList}}" wx:key="item._id" wx:item="item" data-id="{{item._id}}" data-name="{{item.name}}" bindtap="pageToDetail" bindlongpress="actionPhoto">
         <view class="text-lg">{{item.name}}</view>
         <view class="text-right">
           <view class="margin-tb-sm">
@@ -22,16 +22,6 @@
     </view>
   </view>
 </scroll-view>
-
-<view class="cu-modal {{showModal ? 'show': '' }}" bindtap="toggleModal">
-  <view class="cu-dialog bg-white padding-lr" catchtap>
-    <view class="text-lg title margin-tb">设置相册名称</view>
-    <view class="padding margin solids radius">
-      <input type="text" value="{{photosName}}" maxlength="12" placeholder="相册名12位字符组成）" bindinput="onInput"></input>
-    </view>
-    <button class="margin-tb radius bg-{{ColorList[theme].name}}" disabled="{{editBtnDisabled}}" bindtap="checkMsg">确定</button>
-  </view>
-</view>
 
 <view class="add-btn padding-lg bg-gradual-{{ColorList[theme].name}} shadow-blur round flex justify-center align-center" bindtap="chooseImage">
   <text class="cuIcon-add text-xxl"></text>
