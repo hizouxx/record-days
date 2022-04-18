@@ -3,8 +3,11 @@
   <view slot="content">编辑相册名</view>
 </cu-custom>
 
-<view class="margin padding radius bg-white">
-  <input type="text" auto-focus value="{{photosName}}" maxlength="12" placeholder="相册名（12位字符组成）" bindinput="onInput"></input>
+<view class="margin">
+  <view class="padding radius bg-white">
+    <input type="text" auto-focus value="{{photosName}}" maxlength="12" placeholder="相册名" bindinput="onInput"></input>
+  </view>
+  <view class="text-right padding-tb-xs text-grey">{{photosName.length}}/12</view>
 </view>
 
 <view class="fixed-bottom flex justitfy-center padding-bottom">

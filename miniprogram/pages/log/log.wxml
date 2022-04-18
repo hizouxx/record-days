@@ -10,8 +10,9 @@
       <text>农历{{lunarDate.IMonthCn}}{{lunarDate.IDayCn}} {{week}}</text>
     </view>
 
-    <textarea class="padding bg-white text-lg" value="{{remark}}" placeholder="写点什么（200字符）" maxlength="200"
+    <textarea class="padding bg-white text-lg" value="{{remark}}" placeholder="写点什么" maxlength="200"
       bindinput="remarkInput" />
+    <view class="text-right padding-tb-xs text-grey">{{remark.length}}/200</view>
 
     <view wx:if="{{showEmoji}}" class="flex flex-wrap justitfy-between padding-sm bg-white margin-top-sm animation-fade">
       <block wx:for="{{emojiList}}" wx:key wx:for-item='item' wx:for-index='index'>

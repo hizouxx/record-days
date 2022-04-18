@@ -18,8 +18,11 @@
     </view>
   </view>
 
-  <view class="margin padding radius bg-white">
-    <input value="{{remark}}" maxlength="12" placeholder="纪念日名称(1-12位字符组成)" bindinput="remarkInput" />
+  <view class="margin">
+    <view class="padding radius bg-white">
+      <input value="{{remark}}" maxlength="12" placeholder="纪念日名称" bindinput="remarkInput" />
+    </view>
+    <view class="text-right padding-tb-xs text-grey">{{remark.length}}/12</view>
   </view>
 
   <view class="cu-form-group margin radius bg-white">
