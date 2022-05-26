@@ -1,6 +1,6 @@
 <!--miniprogram/pages/qcCode/qrCode.wxml-->
 <cu-custom isCustom bg-color="bg-white">
-  <view slot="content">二维码</view>
+  <view slot="content">面对面绑定</view>
 </cu-custom>
 <view class="canvas-warp shadow radius">
   <canvas canvas-id="mycanvas"></canvas>

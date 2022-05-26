@@ -1,0 +1,29 @@
+<!--pages/letter/letter.wxml-->
+<cu-custom isCustom bg-color="bg-gray">
+  <view slot="content">致用户</view>
+</cu-custom>
+<view class="padding-lr-xl">
+  <view class="padding radius shadow-lg">
+    <view>各位用户你们好！</view>
+    <view class="text-indent margin-top-sm">我是小程序的开发者。关于部分用户向我提出的建议和问题，很抱歉我并没有及时看到并回复，今天我在这里统一解答一下哈。</view>
+    <view class="text-indent margin-top-sm">问：这个不是家庭成员共享记录内容的吗？没找到怎么分享给家庭成员啊，他看不到我写的内容。</view>
+    <view class="text-indent">答：本人发布的内容只有自己可见。如果想让家人看到，需要跟家人相互绑定数据，才可以看到彼此信息，外人是看不到的。具体步骤移步：「账户信息」->「演示指引」，里面有相互绑定的图文说明。</view>
+    
+    <view class="text-indent margin-top-sm">问：可不可以开发一个备忘录 家庭共享 互相提醒。</view>
+    <view class="text-indent">答：确实可以共享彼此发布的信息，需要绑定账户哦。上面已经说清楚了。</view>
+    
+    <view class="text-indent margin-top-sm">问：我发的内容发错了，不能修改和删除吗？</view>
+    <view class="text-indent">答：基本上所有功能都可以新增和删除功能，部分功能有编辑功能。【长按】可以触发一些操作。有些功能没有明说，大家可以自己探索。</view>
+
+    <view class="text-indent margin-top-sm">问：是否可以加入字体设置，排版换行，图标表格支持、纪念日到了后提醒提示啊等更多功能？</view>
+    <view class="text-indent">答：受限于平台差异以及个人主体小程序部分业务受限，或者功能实现起来有点麻烦，再或者我本人觉得没必要，所以我就没开发，emm，也许以后会有。</view>
+    
+    <view class="text-indent margin-top-sm">问：我发布的东西安全吗？会不会没了？</view>
+    <view class="text-indent">答：只要腾讯数据库不爆炸，或者腾讯不关闭云开发业务，数据可以说是安全的。</view>
+    
+    <view class="text-indent margin-top-sm">以上，解答部分用户的疑问。</view>
+
+    <view class="text-indent">最后，祝各位感情顺利，家庭和睦！</view>
+    <view class="text-right margin-top">2022-5-25</view>
+  </view>
+</view>

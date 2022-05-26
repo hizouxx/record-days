@@ -19,7 +19,8 @@
     "pages/planAdd/planAdd",
     "pages/agreementAdd/agreementAdd",
     "pages/wishAdd/wishAdd",
-    "pages/photoWallEdit/photoWallEdit"
+    "pages/photoWallEdit/photoWallEdit",
+    "pages/letter/letter"
   ],
   "window": {
     "backgroundColor": "#f1f1f1",
