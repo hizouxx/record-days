@@ -1,6 +1,6 @@
 <!--miniprogram/pages/piggyBank/piggyBank.wxml-->
 <cu-custom isCustom bg-color="bg-white">
-  <view slot="content">家庭储蓄</view>
+  <view slot="content">储蓄金</view>
 </cu-custom>
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
   <view class="">

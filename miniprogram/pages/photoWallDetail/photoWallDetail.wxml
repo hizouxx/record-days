@@ -1,6 +1,6 @@
 <!--miniprogram/pages/photoWallDetail/photoWallDetail.wxml-->
 <cu-custom isCustom bg-color="bg-white">
-  <view slot="content">相册详情</view>
+  <view slot="content"></view>
 </cu-custom>
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
   <view>

@@ -3,7 +3,7 @@
 </image>
 <swiper class="index swiper" current="{{current}}" indicator-dots>
   <!-- Swiper1 -->
-  <swiper-item class="swiper-item">
+  <swiper-item>
     <!-- Header -->
     <cu-custom></cu-custom>
 
@@ -25,7 +25,7 @@
   </swiper-item>
 
   <!-- Swiper2 -->
-  <swiper-item class="swiper-item">
+  <swiper-item>
     <!-- Header -->
     <cu-custom></cu-custom>
 
@@ -35,9 +35,7 @@
     </block>
 
     <!-- 书信 -->
-    <block wx:if="{{isLetterDateRange}}">
-      <com-letter></com-letter>
-    </block>
+    <!-- <com-letter></com-letter> -->
 
     <!-- Drag -->
     <view class="margin">
@@ -45,6 +43,17 @@
       <drag id="drag" generic:item="drag-item" list-data="{{list}}" columns="{{dragColumnsSize}}" bind:click="itemClick"
         bind:change="change">
       </drag>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="cat-container">
+      <farm></farm>
+      <view class="feed">
+        <image class="milk {{milkCss ? 'milk-css' : ''}}" wx:if="{{milkCss}}" src="../../images/cat/milk.png"></image>
+        <image class="milk2" bindtap="feedClick" wx:if="{{!milkCss}}" hover-class="none" src="../../images/cat/milk.png"></image>
+      </view>
+      <cat id="cat"></cat>
+      <cat2 id="cat2"></cat2>
     </view>
   </swiper-item>
 </swiper>

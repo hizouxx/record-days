@@ -1,0 +1,1031 @@
+/* components/farm/farm.wxss */
+.house-6:before,
+.house-7:before,
+.house-7:after,
+.house-8:before,
+.house-8:after,
+.fence text:nth-child(1):before,
+.fence text:nth-child(1):after,
+.fence text:nth-child(2):before,
+.fence text:nth-child(2):after,
+.fence text:nth-child(3):before,
+.fence text:nth-child(3):after,
+.fence text:nth-child(4):before,
+.fence text:nth-child(4):after {
+  position: absolute;
+  content: "";
+}
+
+/*容器*/
+.container {
+  height: 100%;
+  overflow: hidden;
+}
+
+.content {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-image: linear-gradient(to bottom, #75cefc, #fff);
+  background-image: linear-gradient(to bottom, #75cefc, #fff);
+  overflow: hidden;
+}
+
+/*太阳光 sunlight*/
+.sunlight {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.sunlight text {
+  position: absolute;
+  top: -10%;
+  height: 150%;
+  width: 3rem;
+  background-color: #fff;
+  left: 20%;
+  transform: rotate(-14deg);
+  z-index: 20;
+}
+
+.sunlight text:nth-child(1) {
+  animation: sunlight-1 11s ease-in infinite;
+}
+
+.sunlight text:nth-child(2) {
+  left: 28%;
+  animation: sunlight-2 11.5s ease-in infinite;
+}
+
+.sunlight text:nth-child(3) {
+  left: 65%;
+  width: 5rem;
+  transform: rotate(-18deg);
+  animation: sunlight-3 13s ease-in infinite;
+}
+
+.sunlight text:nth-child(4) {
+  left: 108%;
+  width: 1.6rem;
+  transform: rotate(-22deg);
+  animation: sunlight-3 15s ease-in infinite;
+}
+
+.grass-1 {
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  bottom: 0;
+  left: 0;
+  background-color: #b7f03b;
+  box-shadow: 0 0 5px #fff;
+}
+
+.grass-1>text {
+  position: absolute;
+  display: block;
+}
+
+.grass-1>text:nth-child(1),
+.grass-1>text:nth-child(2) {
+  height: 30%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(225deg, rgba(164, 214, 51, 0.26), #b7f03b);
+  background-image: linear-gradient(225deg, rgba(164, 214, 51, 0.26), #b7f03b);
+}
+
+.grass-1>text:nth-child(2) {
+  top: 35%;
+}
+
+.grass-1>text:nth-child(3) {
+  height: 30%;
+  width: 100%;
+  bottom: 0;
+  background-image: linear-gradient(180deg, #38862c, #b7f03b);
+  background-image: linear-gradient(180deg, #38862c, #b7f03b);
+
+}
+
+.grass-1>text:nth-child(4) {
+  height: 30%;
+  width: 80%;
+  bottom: 30%;
+  left: 0;
+  border-radius: 0 10rem 10rem 0;
+  background-image: linear-gradient(180deg, #5dac34, #b7f03b);
+  background-image: linear-gradient(180deg, #5dac34, #b7f03b);
+}
+
+.grass-1>text:nth-child(5),
+.grass-1>text:nth-child(6) {
+  height: 13%;
+}
+
+.grass-1>text:nth-child(5) {
+  width: 95%;
+  right: 0;
+  bottom: 30%;
+  border-radius: 5rem 0 0 5rem;
+  background-image: linear-gradient(225deg, #b1e837, #b7f03b);
+  background-image: linear-gradient(225deg, #b1e837, #b7f03b);
+}
+
+.grass-1>text:nth-child(6) {
+  width: 70%;
+  left: 0;
+  bottom: 18%;
+  border-radius: 0 5rem 5rem 0;
+  background-image: linear-gradient(225deg, #b1e837, #b7f03b);
+  background-image: linear-gradient(225deg, #b1e837, #b7f03b);
+}
+
+.grass-1>text:nth-child(5):before,
+.grass-1>text:nth-child(6):before,
+.grass-1>text:nth-child(6):after {
+  position: absolute;
+  width: 80%;
+  left: 1rem;
+  content: "";
+  height: .8rem;
+  border-radius: 1rem;
+}
+
+.grass-1>text:nth-child(5):before {
+  bottom: .5rem;
+  background-image: linear-gradient(225deg, #bdf641, #b7f03b);
+  background-image: linear-gradient(225deg, #bdf641, #b7f03b);
+}
+
+.grass-1>text:nth-child(6):before {
+  top: .25rem;
+  height: 1rem;
+  background-image: linear-gradient(225deg, #c2f64e, #b7f03b);
+  background-image: linear-gradient(225deg, #c2f64e, #b7f03b);
+}
+
+.grass-1>text:nth-child(6):after {
+  width: 65%;
+  top: .8rem;
+  height: 1rem;
+  background-image: linear-gradient(225deg, #c2f64e, #b7f03b);
+  background-image: linear-gradient(225deg, #c2f64e, #b7f03b);
+}
+
+/*三角形*/
+.triangle-box {
+  position: absolute;
+  width: 100%;
+  top: 35.5%;
+  left: 0;
+  height: 5%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.triangle-box.two {
+  top: 3.2rem;
+  width: 90%;
+  height: 1rem;
+  z-index: 5;
+}
+
+.triangle-box .item {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: .25rem solid transparent;
+  border-right: .25rem solid transparent;
+  border-bottom: .5rem solid #60ae34;
+  margin: 0 .5rem;
+}
+
+.triangle-box .item:nth-child(1),
+.triangle-box .item:nth-child(4) {
+  margin-left: 1rem;
+}
+
+/*叶子*/
+.leaf-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 5rem;
+  height: 5rem;
+  overflow: hidden;
+}
+
+.leaf-box .leaf-item {
+  content: '';
+  position: absolute;
+}
+
+.leaf-box .leaf-1 {
+  left: -2.5rem;
+  bottom: 2.2rem;
+  width: 4rem;
+  height: 2.5rem;
+  border-top-left-radius: 5rem;
+  background: #236b37;
+  transform: skew(120deg);
+}
+
+.leaf-box .leaf-2 {
+  left: -1.55rem;
+  bottom: .5rem;
+  width: 4.1rem;
+  height: 3rem;
+  border-bottom-right-radius: 5rem;
+  background: #0e4e20;
+  transform: skew(-35deg, -30deg);
+}
+
+.leaf-box .leaf-3 {
+  left: -1.5rem;
+  bottom: -0.8rem;
+  width: 4rem;
+  height: 2.5rem;
+  border-top-left-radius: 5rem;
+  background: #236b37;
+  transform: skew(120deg, -12deg);
+}
+
+.leaf-box .leaf-4 {
+  left: -0.5rem;
+  bottom: -2rem;
+  width: 4.1rem;
+  height: 3rem;
+  border-bottom-right-radius: 5rem;
+  background: #0e4e20;
+  transform: skew(-35deg, -29deg);
+}
+
+/*山峰*/
+.peak-box {
+  position: absolute;
+  top: 5%;
+  height: 50%;
+  width: 100%;
+}
+
+.peak-box>view {
+  position: absolute;
+}
+
+.peak-1 {
+  bottom: 2rem;
+  border-bottom: 5rem solid #9adcf9;
+  border-left: 4rem solid transparent;
+  border-right: 4rem solid transparent;
+  height: 0;
+  width: 12rem;
+  left: -6rem;
+}
+
+.peak-2 {
+  content: "";
+  left: 3rem;
+  bottom: 4.5rem;
+  width: 4rem;
+  height: 1rem;
+  border-top-right-radius: 4rem;
+  background: #9adcf9;
+  transform: skew(38deg, -43deg);
+}
+
+.peak-3,
+.peak-4 {
+  left: 2.5rem;
+  bottom: 2rem;
+  width: 0;
+  height: 0;
+  border-left: 8rem solid transparent;
+  border-right: 8rem solid transparent;
+  border-bottom: 8rem solid #9adcf9;
+}
+
+.peak-4 {
+  left: 6.8rem;
+  bottom: 3rem;
+  border-bottom: 8rem solid #92dafa;
+}
+
+.peak-5 {
+  content: "";
+  height: 1rem;
+  width: 9rem;
+  left: 17rem;
+  bottom: 4.5rem;
+  background: #92dafa;
+  border-top-left-radius: 4rem;
+  transform: skew(-45deg, 45deg);
+}
+
+.peak-6 {
+  width: 100%;
+  height: 3.5rem;
+  bottom: 0;
+  left: 0;
+  background-color: #73dbc5;
+}
+
+.peak-7 {
+  left: 2rem;
+  bottom: 3.5rem;
+  width: 14rem;
+  height: 14rem;
+  overflow: hidden;
+}
+
+.peak-7:before {
+  position: absolute;
+  content: "";
+  bottom: -6.5rem;
+  left: 2rem;
+  width: 10rem;
+  height: 10rem;
+  transform: rotate(45deg);
+  transform: rotate(45deg);
+  background-image: linear-gradient(60deg, #76d6f5, #72dcb8);
+  background-image: linear-gradient(60deg, #76d6f5, #72dcb8);
+}
+
+.peak-7-1 {
+  position: absolute;
+  left: 0.4rem;
+  bottom: -1.1rem;
+  width: 0;
+  height: 0;
+  border-left: 5.5rem solid transparent;
+  border-right: 0rem solid transparent;
+  border-bottom: 5.5rem solid #cfeffd;
+  transform: skew(-22deg, -22deg);
+}
+
+.peak-7-2 {
+  position: absolute;
+  content: "";
+  left: 4.2rem;
+  bottom: 0rem;
+  width: 2rem;
+  height: .3rem;
+  border-bottom-right-radius: 0.1rem;
+  background: #cfeffd;
+  transform: skew(70deg, -68deg);
+}
+
+.peak-8 {
+  width: 12rem;
+  height: 0;
+  right: 0;
+  bottom: 3.5rem;
+  border-bottom: 1.5rem solid #a0e8dd;
+  border-left: 1.5rem solid transparent;
+  border-right: 0rem solid transparent;
+}
+
+.peak-8:before {
+  position: absolute;
+  content: "";
+  border-bottom: 1rem solid #a0e8dd;
+  border-left: 1rem solid transparent;
+  border-right: 0rem solid transparent;
+  height: 0;
+  width: 3rem;
+  right: 0;
+  top: -1rem;
+}
+
+.peak-9 {
+  left: 0;
+  bottom: -2.5rem;
+  right: 0;
+  height: 4rem;
+  background-image: linear-gradient(0deg, #7acaab, #4f8b74);
+  background-image: linear-gradient(0deg, #7acaab, #4f8b74);
+}
+
+.peak-9:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 4rem;
+  width: 7rem;
+  height: 1rem;
+  border-top-right-radius: 4rem;
+  background: #4f8b74;
+}
+
+.peak-9:after {
+  position: absolute;
+  content: "";
+  left: 6.9rem;
+  bottom: 3.5rem;
+  width: 5.1rem;
+  height: 1rem;
+  border-bottom-left-radius: 4rem;
+  border-bottom-right-radius: 4rem;
+  background: #73dbc5;
+}
+
+/*风车塔*/
+.windmill {
+  bottom: 5rem;
+  right: 4.5rem;
+  width: 5rem;
+  height: 8rem;
+  z-index: 4
+}
+
+.windmill>view {
+  position: absolute;
+}
+
+.windmill-1 {
+  width: 5rem;
+  height: 0;
+  right: 0;
+  bottom: 0;
+  border-bottom: 5rem solid #d1d6d7;
+  border-left: 1rem solid transparent;
+  border-right: 1rem solid transparent;
+}
+
+.windmill-1:before {
+  position: absolute;
+  content: "";
+  width: 2.5rem;
+  height: 0;
+  right: -.5rem;
+  bottom: -5rem;
+  border-bottom: 5rem solid #f4f5f6;
+  border-left: 1rem solid transparent;
+  border-right: 1rem solid transparent;
+}
+
+.windmill-2,
+.windmill-3 {
+  left: 50%;
+  bottom: 2.8rem;
+  width: 1rem;
+  height: 1.2rem;
+  background-color: #d39651;
+  border-radius: 1rem 1rem 0 0;
+  margin-left: -.7rem;
+  box-shadow: 3px 0px 5px #a26f35 inset;
+}
+
+.windmill-3 {
+  bottom: .5rem;
+}
+
+.windmill-2:before,
+.windmill-3:before {
+  position: absolute;
+  left: -.1rem;
+  bottom: -.3rem;
+  content: "";
+  width: 1.2rem;
+  height: .3rem;
+  background-color: #b1d9d4;
+}
+
+.windmill-4 {
+  bottom: 5.5rem;
+  left: 1rem;
+  width: 0;
+  height: 0;
+  border-left: 1.5rem solid transparent;
+  border-right: 1.5rem solid transparent;
+  border-bottom: 2rem solid #e25258;
+}
+
+.windmill-4:before {
+  position: absolute;
+  content: "";
+  bottom: -2.5rem;
+  left: -1.5rem;
+  width: 3rem;
+  height: .5rem;
+  background-color: #c4c7c7;
+}
+
+.windmill-4:after {
+  position: absolute;
+  content: "";
+  right: -1rem;
+  width: 0;
+  height: 0;
+  border-left: 0 solid transparent;
+  border-right: .5rem solid transparent;
+  border-bottom: 2rem solid #be2933;
+  transform: skew(26deg, 0deg);
+}
+
+.windmill-5 {
+  top: -2rem;
+  width: 5rem;
+  height: 5rem;
+  animation: rotate 5s linear infinite;
+  z-index: 2;
+}
+
+.windmill-5>view {
+  position: absolute;
+}
+
+.windmill-5:before {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  content: "";
+  width: .5rem;
+  height: .5rem;
+  border-radius: .5rem;
+  margin: -.25rem 0 0 -.25rem;
+  background-color: #fff;
+  z-index: 2;
+}
+
+.windmill-5-1,
+.windmill-5-2 {
+  top: 50%;
+  width: 5rem;
+  height: .2rem;
+  margin-top: -.1rem;
+  background-color: #b5b2b2;
+}
+
+.windmill-5-2 {
+  transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.windmill-5-1:before,
+.windmill-5-2:before,
+.windmill-5-1:after,
+.windmill-5-2:after {
+  position: absolute;
+  content: "";
+  width: 1.8rem;
+  height: .5rem;
+  border-radius: 0 0 .1rem .1rem;
+  background-color: #fff7e0;
+}
+
+.windmill-5-1:before,
+.windmill-5-2:before {
+  top: .1rem;
+}
+
+.windmill-5-1:after,
+.windmill-5-2:after {
+  bottom: 0.2rem;
+  right: 0;
+  border-radius: .1rem .1rem 0 0;
+}
+
+/*白云*/
+.clouds {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.cloud {
+  position: absolute;
+  top: 2rem;
+  width: 5rem;
+  height: 1.5rem;
+  border-radius: 3rem;
+  background-color: #cfeffd;
+}
+
+.cloud:before {
+  content: '';
+  position: absolute;
+  background: #cfeffd;
+  width: 5rem;
+  height: .8rem;
+  border-radius: .5rem;
+  bottom: 0;
+
+}
+
+.cloud.x1 {
+  left: -30%;
+  animation: cloud 80s linear infinite;
+}
+
+.cloud.x1:before {
+  left: -1rem;
+}
+
+.cloud.x2 {
+  right: -30%;
+  top: 8rem;
+  width: 4rem;
+  height: 1.6rem;
+  animation: cloudx2 150s linear infinite;
+}
+
+.cloud.x2:before {
+  width: 3rem;
+  height: .6rem;
+  right: 1.8rem;
+}
+
+.cloud.x3 {
+  left: -50%;
+  top: 11rem;
+  width: 3rem;
+  height: 1.4rem;
+  animation: cloudx3 120s linear infinite;
+}
+
+.cloud.x3:before {
+  width: 2rem;
+  height: .4rem;
+  left: 1.8rem;
+}
+
+/*房子*/
+.house {
+  position: absolute;
+  top: -6.5rem;
+  right: 0;
+  width: 12rem;
+  height: 8rem;
+  overflow: hidden;
+}
+
+.house>view {
+  position: absolute;
+}
+
+.house-1 {
+  bottom: 0;
+  width: 7rem;
+  height: 3.5rem;
+  background-color: #e75c62;
+}
+
+.house-2 {
+  bottom: 3.5rem;
+  left: 0;
+  border-bottom: 2rem solid #e75c62;
+  border-left: 1.5rem solid transparent;
+  border-right: 1.5rem solid transparent;
+  height: 0;
+  width: 7rem;
+}
+
+.house-2-1 {
+  bottom: 3.5rem;
+  left: -.7rem;
+  border-bottom: 2rem solid #fff;
+  border-left: 1.5rem solid transparent;
+  border-right: 1.5rem solid transparent;
+  height: 0;
+  width: 8.4rem;
+}
+
+.house-2-2 {
+  bottom: 3.5rem;
+  left: -.3rem;
+  border-bottom: 2rem solid #650e10;
+  border-left: 1.5rem solid transparent;
+  border-right: 1.5rem solid transparent;
+  height: 0;
+  width: 7.676rem;
+}
+
+.house-3 {
+  bottom: 5.5rem;
+  left: 1.5rem;
+  width: 0;
+  height: 0;
+  border-left: 2rem solid transparent;
+  border-right: 2rem solid transparent;
+  border-bottom: 1.5rem solid #e75c62;
+}
+
+.house-3-1 {
+  bottom: 5.5rem;
+  left: .76rem;
+  width: 0;
+  height: 0;
+  border-left: 2.8rem solid transparent;
+  border-right: 2.8rem solid transparent;
+  border-bottom: 2.2rem solid #fff;
+}
+
+.house-3-2 {
+  bottom: 5.5rem;
+  left: 1.2rem;
+  width: 0;
+  height: 0;
+  border-left: 2.35rem solid transparent;
+  border-right: 2.35rem solid transparent;
+  border-bottom: 1.9rem solid #650e10;
+}
+
+.house-4 {
+  top: 0.25rem;
+  right: 0rem;
+  width: 7.3rem;
+  height: 2rem;
+  background-color: #643c3d;
+  transform: skewX(51deg);
+}
+
+.house-5 {
+  top: 2.25rem;
+  right: -2.05rem;
+  width: 7.3rem;
+  height: 2.2rem;
+  background-color: #573435;
+  transform: skewX(36deg);
+}
+
+.house-6 {
+  top: 4rem;
+  right: 0;
+  width: 5rem;
+  height: 0.35rem;
+  background-color: #fff;
+}
+
+.house-6:before {
+  top: .3rem;
+  width: 5rem;
+  height: 1.2rem;
+  background-color: rgba(101, 14, 16, 0.82);
+  z-index: 2;
+}
+
+.house-7 {
+  width: 5rem;
+  height: 3.6rem;
+  right: 0;
+  bottom: 0;
+  background: #be2933;
+}
+
+.house-7:before,
+.house-7:after {
+  width: .8rem;
+  height: 1.4rem;
+  background-color: #482112;
+  left: 1.3rem;
+  top: .5rem;
+  border: .15rem solid #fff;
+}
+
+.house-7:after {
+  left: 3.5rem;
+}
+
+.house-8 {
+  width: 4rem;
+  height: 3rem;
+  background: #3d5246;
+  bottom: 0;
+  left: 1rem;
+}
+
+.house-8:before {
+  top: -.5rem;
+  left: 0;
+  width: 5rem;
+  height: .5rem;
+  background-color: #fff;
+  border-radius: .1rem;
+}
+
+.house-8:after {
+  bottom: 0;
+  left: 0;
+  width: 3.5rem;
+  height: 2.2rem;
+  background-color: #6a876e;
+}
+
+.house-9 {
+  width: 6rem;
+  height: 1rem;
+  background-color: #6db835;
+  border-radius: 2rem 0 0 0;
+  bottom: 0;
+  right: 0;
+}
+
+/*护栏*/
+.fence {
+  position: absolute;
+  top: -2rem;
+  right: 12rem;
+  width: 5rem;
+  height: 3rem;
+}
+
+.fence text {
+  position: absolute;
+}
+
+.fence text:nth-child(1),
+.fence text:nth-child(2) {
+  left: 0;
+  width: .5rem;
+  height: 3rem;
+  border-radius: .1rem .1rem 0 0;
+  background-color: #d39651;
+  box-shadow: -2px 0 0 #ab5e2b inset;
+}
+
+.fence text:nth-child(1):before,
+.fence text:nth-child(2):before {
+  width: .7rem;
+  height: .2rem;
+  bottom: -.2rem;
+  left: -.1rem;
+  background-color: #d0a989;
+}
+
+.fence text:nth-child(1):after,
+.fence text:nth-child(2):after {
+  top: 0;
+  left: .15rem;
+  width: 0;
+  height: 0;
+  border-left: .2rem solid transparent;
+  border-right: 0rem solid transparent;
+  border-bottom: .5rem solid #ab5e2b;
+  transform: rotate(170deg);
+  transform: rotate(170deg);
+}
+
+.fence text:nth-child(2):after {
+  top: 1.5rem;
+  left: .05rem;
+  transform: rotate(-12deg);
+  transform: rotate(-12deg);
+}
+
+.fence text:nth-child(2) {
+  left: 3rem;
+}
+
+.fence text:nth-child(3),
+.fence text:nth-child(4) {
+  right: 0;
+  bottom: .5rem;
+  height: .5rem;
+  width: 4.95rem;
+  border-radius: .1rem 0 0 .1rem;
+  box-shadow: 0 2px 0 #f6ccaa inset;
+  background-color: #e7aa62;
+}
+
+.fence text:nth-child(3):before,
+.fence text:nth-child(4):before,
+.fence text:nth-child(3):after,
+.fence text:nth-child(4):after {
+  top: .125rem;
+  left: .1rem;
+  width: .25rem;
+  height: .25rem;
+  border-radius: .25rem;
+  background-color: #ab5e2b;
+}
+
+.fence text:nth-child(3):after,
+.fence text:nth-child(4):after {
+  left: 3rem;
+}
+
+.fence text:nth-child(4) {
+  bottom: 1.8rem;
+}
+
+/*动画*/
+.infinite {
+  animation-iteration-count: infinite;
+}
+
+@keyframes greenpulse {
+  from {
+    box-shadow: 0 0 18px #f1ff93;
+  }
+
+  50% {
+    box-shadow: 0 0 36px rgba(205, 229, 41, .5);
+  }
+
+  to {
+    box-shadow: 0 0 18px #f1ff93;
+  }
+}
+
+@keyframes cloud {
+  0% {
+    left: -30%;
+  }
+
+  50% {
+    left: 120%;
+  }
+
+  100% {
+    left: -30%;
+  }
+}
+
+@keyframes cloudx2 {
+  0% {
+    right: -30%;
+  }
+
+  50% {
+    right: 130%;
+  }
+
+  100% {
+    right: -30%;
+  }
+}
+
+@keyframes cloudx3 {
+  0% {
+    left: -50%;
+  }
+
+  50% {
+    left: 150%;
+  }
+
+  100% {
+    left: -50%;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+@keyframes sunlight-1 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: .15;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sunlight-2 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: .1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sunlight-3 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: .08;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

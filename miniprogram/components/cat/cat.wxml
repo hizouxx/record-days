@@ -1,0 +1,27 @@
+<!--components/cat/cat.wxml-->
+<!-- 猫 -->
+<view class="cat">
+  <view class="shadow"></view>
+  <view class="tail"></view>
+  <view class="body"></view>
+  <view class="leg left"></view>
+  <view class="paw left"></view>
+  <view class="leg right"></view>
+  <view class="paw right"></view>
+  <view class="leg left forward"></view>
+  <view class="paw left forward"></view>
+  <view class="leg right forward"></view>
+
+  <view class="paw right forward"></view>
+
+  <view class="bowl">
+    <view class="lower"></view>
+    <view class="rim"></view>
+    <view class="{{ isActive ? 'milk milk-active' : 'milk' }}"></view>
+  </view>
+  <view class="{{ isActive ? 'tongue tongue-active' : 'tongue' }}"></view>
+  <view class="{{ isActive ? 'head head-active' : 'head' }}">
+    <view class="ear left"></view>
+    <view class="ear right"></view>
+  </view>
+</view>

@@ -1,6 +1,6 @@
 <!--miniprogram/pages/wish/wish.wxml-->
 <cu-custom isCustom bg-color="bg-white">
-  <view slot="content">家庭心愿</view>
+  <view slot="content">小心愿</view>
 </cu-custom>
 
 <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>

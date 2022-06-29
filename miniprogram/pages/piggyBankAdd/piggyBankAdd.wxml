@@ -4,21 +4,21 @@
 </cu-custom>
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
   <view class="padding-top">
-    <view class="flex justify-around bg-white">
-      <view class="text-{{type == 'pay' ? ColorList[theme].name : 'grey'}} basis-df padding radius text-center" data-type="pay" bindtap="selectType">支出</view>
-      <view class="text-{{type == 'income' ? ColorList[theme].name : 'grey'}} basis-df padding radius text-center " data-type="income" bindtap="selectType">收入</view>
+    <view class="flex justify-around bg-white text-lg">
+      <view class="text-{{type == 'pay' ? ColorList[theme].name : 'grey'}} basis-df padding radius text-center text-bold" data-type="pay" bindtap="selectType">支出</view>
+      <view class="text-{{type == 'income' ? ColorList[theme].name : 'grey'}} basis-df padding radius text-center text-bold" data-type="income" bindtap="selectType">收入</view>
     </view>
 
     <view wx:if="{{type == 'income'}}" class="flex flex-wrap padding-lr-sm padding-tb">
       <view class="basis-md" wx:for="{{IncomeList}}" wx:key wx:for-index='index'>
-        <view class="margin-sm padding-tb-sm text-center text-grey radius shadow-btn{{index == purpose ? '-active' : ''}}" data-purpose="{{index}}" bindtap="selectPurpose">
+        <view class="margin-sm padding-tb-sm text-center text-{{index == purpose ? ColorList[theme].name : 'grey'}} radius shadow-btn{{index == purpose ? '-active' : ''}}" data-purpose="{{index}}" bindtap="selectPurpose">
           <text class="cuIcon-{{item.icon}} margin-right-xs"></text>{{item.name}}
         </view>
       </view>
     </view>
     <view wx:if="{{type == 'pay'}}" class="flex flex-wrap padding-lr-sm padding-tb">
       <view class="basis-md" wx:for="{{PayList}}" wx:key wx:for-index='index'>
-        <view class="margin-sm padding-tb-sm text-center text-grey radius shadow-btn{{index == purpose ? '-active' : ''}}" data-purpose="{{index}}" bindtap="selectPurpose">
+        <view class="margin-sm padding-tb-sm text-center text-{{index == purpose ? ColorList[theme].name : 'grey'}} radius shadow-btn{{index == purpose ? '-active' : ''}}" data-purpose="{{index}}" bindtap="selectPurpose">
           <text class="cuIcon-{{item.icon}} margin-right-xs"></text>{{item.name}}
         </view>
       </view>
