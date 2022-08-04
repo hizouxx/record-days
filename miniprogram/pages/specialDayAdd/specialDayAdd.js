@@ -23,7 +23,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(calendar.solar2lunar())
+    // console.log(calendar.solar2lunar())
     const theme = wx.getStorageSync('theme') || 0
     this.setData({
       theme
@@ -77,7 +77,7 @@ Page({
    * @param {*} e 
    */
   selectDayName(e) {
-    console.log(e)
+    // console.log(e)
     let {name} = e.currentTarget.dataset
     this.setData({
       name
@@ -88,7 +88,7 @@ Page({
    * @param {} e 
    */
   remarkInput(e) {
-    console.log(e)
+    // console.log(e)
     this.setData({
       remark: e.detail.value
     })
@@ -98,7 +98,7 @@ Page({
    * @param {*} e 
    */
   dateChange(e) {
-    console.log(e.detail.value)
+    // console.log(e.detail.value)
     let dateArr = e.detail.value.split("-")
     this.setData({
       date: e.detail.value,
@@ -168,7 +168,7 @@ Page({
         remark,
       },
       success: res => {
-        console.log(res)
+        // console.log(res)
         this.setData({
           btnDisabled: false,
           btnLoading: false,

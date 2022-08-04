@@ -81,9 +81,6 @@ Page({
     lunarDate: calendar.solar2lunar(), // 农历日期
     isSpringFestival: false, // 春节～元宵节
     isNewYearEve: false, // 小年～除夕
-    milkoff: true, // 喂食动画开关
-    milkCss: false, // 牛奶动画开关
-    lastFeedTime: new Date().getTime(), // 上次喂食时间点
   },
 
   /**
@@ -106,7 +103,6 @@ Page({
       ColorList: app.globalData.ColorList, // 主题色列表
       isSpringFestival: (lunarDate.IMonthCn === '正月' && dayArr.includes(lunarDate.IDayCn, 0)) ? true : false, // 春节～元宵节
       isNewYearEve: (lunarDate.IMonthCn === '腊月' && dayArr2.includes(lunarDate.IDayCn, 0)) ? true : false, // 小年～除夕
-      lastFeedTime: wx.getStorageSync('lastFeedTime') || new Date().getTime(), //上次喂食时间点
     })
 
     // 获取openid
@@ -116,8 +112,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.childComponet = this.selectComponent('#cat')
-    this.childComponet2 = this.selectComponent('#cat2')
   },
   /**
    * 生命周期函数--监听页面显示
@@ -196,7 +190,7 @@ Page({
         }
       },
       fail: (err) => {
-        console.log('获取个人信息: err', err)
+        // console.log('获取个人信息: err', err)
         this.setData({
           loading: false
         })
@@ -236,36 +230,4 @@ Page({
     })
   },
 
-  // 喂食动画
-  feedClick() {
-    if (wx.getStorageSync('lastFeedTime')) {
-      if (new Date().getTime() - wx.getStorageSync('lastFeedTime') < (1000 * 60)) {
-        wx.showToast({
-          title: '刚喂过，请稍后再喂',
-          icon: 'none'
-        })
-        return
-      }
-    }
-    wx.setStorageSync('lastFeedTime', new Date().getTime())
-    if (this.data.milkoff) {
-      this.setData({
-        milkCss: true,
-        milkoff: false
-      });
-      setTimeout(() => {
-        this.setData({
-          treemove: true,
-        });
-      }, 2000);
-      setTimeout(() => {
-        this.setData({
-          milkoff: true,
-          milkCss: false,
-        })
-      }, 3500);
-      this.childComponet.toggle();
-      this.childComponet2.toggle();
-    };
-  },
 })

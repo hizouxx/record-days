@@ -6,7 +6,7 @@
   <view class="padding-lr padding-top">
     <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
     <com-nodata wx:if="{{!loading && dataList.length == 0}}" content="每一个特殊的日子都值得被纪念。"></com-nodata>
-    <view wx:if="{{!loading && dataList.length > 0}}" wx:for="{{dataList}}" wx:key wx:for-item='item'>
+    <view wx:if="{{!loading && dataList.length > 0}}" wx:for="{{dataList}}" wx:key="item" wx:for-item='item'>
       <view class="margin-bottom padding radius bg-white flex align-center justify-between" data-id="{{item._id}}" bindlongpress="deleteSpecialDay">
         <view class="cuIcon-{{SpecialDayList[item.name].icon}}">
           <text class="margin-left-xs">{{item.remark}}</text>

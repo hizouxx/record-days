@@ -6,7 +6,7 @@
   <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
   <com-nodata wx:if="{{!loading && list.length == 0}}" content="“家和万事兴，来达成家庭共识吧！”"></com-nodata>
   <view wx:if="{{!loading && list.length > 0}}" class="margin-lg padding-lg bg-white radius">
-    <block wx:for="{{list}}" wx:key>
+    <block wx:for="{{list}}" wx:key="item">
       <view class="padding-tb-xs text-content text-indent text-underline" data-item="{{item}}" bindlongpress="delete">
         <view class="text-sm">{{index+1}}.{{item.value}}</view>
       </view>

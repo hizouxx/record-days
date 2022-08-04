@@ -34,7 +34,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData)
+    // console.log(app.globalData)
     const theme = wx.getStorageSync('theme') || 0
     this.setData({
       theme,
@@ -108,7 +108,7 @@ Page({
         page,
       },
       success: res => {
-        console.log('res', res)
+        // console.log('res', res)
         let dataList = res.result && res.result.map( i =>{
           i.date = utils.formatDate(new Date(i.createTime))
           i.time = utils.formatTime(new Date(i.createTime))
@@ -145,7 +145,7 @@ Page({
             id
           },
           success: res => {
-            console.log('res', res)
+            // console.log('res', res)
             wx.hideLoading()
             wx.showToast({
               title: '删除成功',
@@ -176,7 +176,7 @@ Page({
    * 输入表情
    */
   clickEmoji(e) {
-    console.log(e)
+    // console.log(e)
     let {emoji} = e.currentTarget.dataset
     this.setData({
       remark: this.data.remark + emoji
@@ -187,7 +187,7 @@ Page({
    * @param {} e 
    */
   remarkInput(e) {
-    console.log(e)
+    // console.log(e)
     this.setData({
       remark: e.detail.value
     })
@@ -214,7 +214,7 @@ Page({
         'content': remark
       },
       success: res => {
-        console.log(res)
+        // console.log(res)
         //获取状态码  0-正常   87014-违规
         if(res.result.errCode != 0) {
           this.setData({
@@ -254,7 +254,7 @@ Page({
         remark,
       },
       success: res => {
-        console.log(res)
+        // console.log(res)
         this.getDataList()
         wx.showToast({
           title: '添加成功'

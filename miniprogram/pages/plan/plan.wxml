@@ -26,7 +26,7 @@
     <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
     <view wx:if="{{!loading && (achieveList.length + unAchieveList.length) === 0}}" class="margin-top padding bg-white text-center text-gray">当前年份还没有计划哦</view>
     <view wx:if="{{!loading && (achieveList.length + unAchieveList.length) > 0}}">
-      <view wx:for="{{achieveList}}" wx:key wx:for-item='item'>
+      <view wx:for="{{achieveList}}" wx:key="item" wx:for-item='item'>
         <view class="margin-tb padding radius bg-white flex justify-between align-center" data-item="{{item}}" bindlongpress="longpressPlay">
           <view>
             <text class="margin-left-xs cuIcon-title"> {{item.plan}}</text>
@@ -35,7 +35,7 @@
           <image class="icon-achieve" src="../../images/icon_happy.gif"></image>
         </view>
       </view>
-      <view wx:for="{{unAchieveList}}" wx:key wx:for-item='item'>
+      <view wx:for="{{unAchieveList}}" wx:key="item" wx:for-item='item'>
         <view class="margin-tb padding radius bg-white" data-item="{{item}}" bindlongpress="longpressPlay">
           <view class="flex justify-between align-center">
             <text class="margin-left-xs cuIcon-title"> {{item.plan}}</text>

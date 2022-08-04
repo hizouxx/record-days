@@ -10,14 +10,14 @@
     </view>
 
     <view wx:if="{{type == 'income'}}" class="flex flex-wrap padding-lr-sm padding-tb">
-      <view class="basis-md" wx:for="{{IncomeList}}" wx:key wx:for-index='index'>
+      <view class="basis-md" wx:for="{{IncomeList}}" wx:key="index" wx:for-index='index'>
         <view class="margin-sm padding-tb-sm text-center text-{{index == purpose ? ColorList[theme].name : 'grey'}} radius shadow-btn{{index == purpose ? '-active' : ''}}" data-purpose="{{index}}" bindtap="selectPurpose">
           <text class="cuIcon-{{item.icon}} margin-right-xs"></text>{{item.name}}
         </view>
       </view>
     </view>
     <view wx:if="{{type == 'pay'}}" class="flex flex-wrap padding-lr-sm padding-tb">
-      <view class="basis-md" wx:for="{{PayList}}" wx:key wx:for-index='index'>
+      <view class="basis-md" wx:for="{{PayList}}" wx:key="index" wx:for-index='index'>
         <view class="margin-sm padding-tb-sm text-center text-{{index == purpose ? ColorList[theme].name : 'grey'}} radius shadow-btn{{index == purpose ? '-active' : ''}}" data-purpose="{{index}}" bindtap="selectPurpose">
           <text class="cuIcon-{{item.icon}} margin-right-xs"></text>{{item.name}}
         </view>

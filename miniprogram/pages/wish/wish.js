@@ -90,7 +90,7 @@ Page({
         couple: [app.globalData.openid, app.globalData.bindOpenid],
       },
       success: res => {
-        console.log('res', res)
+        // console.log('res', res)
         let list = res.result.map(i=>{
           i.createDate = utils.formatDate(new Date(i.createTime))
           i.achieveDate = i.achieveDate ? utils.formatDate(new Date(i.achieveDate)) : null
@@ -132,7 +132,7 @@ Page({
               achieveDate: new Date().getTime(),
             },
             success: res => {
-              console.log('res', res)
+              // console.log('res', res)
               wx.hideLoading()
               wx.showToast({
                 title: '许愿达成',
@@ -163,7 +163,7 @@ Page({
     wx.showActionSheet({
       itemList,
       success: res => {
-        console.log(res.tapIndex)
+        // console.log(res.tapIndex)
         if (res.tapIndex == 0) {
           wx.showLoading()
           wx.cloud.callFunction({
@@ -172,7 +172,7 @@ Page({
               id: _id
             },
             success: res => {
-              console.log('res', res)
+              // console.log('res', res)
               wx.hideLoading()
               wx.showToast({
                 title: '删除成功',

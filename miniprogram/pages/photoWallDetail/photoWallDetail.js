@@ -82,7 +82,7 @@ Page({
         _id: id
       },
       success: res => {
-        console.log(res, 'res')
+        // console.log(res, 'res')
         this.setData({
           photoData: res.result.data[0]
         })
@@ -115,7 +115,7 @@ Page({
     })
   },
   previewPhoto(e) {
-    console.log(e)
+    // console.log(e)
     let { current } = e.currentTarget.dataset
     let urls = this.data.pictrueList.map( i=> i.tempFileURL)
     wx.previewImage({

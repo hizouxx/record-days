@@ -7,12 +7,12 @@
     <com-loading wx:if="{{loading}}"></com-loading>
     <view wx:if="{{!loading}}">
       <view id="left" class="photo-col padding-tb-sm padding-left-sm padding-right-xs">
-        <view wx:for="{{leftList}}" wx:key class="margin-bottom-sm padding-sm shadow-warp bg-white">
+        <view wx:for="{{leftList}}" wx:key="index" class="margin-bottom-sm padding-sm shadow-warp bg-white">
           <image src="{{item.tempFileURL}}" mode='widthFix' data-current="{{item.tempFileURL}}" bindtap="previewPhoto"></image>
         </view>
       </view>
       <view id="right" class="photo-col padding-tb-sm padding-right-sm padding-left-xs">
-        <view wx:for="{{rightList}}" wx:key class="margin-bottom-sm padding-sm shadow-warp bg-white">
+        <view wx:for="{{rightList}}" wx:key="index" class="margin-bottom-sm padding-sm shadow-warp bg-white">
           <image src="{{item.tempFileURL}}" mode='widthFix' data-current="{{item.tempFileURL}}" bindtap="previewPhoto"></image>
         </view>
       </view>

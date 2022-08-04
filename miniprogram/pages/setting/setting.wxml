@@ -65,7 +65,7 @@
 <view class="cu-modal drawer-modal justify-start {{drawerModalL ? 'show':''}}" bindtap="toggleModal" catchtouchmove>
   <scroll-view scroll-y class="cu-dialog basis-df" catchtap style="padding-top: {{CustomBar}}px; height: 100vh">
     <view class="cu-list menu text-left">
-      <view class="cu-item" wx:for="{{ColorList}}" wx:key wx:index="index">
+      <view class="cu-item" wx:for="{{ColorList}}" wx:key="index" wx:index="index">
         <view class="content text-{{item.name}}" data-select="{{index}}" bindtap="selectTheme">
           <text class="text-bold text-sm">{{item.title}}</text>
           <text wx:if="{{theme == index}}" class="cuIcon-check margin-left"></text>

@@ -72,7 +72,7 @@ Page({
    * @param {} e 
    */
   planInput(e) {
-    console.log(e)
+    // console.log(e)
     this.setData({
       plan: e.detail.value
     })
@@ -82,7 +82,7 @@ Page({
    * @param {} e 
    */
   remarkInput(e) {
-    console.log(e)
+    // console.log(e)
     this.setData({
       remark: e.detail.value
     })
@@ -159,7 +159,7 @@ Page({
         achieveDate: null
       },
       success: res => {
-        console.log(res)
+        // console.log(res)
         this.setData({
           btnDisabled: false,
           btnLoading: false,

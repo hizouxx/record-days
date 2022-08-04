@@ -8,7 +8,7 @@
 
 
   <view class="flex flex-wrap padding-lr-sm padding-tb">
-    <view class="basis-md" wx:for="{{SpecialDayList}}" wx:key wx:for-index='index'>
+    <view class="basis-md" wx:for="{{SpecialDayList}}" wx:key="index" wx:for-index='index'>
       <view
         class="margin-lr-sm text-grey margin-tb-sm padding-tb-sm text-center radius shadow-btn{{index == name ? '-active' : ''}}"
         data-name="{{index}}" bindtap="selectDayName">

@@ -76,7 +76,7 @@ Page({
    * @param {*} e 
    */
   selectType(e) {
-    console.log(e)
+    // console.log(e)
     let {type} = e.currentTarget.dataset
     this.setData({
       type,
@@ -88,7 +88,7 @@ Page({
    * @param {*} e 
    */
   selectPurpose(e) {
-    console.log(e)
+    // console.log(e)
     let {purpose} = e.currentTarget.dataset
     this.setData({
       purpose
@@ -99,7 +99,7 @@ Page({
    * @param {*} e 
    */
   amountInput(e) {
-    console.log(e)
+    // console.log(e)
     this.setData({
       amount: e.detail.value
     })
@@ -109,7 +109,7 @@ Page({
    * @param {*} e 
    */
   remarkInput(e) {
-    console.log(e)
+    // console.log(e)
     this.setData({
       remark: e.detail.value
     })
@@ -189,7 +189,7 @@ Page({
         remark,
       },
       success: res => {
-        console.log(res)
+        // console.log(res)
         this.setData({
           btnDisabled: false,
           btnLoading: false,

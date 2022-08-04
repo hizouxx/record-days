@@ -193,7 +193,7 @@ Page({
         userInfo: app.globalData.userInfo
       },
       success: res => {
-        console.log('绑定success:', res)
+        // console.log('绑定success:', res)
         wx.hideLoading()
         wx.showToast({
           title: '绑定成功',

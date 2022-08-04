@@ -87,7 +87,7 @@ Page({
         couple: [app.globalData.openid, app.globalData.bindOpenid],
       },
       success: res => {
-        console.log('res', res)
+        // console.log('res', res)
         let dataList = res.result && res.result.map( i =>{
           let year = new Date(i.date).getFullYear(), month = new Date(i.date).getMonth()+1, day = new Date(i.date).getDate();
           i.date2 = utils.formatDate(new Date(i.date))

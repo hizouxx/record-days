@@ -134,7 +134,7 @@ Page({
               achieveDate: new Date().getTime(),
             },
             success: res => {
-              console.log('res', res)
+              // console.log('res', res)
               wx.hideLoading()
               wx.showToast({
                 title: '计划达成',

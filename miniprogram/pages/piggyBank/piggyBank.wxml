@@ -58,7 +58,7 @@
 
       <view wx:if="{{showStatistics}}" class="margin-top-lg animation-fade">
         <view>
-          <view wx:for="{{numIncomeList}}" wx:key wx:for-item='item'>
+          <view wx:for="{{numIncomeList}}" wx:key="item" wx:for-item='item'>
             <view class="flex justify-between text-left margin-tb-sm">
               <view class="flex align-center">
                 <view class="cu-capsule round">
@@ -74,7 +74,7 @@
               <text class="cu-tag round line-green">+¥{{item.total}}</text>
             </view>
           </view>
-          <view wx:for="{{numPayList}}" wx:key wx:for-item='item'>
+          <view wx:for="{{numPayList}}" wx:key="item" wx:for-item='item'>
             <view class="flex justify-between text-left margin-tb-sm">
               <view class="flex align-center">
                 <view class="cu-capsule round">
@@ -100,7 +100,7 @@
       <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
       <view wx:if="{{!loading && dataList.length == 0}}" class="text-center text-gray">还没有账单数据哦</view>
       <view wx:if="{{!loading && dataList.length > 0}}">
-        <view wx:for="{{dataList}}" wx:key wx:for-item='item'>
+        <view wx:for="{{dataList}}" wx:key="item" wx:for-item='item'>
           <view>{{item.date}}</view>
           <view class="padding flex align-center justify-between" data-id="{{item._id}}" bindlongpress="deleteBill">
             <view>
