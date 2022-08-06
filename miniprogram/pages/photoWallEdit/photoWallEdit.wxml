@@ -11,9 +11,9 @@
 </view>
 
 <view class="fixed-bottom flex justitfy-center padding-bottom">
-  <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg" disabled="{{editBtnDisabled}}"
-    bindtap="checkMsg">
-    <text wx:if="{{btnLoading}}" class="cuIcon-loading2 iconfont-spin text-xl margin-right-xs"></text>
-    <text>提交</text>
+  <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg"
+    disabled="{{editBtnDisabled}}" bindtap="checkMsg">
+    <text wx:if="{{btnLoading}}" class="cuIcon-loading iconfont-spin text-sl"></text>
+    <text wx:else>提交</text>
   </button>
 </view>

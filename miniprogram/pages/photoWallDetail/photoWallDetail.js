@@ -1,8 +1,8 @@
 // miniprogram/pages/photoWallDetail/photoWallDetail.js
 const app = getApp()
 let query,
-leftHeight = 0,
-rightHeight = 0
+  leftHeight = 0,
+  rightHeight = 0
 Page({
   /**
    * 页面的初始数据
@@ -21,7 +21,9 @@ Page({
    */
   onLoad: function (options) {
     // console.log(options)
-    let { id } = options
+    let {
+      id
+    } = options
     this.getPhoto(id)
   },
 
@@ -76,6 +78,7 @@ Page({
 
   getPhoto(id) {
     //调用云函数
+    wx.showLoading()
     wx.cloud.callFunction({
       name: 'getPhotoDetail',
       data: {
@@ -83,6 +86,7 @@ Page({
       },
       success: res => {
         // console.log(res, 'res')
+        wx.hideLoading()
         this.setData({
           photoData: res.result.data[0]
         })
@@ -100,24 +104,29 @@ Page({
    */
 
   downloadImages() {
+    wx.showLoading()
     wx.cloud.getTempFileURL({
       fileList: this.data.photoData.pictrueList,
       success: res => {
         // console.log('getTempFileURL', res)
+        wx.hideLoading()
         this.setData({
           pictrueList: res.fileList
         })
         this.isLeft()
       },
       fail: err => {
+        wx.hideLoading()
         console.error('err', err)
       }
     })
   },
   previewPhoto(e) {
     // console.log(e)
-    let { current } = e.currentTarget.dataset
-    let urls = this.data.pictrueList.map( i=> i.tempFileURL)
+    let {
+      current
+    } = e.currentTarget.dataset
+    let urls = this.data.pictrueList.map(i => i.tempFileURL)
     wx.previewImage({
       current, // 当前显示图片的http链接
       urls // 需要预览的图片http链接列表
@@ -125,7 +134,11 @@ Page({
   },
 
   async isLeft() {
-    const { pictrueList, leftList, rightList } = this.data;
+    const {
+      pictrueList,
+      leftList,
+      rightList
+    } = this.data;
     query = wx.createSelectorQuery();
     for (const item of pictrueList) {
       leftHeight <= rightHeight ? leftList.push(item) : rightList.push(item); //判断两边高度，来觉得添加到那边
@@ -134,7 +147,10 @@ Page({
   },
   getBoxHeight(leftList, rightList) { //获取左右两边高度
     return new Promise((resolve, reject) => {
-      this.setData({ leftList, rightList }, () => {
+      this.setData({
+        leftList,
+        rightList
+      }, () => {
         query.select('#left').boundingClientRect();
         query.select('#right').boundingClientRect();
         query.exec((res) => {

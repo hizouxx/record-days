@@ -1,9 +1,9 @@
 <!--miniprogram/pages/index/index.wxml-->
-<image class="desktop desktop-{{bgCur+1}}" src="../../images/desktop/{{bgCur+1}}.png">
+<image class="desktop desktop-{{bgCur+1}} animate__animated animate__fadeIn" src="../../images/desktop/{{bgCur+1}}.png">
 </image>
-<swiper class="index swiper" current="{{current}}" indicator-dots>
+<swiper class="index swiper" current="{{current}}" indicator-dots bindchange="swiperchange">
   <!-- Swiper1 -->
-  <swiper-item>
+  <swiper-item class="{{current === 0 ? 'animate__animated animate__fadeIn' : ''}}">
     <!-- Header -->
     <cu-custom></cu-custom>
 

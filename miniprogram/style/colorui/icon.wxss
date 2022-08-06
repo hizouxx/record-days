@@ -11,8 +11,8 @@
 }
 
 .iconfont-spin {
-	-webkit-animation: cuIcon-spin 2s infinite linear;
-	animation: cuIcon-spin 2s infinite linear;
+	-webkit-animation: cuIcon-spin 0.8s infinite linear;
+	animation: cuIcon-spin 0.8s infinite linear;
 	display: inline-block;
 }
 

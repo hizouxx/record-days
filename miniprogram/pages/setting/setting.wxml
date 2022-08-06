@@ -9,12 +9,12 @@
     <view class="padding-tb flex justify-between align-center" data-layout="{{3}}" bindtap="selectLayout">
       <text class="text-black">三列布局</text>
       <text
-        class="cuIcon-{{dragColumnsSize === 3 ? 'radiobox': 'round'}} text-xl text-{{ColorList[theme].name}}"></text>
+        class="cuIcon-{{dragColumnsSize === 3 ? 'radiobox animate__animated animate__heartBeat': 'round'}} text-xl text-{{ColorList[theme].name}}"></text>
     </view>
     <view class="padding-tb flex justify-between align-center solid-top" data-layout="{{4}}" bindtap="selectLayout">
       <text class="text-black">四列布局</text>
       <text
-        class="cuIcon-{{dragColumnsSize === 4 ? 'radiobox': 'round'}} text-xl text-{{ColorList[theme].name}}"></text>
+        class="cuIcon-{{dragColumnsSize === 4 ? 'radiobox animate__animated animate__heartBeat': 'round'}} text-xl text-{{ColorList[theme].name}}"></text>
     </view>
   </view>
 
@@ -30,22 +30,22 @@
       <view class="bg-item radius bg-gray" data-bg="{{0}}" bindtap="selectBg">
         <image class="img1" src="../../images/desktop/1.png"></image>
         <text
-          class="bg-item-check cuIcon-{{bgCur===0?'roundcheck':''}} text-xl text-{{ColorList[theme].name}}"></text>
+          class="bg-item-check cuIcon-{{bgCur===0?'roundcheck animate__animated animate__heartBeat':''}} text-xl text-{{ColorList[theme].name}}"></text>
       </view>
       <view class="bg-item radius bg-gray" data-bg="{{1}}" bindtap="selectBg">
         <image class="img2" src="../../images/desktop/2.png"></image>
         <text
-          class="bg-item-check cuIcon-{{bgCur===1?'roundcheck':''}} text-xl text-{{ColorList[theme].name}}"></text>
+          class="bg-item-check cuIcon-{{bgCur===1?'roundcheck animate__animated animate__heartBeat':''}} text-xl text-{{ColorList[theme].name}}"></text>
       </view>
       <view class="bg-item radius bg-gray" data-bg="{{2}}" bindtap="selectBg">
         <image class="img3" src="../../images/desktop/3.png"></image>
         <text
-          class="bg-item-check cuIcon-{{bgCur===2?'roundcheck':''}} text-xl text-{{ColorList[theme].name}}"></text>
+          class="bg-item-check cuIcon-{{bgCur===2?'roundcheck animate__animated animate__heartBeat':''}} text-xl text-{{ColorList[theme].name}}"></text>
       </view>
       <view class="bg-item radius bg-gray" data-bg="{{3}}" bindtap="selectBg">
         <image class="img4" src="../../images/desktop/4.png"></image>
         <text
-          class="bg-item-check cuIcon-{{bgCur===3?'roundcheck':''}} text-xl text-{{ColorList[theme].name}}"></text>
+          class="bg-item-check cuIcon-{{bgCur===3?'roundcheck animate__animated animate__heartBeat':''}} text-xl text-{{ColorList[theme].name}}"></text>
       </view>
     </view>
 

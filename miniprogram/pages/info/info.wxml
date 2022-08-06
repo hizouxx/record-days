@@ -8,17 +8,22 @@
   <!-- 已授权 -->
   <view>
     <view class="padding-lr flex align-center">
-      <text class="padding-sm text-{{tabIndex == 0 ? 'sl' : 'xxl'}}" data-index="{{0}}" bindtap="toggleUser">我</text>
-      <text wx:if="{{isCouple}}" class="padding-sm text-{{tabIndex == 1 ? 'sl' : 'xxl'}}" data-index="{{1}}"
-        bindtap="toggleUser">另一半</text>
+      <text class="padding-sm {{tabIndex == 0 ? 'text-sl animate__animated animate__heartBeat' : 'text-xxl'}}"
+        data-index="{{0}}" bindtap="toggleUser">我</text>
+      <text wx:if="{{isCouple}}"
+        class="padding-sm {{tabIndex == 1 ? 'text-sl animate__animated animate__heartBeat' : 'text-xxl'}}"
+        data-index="{{1}}" bindtap="toggleUser">另一半</text>
     </view>
 
     <!-- 我 -->
-    <view wx:if="{{tabIndex == 0}}" class="margin-lr padding-sm bg-{{ColorList[theme].name}} shadow-blur radius" bindtap="pageToQRCode">
+    <view wx:if="{{tabIndex == 0}}"
+      class="margin-lr padding-sm bg-{{ColorList[theme].name}} shadow-blur radius animate__animated animate__fadeInLeft"
+      bindtap="pageToQRCode">
       <view class="flex align-center justify-between padding-tb padding-lr">
         <view class="flex align-center">
           <view class="cu-avatar lg round">
-            <image class="avatar-img round bg-gray" src="{{userInfo.avatarUrl || '../../images/avatar_default.png'}}"></image>
+            <image class="avatar-img round bg-gray" src="{{userInfo.avatarUrl || '../../images/avatar_default.png'}}">
+            </image>
             <view
               class="gender round text-sm {{userInfo.gender == 1 ? 'cuIcon-male bg-blue' : userInfo.gender == 2 ? 'cuIcon-female bg-pink' : ''}}">
             </view>
@@ -33,11 +38,13 @@
     </view>
 
     <!-- 对象 -->
-    <view wx:if="{{isCouple && tabIndex == 1}}" class="margin-lr padding-sm bg-{{ColorList[theme].name}} shadow-blur radius">
+    <view wx:if="{{isCouple && tabIndex == 1}}"
+      class="margin-lr padding-sm bg-{{ColorList[theme].name}} shadow-blur radius animate__animated animate__fadeInRight">
       <view class="flex align-center justify-between padding-tb padding-lr">
         <view class="flex align-center">
           <view class="cu-avatar lg round">
-            <image class="round avatar-img bg-gray" src="{{bindUserInfo.avatarUrl || '../../images/avatar_default.png'}}"></image>
+            <image class="round avatar-img bg-gray"
+              src="{{bindUserInfo.avatarUrl || '../../images/avatar_default.png'}}"></image>
             <view
               class="gender round text-sm {{bindUserInfo.gender == 1 ? 'cuIcon-male bg-blue' : bindUserInfo.gender == 2 ? 'cuIcon-female bg-pink' : ''}}">
             </view>

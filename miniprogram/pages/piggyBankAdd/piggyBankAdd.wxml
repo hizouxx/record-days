@@ -5,20 +5,28 @@
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
   <view class="padding-top">
     <view class="flex justify-around bg-white text-lg">
-      <view class="text-{{type == 'pay' ? ColorList[theme].name : 'grey'}} basis-df padding radius text-center text-bold" data-type="pay" bindtap="selectType">支出</view>
-      <view class="text-{{type == 'income' ? ColorList[theme].name : 'grey'}} basis-df padding radius text-center text-bold" data-type="income" bindtap="selectType">收入</view>
+      <view
+        class="{{type === 'pay' ? 'animate__animated animate__heartBeat text-'+ColorList[theme].name : 'text-grey'}} basis-df padding radius text-center text-bold"
+        data-type="pay" bindtap="selectType">支出</view>
+      <view
+        class="{{type === 'income' ? 'animate__animated animate__heartBeat text-'+ColorList[theme].name : 'text-grey'}} basis-df padding radius text-center text-bold"
+        data-type="income" bindtap="selectType">收入</view>
     </view>
 
     <view wx:if="{{type == 'income'}}" class="flex flex-wrap padding-lr-sm padding-tb">
       <view class="basis-md" wx:for="{{IncomeList}}" wx:key="index" wx:for-index='index'>
-        <view class="margin-sm padding-tb-sm text-center text-{{index == purpose ? ColorList[theme].name : 'grey'}} radius shadow-btn{{index == purpose ? '-active' : ''}}" data-purpose="{{index}}" bindtap="selectPurpose">
+        <view
+          class="margin-sm padding-tb-sm text-center text-{{index == purpose ? ColorList[theme].name : 'grey'}} radius shadow-btn{{index == purpose ? '-active' : ''}}"
+          data-purpose="{{index}}" bindtap="selectPurpose">
           <text class="cuIcon-{{item.icon}} margin-right-xs"></text>{{item.name}}
         </view>
       </view>
     </view>
     <view wx:if="{{type == 'pay'}}" class="flex flex-wrap padding-lr-sm padding-tb">
       <view class="basis-md" wx:for="{{PayList}}" wx:key="index" wx:for-index='index'>
-        <view class="margin-sm padding-tb-sm text-center text-{{index == purpose ? ColorList[theme].name : 'grey'}} radius shadow-btn{{index == purpose ? '-active' : ''}}" data-purpose="{{index}}" bindtap="selectPurpose">
+        <view
+          class="margin-sm padding-tb-sm text-center text-{{index == purpose ? ColorList[theme].name : 'grey'}} radius shadow-btn{{index == purpose ? '-active' : ''}}"
+          data-purpose="{{index}}" bindtap="selectPurpose">
           <text class="cuIcon-{{item.icon}} margin-right-xs"></text>{{item.name}}
         </view>
       </view>
@@ -26,20 +34,23 @@
 
     <view class="margin">
       <view class="padding radius bg-white">
-        <input value="{{remark}}" maxlength="12" placeholder="{{type == 'pay' ? '支出去向' : '收入来源'}}" bindinput="remarkInput" />
+        <input value="{{remark}}" maxlength="12" placeholder="{{type == 'pay' ? '支出去向' : '收入来源'}}"
+          bindinput="remarkInput" />
       </view>
       <view class="text-right padding-tb-xs text-grey">{{remark.length}}/12</view>
     </view>
 
     <view class="margin padding radius bg-white">
-      <input type="digit" value="{{amount}}" placeholder="{{type == 'income' ? '收入金额（最多保留小数点后两位）' : '支出金额（最多保留小数点后两位）'}}" bindinput="amountInput" />
+      <input type="digit" value="{{amount}}"
+        placeholder="{{type == 'income' ? '收入金额（最多保留小数点后两位）' : '支出金额（最多保留小数点后两位）'}}" bindinput="amountInput" />
     </view>
   </view>
 </scroll-view>
 
 <view class="fixed-bottom flex justitfy-center padding-bottom">
-  <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg" disabled="{{btnDisabled}}" bindtap="checkMsg">
-    <text wx:if="{{btnLoading}}" class="cuIcon-loading2 iconfont-spin text-xl margin-right-xs"></text>
-    <text>提交</text>
+  <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg"
+    disabled="{{btnDisabled}}" bindtap="checkMsg">
+    <text wx:if="{{btnLoading}}" class="cuIcon-loading iconfont-spin text-sl"></text>
+    <text wx:else>提交</text>
   </button>
 </view>

@@ -5,16 +5,20 @@
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
   <view class="padding-lr padding-top">
     <view class="flex justify-between">
-      <picker mode="date" fields="year" value="{{pickerYear}}" bindchange="yearChange">
+      <picker class="animate__animated animate__bounceInLeft" mode="date" fields="year" value="{{pickerYear}}"
+        bindchange="yearChange">
         <view class="year flex justify-center align-center font-bold padding bg-white radius">
           <text class="text-sl">{{year}}</text>
           <text class="text-xxl cuIcon-triangledownfill"></text>
         </view>
       </picker>
-        
-      <view class="progress padding bg-white radius flex justify-center align-center">
+
+      <view
+        class="progress padding bg-white radius flex justify-center align-center animate__animated animate__bounceInRight">
         <view class="progress-circle">
-          <com-circle-progress wx:if="{{!loading}}" size="160" normalColor="#eaeaea" borderColor="{{ColorList[theme].name}}" borderSize="6" currentProgress="{{achieveRate / 100}}"></com-circle-progress>
+          <com-circle-progress wx:if="{{!loading}}" size="160" normalColor="#eaeaea"
+            borderColor="{{ColorList[theme].name}}" borderSize="6" currentProgress="{{achieveRate / 100}}">
+          </com-circle-progress>
           <view class="progress-circle-rate flex flex-direction justify-center align-center">
             <text class="text-xxl align-center">{{achieveRate}}%</text>
             <text class="text-grey align-center text-xs">实现率</text>
@@ -24,10 +28,12 @@
     </view>
 
     <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
-    <view wx:if="{{!loading && (achieveList.length + unAchieveList.length) === 0}}" class="margin-top padding bg-white text-center text-gray">当前年份还没有计划哦</view>
+    <view wx:if="{{!loading && (achieveList.length + unAchieveList.length) === 0}}"
+      class="margin-top padding bg-white text-center text-gray">当前年份还没有计划哦</view>
     <view wx:if="{{!loading && (achieveList.length + unAchieveList.length) > 0}}">
       <view wx:for="{{achieveList}}" wx:key="item" wx:for-item='item'>
-        <view class="margin-tb padding radius bg-white flex justify-between align-center" data-item="{{item}}" bindlongpress="longpressPlay">
+        <view class="margin-tb padding radius bg-white flex justify-between align-center" data-item="{{item}}"
+          bindlongpress="longpressPlay">
           <view>
             <text class="margin-left-xs cuIcon-title"> {{item.plan}}</text>
             <view class="margin-left-xs cuIcon-medal"> 计划完成！奖励：{{item.remark}}</view>
@@ -43,11 +49,12 @@
           </view>
         </view>
       </view>
-      
+
     </view>
   </view>
 </scroll-view>
 
-<view class="add-btn padding-lg bg-gradual-{{ColorList[theme].name}} shadow-blur round flex justify-center align-center" bindtap="add">
+<view class="add-btn padding-lg bg-gradual-{{ColorList[theme].name}} shadow-blur round flex justify-center align-center"
+  bindtap="add">
   <text class="cuIcon-add text-xxl"></text>
 </view>

@@ -111,8 +111,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  },
+  onReady: function () {},
   /**
    * 生命周期函数--监听页面显示
    */
@@ -211,6 +210,15 @@ Page({
     wx.setStorage({
       key: "listSort",
       data: JSON.stringify(e.detail.listData)
+    })
+  },
+  /**
+   * swiper索引页改变
+   */
+  swiperchange(e) {
+    // console.log('swiper索引页改变', e.detail.current)
+    this.setData({
+      current: e.detail.current
     })
   },
 

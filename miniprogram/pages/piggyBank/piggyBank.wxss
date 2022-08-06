@@ -1,12 +1,18 @@
 /* miniprogram/pages/piggyBank/piggyBank.wxss */
-.price-height{
+.price-height {
   height: 60rpx;
 }
-.money-percentage{
+
+.money-percentage {
   height: 10rpx;
 }
-.nav-tab-btn{
+
+.nav-tab-btn {
   height: 90rpx;
   line-height: 90rpx;
   width: 150rpx;
+}
+
+.toggle-rotate {
+  transition: 0.4s transform;
 }

@@ -7,7 +7,8 @@
     <view class="margin-lg padding-lg bg-gradual-{{ColorList[theme].name}} radius shadow">
       <view class="flex align-center justify-between">
         <text class="text-blod">总余额</text>
-        <text class="cuIcon-{{eye ? 'attentionfill' : 'attentionforbidfill'}} padding-sm" bindtap="toggleMoneyStatus"></text>
+        <text class="cuIcon-{{eye ? 'attentionfill' : 'attentionforbidfill'}} padding-sm"
+          bindtap="toggleMoneyStatus"></text>
       </view>
       <view wx:if="{{eye}}" class="price-height text-center text-price">
         <text class="text-xxl">{{totalAmount}}</text>
@@ -53,7 +54,8 @@
         <view class="bg-red" style="width: {{curTotalPay / (curTotalPay + curTotalIncome) * 100}}%"></view>
       </view>
 
-      <view class="cuIcon-{{showStatistics ? 'fold':'unfold'}} text-grey padding-top" bindtap="toggleShowStatistics">
+      <view class="cuIcon-fold text-grey padding-tb toggle-rotate"
+        style="transform: {{showStatistics ? 'rotate(0deg)' : 'rotate(180deg)'}}" bindtap="toggleShowStatistics">
       </view>
 
       <view wx:if="{{showStatistics}}" class="margin-top-lg animation-fade">
@@ -91,12 +93,11 @@
             </view>
           </view>
         </view>
-
       </view>
 
     </view>
 
-    <view class="margin-lg radius padding-lg bg-white">
+    <view class="margin-lg radius padding-lg bg-white animate__animated animate__bounceInUp">
       <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
       <view wx:if="{{!loading && dataList.length == 0}}" class="text-center text-gray">还没有账单数据哦</view>
       <view wx:if="{{!loading && dataList.length > 0}}">
