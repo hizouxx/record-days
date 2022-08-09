@@ -11,7 +11,9 @@
         <view class="text-sm">{{index+1}}.{{item.value}}</view>
       </view>
     </block>
-
+  </view>
+  <view wx:if="{{!loading && list.length > 0}}" class="divider text-center ">
+    <view class="text-gray text-sm">——长按单条数据可删除——</view>
   </view>
 </scroll-view>
 

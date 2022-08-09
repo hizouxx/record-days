@@ -16,3 +16,29 @@
 .toggle-rotate {
   transition: 0.4s transform;
 }
+.statistics {
+  overflow: hidden;
+  transition: 0.4s height;
+}
+.line-wrapper {
+  width: 53rpx;
+}
+.line {
+  height: 200rpx;
+  width: 16rpx;
+  border-radius: 8rpx 8rpx 0 0;
+  position: relative;
+}
+.line-percentage {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 8rpx 8rpx 0 0;
+}
+.line-money {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) rotate(-45deg);
+}

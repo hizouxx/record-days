@@ -3,7 +3,7 @@
   <view slot="content">储蓄金</view>
 </cu-custom>
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
-  <view class="">
+  <view>
     <view class="margin-lg padding-lg bg-gradual-{{ColorList[theme].name}} radius shadow">
       <view class="flex align-center justify-between">
         <text class="text-blod">总余额</text>
@@ -58,43 +58,37 @@
         style="transform: {{showStatistics ? 'rotate(0deg)' : 'rotate(180deg)'}}" bindtap="toggleShowStatistics">
       </view>
 
-      <view wx:if="{{showStatistics}}" class="margin-top-lg animation-fade">
-        <view>
-          <view wx:for="{{numIncomeList}}" wx:key="item" wx:for-item='item'>
-            <view class="flex justify-between text-left margin-tb-sm">
-              <view class="flex align-center">
-                <view class="cu-capsule round">
-                  <view class="cu-tag bg-green">
-                    <text class="cuIcon-{{IncomeList[item.name].icon}}"></text>
-                  </view>
-                  <view class="cu-tag line-green">
-                    {{IncomeList[item.name].name}}
-                  </view>
-                </view>
-                <text class="cu-tag round line-green margin-left-xs">{{item.num}}次</text>
+      <view class="statistics"
+        style="height: {{ showStatistics ? (((numIncomeList.length > 0 && numPayList.length > 0) ? '700rpx' : ((numIncomeList.length === 0 && numPayList.length === 0)) ? 0 : '350rpx')) : 0 }}">
+        <view wx:if="{{numIncomeList.length > 0}}">
+          <view class="margin-tb text-bold">收入</view>
+          <view class="flex justify-around">
+            <view class="line-wrapper flex flex-direction align-center" wx:for="{{numIncomeList}}" wx:key="item"
+              wx:for-item='item'>
+              <view class="line bg-gray">
+                <view class="line-percentage bg-gradual-green"
+                  style="height: {{item.total.number / curTotalIncome * 200}}rpx"></view>
+                <text class="line-money text-xs">¥{{item.total.string}}</text>
               </view>
-              <text class="cu-tag round line-green">+¥{{item.total}}</text>
+              <text class="margin-top-xs text-sm">{{IncomeList[item.name].name}}</text>
             </view>
           </view>
-          <view wx:for="{{numPayList}}" wx:key="item" wx:for-item='item'>
-            <view class="flex justify-between text-left margin-tb-sm">
-              <view class="flex align-center">
-                <view class="cu-capsule round">
-                  <view class="cu-tag bg-red">
-                    <text class="cuIcon-{{PayList[item.name].icon}}"></text>
-                  </view>
-                  <view class="cu-tag line-red">
-                    {{PayList[item.name].name}}
-                  </view>
-                </view>
-                <text class="cu-tag round line-red margin-left-xs">{{item.num}}次</text>
+        </view>
+        <view wx:if="{{numPayList.length > 0}}">
+          <view class="margin-tb text-bold">支出</view>
+          <view class="flex justify-around">
+            <view class="line-wrapper flex flex-direction align-center" wx:for="{{numPayList}}" wx:key="item"
+              wx:for-item='item'>
+              <view class="line bg-gray">
+                <view class="line-percentage bg-gradual-red"
+                  style="height: {{item.total.number / curTotalPay * 200}}rpx"></view>
+                <text class="line-money text-xs">¥{{item.total.string}}</text>
               </view>
-              <text class="cu-tag round line-red">-¥{{item.total}}</text>
+              <text class="margin-top-xs text-sm">{{PayList[item.name].name}}</text>
             </view>
           </view>
         </view>
       </view>
-
     </view>
 
     <view class="margin-lg radius padding-lg bg-white animate__animated animate__bounceInUp">
@@ -114,6 +108,9 @@
           </view>
         </view>
       </view>
+    </view>
+    <view wx:if="{{!loading && dataList.length > 0}}" class="divider text-center ">
+      <view class="text-gray text-sm">——长按单条数据可删除——</view>
     </view>
   </view>
 </scroll-view>

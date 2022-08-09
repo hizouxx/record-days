@@ -52,6 +52,9 @@
 
     </view>
   </view>
+  <view wx:if="{{!loading && (achieveList.length + unAchieveList.length) > 0}}" class="divider text-center ">
+    <view class="text-gray text-sm">——长按单条数据可编辑或删除——</view>
+  </view>
 </scroll-view>
 
 <view class="add-btn padding-lg bg-gradual-{{ColorList[theme].name}} shadow-blur round flex justify-center align-center"

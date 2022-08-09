@@ -51,3 +51,8 @@
   background-color: white;
   box-shadow: 0 0 0 rgb(0 0 0 / 20%), 0 0 0 rgb(255 255 255), inset 5rpx 5rpx 10rpx rgb(0 0 0 / 20%), inset 5rpx 5rpx 10rpx rgb(255 255 255);
 }
+
+.divider {
+  margin-bottom: constant(safe-area-inset-bottom);
+  margin-bottom: env(safe-area-inset-bottom);
+}

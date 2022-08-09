@@ -246,7 +246,10 @@ Page({
       return currentValue[keyName] ? (total + parseFloat(currentValue[keyName])) : total;
     }, 0);
     // console.log('$total', $total, typeof $total)
-    return $total.toFixed(2);
+    return {
+      number: $total,
+      string: $total.toFixed(2)
+    }
   },
 
   /**

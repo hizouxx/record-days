@@ -28,7 +28,7 @@
 
     <view class="fixed-bottom flex justitfy-center padding-bottom">
       <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg" disabled="{{btnDisabled}}" bindtap="checkMsg">
-        <text wx:if="{{btnLoading}}" class="cuIcon-loading2 iconfont-spi text-xl margin-right-xs"></text>
+        <text wx:if="{{btnLoading}}" class="cuIcon-loading iconfont-spin text-sl text-white"></text>
         <text>提交</text>
       </button>
     </view>
@@ -56,6 +56,9 @@
             </view>
           </view>
         </view>
+      </view>
+      <view wx:if="{{!loading && dataList.length > 0}}" class="divider text-center ">
+        <view class="text-gray text-sm">——长按单条数据可删除——</view>
       </view>
     </scroll-view>
   </swiper-item>
