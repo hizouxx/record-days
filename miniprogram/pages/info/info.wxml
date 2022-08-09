@@ -3,7 +3,7 @@
   <view slot="content">账户信息</view>
 </cu-custom>
 
-<image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
+<com-loading wx:if="{{loading}}"></com-loading>
 <view wx:if="{{!loading}}">
   <!-- 已授权 -->
   <view>

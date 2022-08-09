@@ -7,3 +7,7 @@ textarea{
 .emoji{
   font-size: 45rpx;
 }
+.emojis {
+  overflow: hidden;
+  transform: height 0.4s;
+}

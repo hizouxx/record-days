@@ -30,6 +30,7 @@
     "navigationStyle": "custom"
   },
   "usingComponents": {
+    "com-loading": "/components/com-loading/com-loading",
     "cu-custom": "/components/cu-custom/cu-custom",
     "com-nodata": "/components/com-nodata/com-nodata"
   },

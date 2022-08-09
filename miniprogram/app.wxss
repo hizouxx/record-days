@@ -28,13 +28,6 @@
   min-width: 670rpx;
 }
 
-.loading-gif {
-  flex: 1;
-  display: block;
-  width: 100%;
-}
-
-
 .shadow-btn {
   box-shadow: 10rpx 10rpx 10rpx rgb(0 0 0 / 10%), -10rpx -10rpx 10rpx rgb(255 255 255);
   background-color: white;
@@ -53,6 +46,6 @@
 }
 
 .divider {
-  margin-bottom: constant(safe-area-inset-bottom);
-  margin-bottom: env(safe-area-inset-bottom);
+  margin-bottom: calc(constant(safe-area-inset-bottom) + 10rpx);
+  margin-bottom: calc(env(safe-area-inset-bottom) + 10rpx);
 }

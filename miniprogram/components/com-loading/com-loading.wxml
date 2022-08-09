@@ -1,0 +1,6 @@
+<!--components/com-loading/com-loading.wxml-->
+<view class="load-container load">
+  <view class="loader">
+    {{theme}}
+  </view>
+</view>

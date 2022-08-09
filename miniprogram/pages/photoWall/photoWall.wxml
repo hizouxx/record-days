@@ -5,10 +5,10 @@
 
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
   <view class="padding-lr padding-top">
-    <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
+    <com-loading wx:if="{{loading}}"></com-loading>
     <com-nodata wx:if="{{!loading && dataList.length == 0}}" content="注意：图片文件过大将导致上传失败哦。"></com-nodata>
-    <view wx:if="{{!loading && dataList.length > 0}}">
-      <view class="margin-bottom padding bg-white radius flex align-center justify-between" wx:for="{{dataList}}" wx:key="item._id" wx:item="item" data-id="{{item._id}}" data-name="{{item.name}}" bindtap="pageToDetail" bindlongpress="actionPhoto">
+    <view wx:if="{{!loading && dataList.length > 0}}" class="animate__animated animate__bounceInRight">
+      <view class="margin-bottom padding bg-white radius flex align-center justify-between" wx:for="{{dataList}}" wx:key="item" wx:item="item" data-id="{{item._id}}" data-name="{{item.name}}" bindtap="pageToDetail" bindlongpress="actionPhoto">
         <view class="text-lg">{{item.name}}</view>
         <view class="text-right">
           <view class="margin-tb-sm">
@@ -21,7 +21,7 @@
       </view>
     </view>
   </view>
-  <view wx:if="{{!loading && dataList.length > 0}}" class="divider text-center ">
+  <view wx:if="{{!loading && dataList.length > 0}}" class="divider text-center animate__animated animate__bounceInRight">
     <view class="text-gray text-sm">——长按单条数据可编辑或删除——</view>
   </view>
 </scroll-view>

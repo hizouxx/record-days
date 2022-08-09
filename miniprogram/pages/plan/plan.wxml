@@ -27,10 +27,10 @@
       </view>
     </view>
 
-    <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
+    <com-loading wx:if="{{loading}}"></com-loading>
     <view wx:if="{{!loading && (achieveList.length + unAchieveList.length) === 0}}"
       class="margin-top padding bg-white text-center text-gray">当前年份还没有计划哦</view>
-    <view wx:if="{{!loading && (achieveList.length + unAchieveList.length) > 0}}">
+    <view wx:if="{{!loading && (achieveList.length + unAchieveList.length) > 0}}" class="animate__animated animate__bounceInUp">
       <view wx:for="{{achieveList}}" wx:key="item" wx:for-item='item'>
         <view class="margin-tb padding radius bg-white flex justify-between align-center" data-item="{{item}}"
           bindlongpress="longpressPlay">
@@ -52,7 +52,7 @@
 
     </view>
   </view>
-  <view wx:if="{{!loading && (achieveList.length + unAchieveList.length) > 0}}" class="divider text-center ">
+  <view wx:if="{{!loading && (achieveList.length + unAchieveList.length) > 0}}" class="divider text-center animate__animated animate__bounceInUp">
     <view class="text-gray text-sm">——长按单条数据可编辑或删除——</view>
   </view>
 </scroll-view>

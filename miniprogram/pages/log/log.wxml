@@ -3,7 +3,7 @@
   <view slot="content">心情驿站</view>
 </cu-custom>
 <swiper class="swiper" style="height: calc(100vh - {{CustomBar}}px)" current="{{current}}" bindchange="swiperChange">
-  <swiper-item class="swiper-item">
+  <swiper-item class="swiper-item animate__animated animate__bounceInRight">
 
     <view class="margin-tb-sm padding flex justify-between align-center bg-white text-lg">
       <text>{{today}}</text>
@@ -36,9 +36,7 @@
   </swiper-item>
   <swiper-item class="swiper-item bg-white">
     <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
-      <view wx:if="{{loading}}" class="loading-gif">
-        <image src="../../images/icon-loading.gif" mode="aspectFit"></image>
-      </view>
+      <com-loading wx:if="{{loading}}"></com-loading>
       <view wx:if="{{!loading && dataList.length > 0}}" class="cu-timeline" wx:for="{{dataList}}" wx:key="item">
         <view class="cu-timeline">
           <!-- <view class="cu-time">{{item.date}}</view> -->

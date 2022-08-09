@@ -1,0 +1,21 @@
+<!--components/com-fireworks/com-fireworks.wxml-->
+<view class="container">
+  <view class="camera -x">
+    <view class="camera -y">
+      <view class="camera -z">
+        <view class="fireworks">
+          <view class="line">
+            <view class="spark">
+              <view class="fire"></view>
+            </view>
+          </view>
+          <view class="line" wx:for="{{30}}" wx:key="*this">
+            <view class="spark">
+              <view class="fire"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

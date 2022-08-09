@@ -92,7 +92,7 @@
     </view>
 
     <view class="margin-lg radius padding-lg bg-white animate__animated animate__bounceInUp">
-      <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
+      <com-loading wx:if="{{loading}}"></com-loading>
       <view wx:if="{{!loading && dataList.length == 0}}" class="text-center text-gray">还没有账单数据哦</view>
       <view wx:if="{{!loading && dataList.length > 0}}">
         <view wx:for="{{dataList}}" wx:key="item" wx:for-item='item'>

@@ -1,6 +1,10 @@
 <!--miniprogram/pages/index/index.wxml-->
 <image class="desktop desktop-{{bgCur+1}} animate__animated animate__fadeIn" src="../../images/desktop/{{bgCur+1}}.png">
 </image>
+<block wx:if="{{isSpringFestival}}">
+  <!-- 夜空烟花 -->
+  <com-fireworks></com-fireworks>
+</block>
 <swiper class="index swiper" current="{{current}}" indicator-dots bindchange="swiperchange">
   <!-- Swiper1 -->
   <swiper-item class="{{current === 0 ? 'animate__animated animate__fadeIn' : ''}}">
@@ -17,7 +21,7 @@
       </view>
     </view>
 
-    <!-- 节日灯笼 -->
+    <!-- 节日灯笼-转动 -->
     <block wx:if="{{isNewYearEve || isSpringFestival}}">
       <com-lantern></com-lantern>
     </block>
@@ -29,7 +33,7 @@
     <!-- Header -->
     <cu-custom></cu-custom>
 
-    <!-- 节日灯笼2 -->
+    <!-- 节日灯笼2-摇曳 -->
     <block wx:if="{{isSpringFestival}}">
       <com-lantern2></com-lantern2>
     </block>

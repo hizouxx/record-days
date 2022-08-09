@@ -4,9 +4,9 @@
 </cu-custom>
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
   <view class="padding-lr padding-top">
-    <image wx:if="{{loading}}" src="../../images/icon-loading.gif" mode="aspectFit" class="loading-gif"></image>
+    <com-loading wx:if="{{loading}}"></com-loading>
     <com-nodata wx:if="{{!loading && dataList.length == 0}}" content="每一个特殊的日子都值得被纪念。"></com-nodata>
-    <view wx:if="{{!loading && dataList.length > 0}}" wx:for="{{dataList}}" wx:key="item" wx:for-item='item'>
+    <view wx:if="{{!loading && dataList.length > 0}}" wx:for="{{dataList}}" wx:key="item" wx:for-item='item' class="animate__animated animate__bounceInRight">
       <view class="margin-bottom padding radius bg-white flex align-center justify-between" data-id="{{item._id}}" bindlongpress="deleteSpecialDay">
         <view class="cuIcon-{{SpecialDayList[item.name].icon}}">
           <text class="margin-left-xs">{{item.remark}}</text>
@@ -27,7 +27,7 @@
     </view>
   </view>
 
-  <view wx:if="{{!loading && dataList.length > 0}}" class="divider text-center ">
+  <view wx:if="{{!loading && dataList.length > 0}}" class="divider text-center animate__animated animate__bounceInRight">
     <view class="text-gray text-sm">——长按单条数据可删除——</view>
   </view>
 </scroll-view>
