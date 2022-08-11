@@ -4,7 +4,6 @@
 </cu-custom>
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
   <view>
-    <com-loading wx:if="{{loading}}"></com-loading>
     <view wx:if="{{!loading}}">
       <view id="left" class="photo-col padding-tb-sm padding-left-sm padding-right-xs">
         <view wx:for="{{leftList}}" wx:key="index" class="margin-bottom-sm padding-sm shadow-warp bg-white">

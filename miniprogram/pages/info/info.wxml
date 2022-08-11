@@ -17,7 +17,7 @@
 
     <!-- 我 -->
     <view wx:if="{{tabIndex == 0}}"
-      class="margin-lr padding-sm bg-{{ColorList[theme].name}} shadow-blur radius animate__animated animate__fadeInLeft"
+      class="margin-lr padding-sm bg-gradual-{{ColorList[theme].name}} shadow-blur radius animate__animated animate__fadeIn"
       bindtap="pageToQRCode">
       <view class="flex align-center justify-between padding-tb padding-lr">
         <view class="flex align-center">
@@ -39,7 +39,7 @@
 
     <!-- 对象 -->
     <view wx:if="{{isCouple && tabIndex == 1}}"
-      class="margin-lr padding-sm bg-{{ColorList[theme].name}} shadow-blur radius animate__animated animate__fadeInRight">
+      class="margin-lr padding-sm bg-gradual-{{ColorList[theme].name}} shadow-blur radius animate__animated animate__fadeIn">
       <view class="flex align-center justify-between padding-tb padding-lr">
         <view class="flex align-center">
           <view class="cu-avatar lg round">
@@ -59,7 +59,7 @@
   </view>
 
   <!--  -->
-  <view class="padding">
+  <view class="padding animate__animated animate__bounceInUp">
     <view class="margin-top padding-lg bg-white radius flex align-center" bindtap="getUserProfile">
       <text class="cuIcon-people text-xl"></text>
       <text class="margin-left-sm text-lg text-black">获取微信头像、昵称等公开信息</text>

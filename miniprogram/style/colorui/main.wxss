@@ -667,12 +667,12 @@ radio.white[checked] .wx-radio-input {
 	content: "";
 	display: block;
 	background: inherit;
-	filter: blur(10rpx);
+	filter: blur(2rpx);
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	top: 10rpx;
-	left: 10rpx;
+	top: 2rpx;
+	left: 2rpx;
 	z-index: -1;
 	opacity: 0.4;
 	transform-origin: 0 0;

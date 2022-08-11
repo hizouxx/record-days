@@ -28,24 +28,24 @@
   <view class="margin-lr radius bg-white">
     <view class="flex justify-between padding">
       <view class="bg-item radius bg-gray" data-bg="{{0}}" bindtap="selectBg">
-        <image class="img1" src="../../images/desktop/1.png"></image>
+        <image class="img1 radius" src="../../images/desktop/1.jpeg"></image>
         <text
-          class="bg-item-check cuIcon-{{bgCur===0?'roundcheck animate__animated animate__heartBeat':''}} text-xl text-{{ColorList[theme].name}}"></text>
+          class="bg-item-check cuIcon-{{bgCur===0?'roundcheck animate__animated animate__heartBeat':''}} text-xl text-white"></text>
       </view>
       <view class="bg-item radius bg-gray" data-bg="{{1}}" bindtap="selectBg">
-        <image class="img2" src="../../images/desktop/2.png"></image>
+        <image class="img2 radius" src="../../images/desktop/2.jpeg"></image>
         <text
-          class="bg-item-check cuIcon-{{bgCur===1?'roundcheck animate__animated animate__heartBeat':''}} text-xl text-{{ColorList[theme].name}}"></text>
+          class="bg-item-check cuIcon-{{bgCur===1?'roundcheck animate__animated animate__heartBeat':''}} text-xl text-white"></text>
       </view>
       <view class="bg-item radius bg-gray" data-bg="{{2}}" bindtap="selectBg">
-        <image class="img3" src="../../images/desktop/3.png"></image>
+        <image class="img3 radius" src="../../images/desktop/3.jpeg"></image>
         <text
-          class="bg-item-check cuIcon-{{bgCur===2?'roundcheck animate__animated animate__heartBeat':''}} text-xl text-{{ColorList[theme].name}}"></text>
+          class="bg-item-check cuIcon-{{bgCur===2?'roundcheck animate__animated animate__heartBeat':''}} text-xl text-white"></text>
       </view>
       <view class="bg-item radius bg-gray" data-bg="{{3}}" bindtap="selectBg">
-        <image class="img4" src="../../images/desktop/4.png"></image>
+        <image class="img4 radius" src="../../images/desktop/4.jpeg"></image>
         <text
-          class="bg-item-check cuIcon-{{bgCur===3?'roundcheck animate__animated animate__heartBeat':''}} text-xl text-{{ColorList[theme].name}}"></text>
+          class="bg-item-check cuIcon-{{bgCur===3?'roundcheck animate__animated animate__heartBeat':''}} text-xl text-white"></text>
       </view>
     </view>
 

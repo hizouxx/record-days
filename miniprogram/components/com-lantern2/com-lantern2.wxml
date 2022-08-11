@@ -4,7 +4,7 @@
 	<view class="deng">
 		<view class="xian"></view>
 		<view class="deng-a">
-			<view class="deng-b"><view class="deng-t">节</view></view>
+			<view class="deng-b"><view class="deng-t">喜</view></view>
 		</view>
 		<view class="shui shui-a"><view class="shui-c"></view><view class="shui-b"></view></view>
 	</view>
@@ -15,7 +15,7 @@
 	<view class="deng">
 		<view class="xian"></view>
 		<view class="deng-a">
-			<view class="deng-b"><view class="deng-t">春</view></view>
+			<view class="deng-b"><view class="deng-t">迎</view></view>
 		</view>
 		<view class="shui shui-a"><view class="shui-c"></view><view class="shui-b"></view></view>
 	</view>
@@ -25,7 +25,7 @@
 	<view class="deng">
 		<view class="xian"></view>
 		<view class="deng-a">
-			<view class="deng-b"><view class="deng-t">快</view></view>
+			<view class="deng-b"><view class="deng-t">新</view></view>
 		</view>
 		<view class="shui shui-a"><view class="shui-c"></view><view class="shui-b"></view></view>
 	</view>
@@ -35,7 +35,7 @@
 	<view class="deng">
 		<view class="xian"></view>
 		<view class="deng-a">
-			<view class="deng-b"><view class="deng-t">乐</view></view>
+			<view class="deng-b"><view class="deng-t">春</view></view>
 		</view>
 		<view class="shui shui-a"><view class="shui-c"></view><view class="shui-b"></view></view>
 	</view>

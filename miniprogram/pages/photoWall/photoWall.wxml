@@ -8,7 +8,8 @@
     <com-loading wx:if="{{loading}}"></com-loading>
     <com-nodata wx:if="{{!loading && dataList.length == 0}}" content="注意：图片文件过大将导致上传失败哦。"></com-nodata>
     <view wx:if="{{!loading && dataList.length > 0}}" class="animate__animated animate__bounceInRight">
-      <view class="margin-bottom padding bg-white radius flex align-center justify-between" wx:for="{{dataList}}" wx:key="item" wx:item="item" data-id="{{item._id}}" data-name="{{item.name}}" bindtap="pageToDetail" bindlongpress="actionPhoto">
+      <view class="left-line-wrapper margin-bottom padding bg-white radius flex align-center justify-between" wx:for="{{dataList}}" wx:key="item" wx:item="item" data-id="{{item._id}}" data-name="{{item.name}}" bindtap="pageToDetail" bindlongpress="actionPhoto">
+        <view class="left-line bg-gradual-{{ColorList[theme].name}}"></view>
         <view class="text-lg">{{item.name}}</view>
         <view class="text-right">
           <view class="margin-tb-sm">

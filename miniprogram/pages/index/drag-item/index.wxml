@@ -3,6 +3,6 @@
 		<view class="margin-lr-lg margin-top-lg padding-sm radius bg-gradual-{{itemData.color}} shadow-blur">
 			<view class="cuIcon-{{itemData.icon}} text-white text-sl"></view>
 		</view>
-		<text class="text-sm margin-top-sm text-bold text-grey">{{itemData.name}}</text>
+		<text class="text-sm margin-top-sm text-bold text-white">{{itemData.name}}</text>
 	</view>
 </view>

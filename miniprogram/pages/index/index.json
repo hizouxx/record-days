@@ -5,5 +5,7 @@
 		"com-fireworks": "../../components/com-fireworks/com-fireworks",
 		"com-lantern": "../../components/com-lantern/com-lantern",
 		"com-lantern2": "../../components/com-lantern2/com-lantern2"
-	}
+	},
+	"backgroundTextStyle": "dark",
+	"navigationBarTextStyle": "white"
 }

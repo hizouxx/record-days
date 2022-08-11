@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    ColorList: app.globalData.ColorList,
+    theme: 0,
     CustomBar: app.globalData.CustomBar,
     now: utils.formatDate(new Date())
   },
@@ -15,7 +17,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const theme = wx.getStorageSync('theme') || 0
+    this.setData({
+      theme
+    })
   },
 
   /**

@@ -46,6 +46,18 @@
 }
 
 .divider {
-  margin-bottom: calc(constant(safe-area-inset-bottom) + 10rpx);
-  margin-bottom: calc(env(safe-area-inset-bottom) + 10rpx);
+  line-height: 2.4;
+  margin-bottom: constant(safe-area-inset-bottom);
+  margin-bottom: env(safe-area-inset-bottom);
+}
+.left-line-wrapper {
+  position: relative;
+}
+.left-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6rpx;
+  border-radius: 12px 0 0 12px;
+  height: 100%;
 }
