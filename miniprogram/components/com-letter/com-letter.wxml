@@ -1,0 +1,12 @@
+<!--components/com-letter/com-letter.wxml-->
+<view class="box-wrapper">
+	<view class="box">
+		<view class="xian"></view>
+    <view class="m-letter" bindtap="openClick">
+      <view class="item"></view>
+      <view class="f-trans">
+        <view class="item item-cover"></view>
+      </view>
+    </view>
+	</view>
+</view>

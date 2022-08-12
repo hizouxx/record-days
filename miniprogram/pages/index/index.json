@@ -3,6 +3,7 @@
 		"drag": "../../components/drag/index",
 		"drag-item": "./drag-item/index",
 		"com-fireworks": "../../components/com-fireworks/com-fireworks",
+		"com-letter": "../../components/com-letter/com-letter",
 		"com-lantern": "../../components/com-lantern/com-lantern",
 		"com-lantern2": "../../components/com-lantern2/com-lantern2"
 	},

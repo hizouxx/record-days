@@ -81,12 +81,16 @@ Page({
     lunarDate: calendar.solar2lunar(), // 农历日期
     isSpringFestival: false, // 春节～元宵节
     isNewYearEve: false, // 小年～除夕
+    isShowLetter: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 获取开关
+    this.getSwitch()
+
     // 获取拖拽元素
     this.drag = this.selectComponent('#drag');
     this.drag.init();
@@ -235,6 +239,29 @@ Page({
     } = e.detail.data
     wx.navigateTo({
       url: '/pages/' + path + '/' + path,
+    })
+  },
+
+  getSwitch() {
+    //调用云函数
+    wx.cloud.callFunction({
+      name: 'getSwitch',
+      data: {
+        _id: 'f6e08a6462f5c4f512ebccbb55664f8d'
+      },
+      success: res => {
+        // console.log(res, 'res')
+        wx.setStorage({
+          key: "switch",
+          data: JSON.stringify(res.result.data[0])
+        })
+        this.setData({
+          isShowLetter: res.result.data[0]?.letter ? true : false
+        })
+      },
+      fail: err => {
+        console.error('err', err)
+      }
     })
   },
 

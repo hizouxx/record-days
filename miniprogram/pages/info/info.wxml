@@ -30,7 +30,7 @@
           </view>
           <view class="text-xl margin-left">{{userInfo.nickName || '未获取昵称'}}</view>
         </view>
-        <view>
+        <view wx:if="{{!closeBindModule}}">
           <text class="cuIcon-qrcode margin-right-sm"></text>
           <text class="cuIcon-right"></text>
         </view>
@@ -64,11 +64,11 @@
       <text class="cuIcon-people text-xl"></text>
       <text class="margin-left-sm text-lg text-black">获取微信头像、昵称等公开信息</text>
     </view>
-    <view class="margin-top padding-lg bg-white radius flex align-center" bindtap="scanQRcode">
+    <view wx:if="{{!closeBindModule}}" class="margin-top padding-lg bg-white radius flex align-center" bindtap="scanQRcode">
       <text class="cuIcon-scan text-xl"></text>
       <text class="margin-left-sm text-lg text-black">扫一扫</text>
     </view>
-    <view class="margin-top padding-lg bg-white radius flex align-center" bindtap="showDemo">
+    <view wx:if="{{!closeBindModule}}" class="margin-top padding-lg bg-white radius flex align-center" bindtap="showDemo">
       <text class="cuIcon-mobile text-xl"></text>
       <text class="margin-left-sm text-lg text-black">演示指引</text>
     </view>

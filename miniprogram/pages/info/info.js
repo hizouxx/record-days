@@ -15,12 +15,14 @@ Page({
     ColorList: [], // 主题色列表
     tabIndex: 0, // tab索引
     loading: false,
+    closeBindModule: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const switchStorage = wx.getStorageSync('switch')
     this.setData({
       theme: wx.getStorageSync('theme') || 0, //主题
       ColorList: app.globalData.ColorList, // 主题色列表
@@ -28,6 +30,7 @@ Page({
       isCouple: app.globalData.bindOpenid ? true : false,
       openid: app.globalData.openid,
       bindOpenid: app.globalData.bindOpenid,
+      closeBindModule: switchStorage ? JSON.parse(switchStorage)?.closeBind : false,
     })
     if (!Object.keys(this.data.userInfo).length) {
       // 若无userInfo，则在数据库里添加一条用户数据
@@ -256,6 +259,9 @@ Page({
    * 显示二维码
    */
   pageToQRCode() {
+    if (this.data.closeBindModule) {
+      return
+    }
     wx.navigateTo({
       url: '/pages/qrCode/qrCode'
     })

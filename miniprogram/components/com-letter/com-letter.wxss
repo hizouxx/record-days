@@ -1,0 +1,83 @@
+/* components/com-letter/com-letter.wxss */
+.box-wrapper {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
+
+.box {
+  position: relative;
+  width: 120rpx;
+  height: 90rpx;
+  margin: 50rpx;
+  transform-origin: 50% -100rpx;
+  animation: swing 3s infinite ease-in-out;
+}
+
+.xian {
+  position: absolute;
+  top: -100rpx;
+  left: 60rpx;
+  width: 2rpx;
+  height: 100rpx;
+  background: #dc8f03;
+}
+
+.m-letter {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150rpx;
+  height: 96rpx;
+  border-radius: 10rpx;
+  background: #fff;
+  overflow: hidden;
+}
+
+.m-letter:before,
+.m-letter .item {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 106rpx;
+  height: 106rpx;
+  border-width: 2rpx;
+  border-style: solid;
+  border-color: #F1F1F1 #F1F1F1 transparent transparent;
+  transform-origin: left top;
+  transform: rotate(-45deg);
+}
+
+.m-letter .item {
+  top: 0;
+  border-color: transparent transparent #F1F1F1 #F1F1F1;
+  background: #F1F1F1;
+}
+
+.m-letter .item-cover {
+  background: #fff;
+}
+
+.m-letter .f-trans {
+  transform-style: preserve-3d;
+  perspective: 1500;
+  transform-origin: 0 0;
+  animation: breath 1.2s ease infinite alternate;
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(-5deg)
+  }
+
+  50% {
+    transform: rotate(5deg)
+  }
+
+  100% {
+    transform: rotate(-5deg)
+  }
+}

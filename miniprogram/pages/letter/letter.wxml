@@ -1,0 +1,9 @@
+<!--pages/letter/letter.wxml-->
+<cu-custom isCustom bg-color="bg-gray">
+  <view slot="content">致用户</view>
+</cu-custom>
+<view class="padding-lr-xl">
+  <view class="padding radius shadow-lg">
+    <view class="text-indent margin-top-sm">{{letterContent}}</view>
+  </view>
+</view>
