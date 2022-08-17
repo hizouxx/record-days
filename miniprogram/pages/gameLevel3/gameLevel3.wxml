@@ -1,0 +1,32 @@
+<!--pages/gameLevel3/gameLevel3.wxml-->
+<cu-custom isCustom bg-color="bg-white">
+    <view slot="content">扫雷高级</view>
+</cu-custom>
+<view class="wrapper">
+    <view class="header">
+        <text class="label my-score"><text class="cuIcon-activity"></text>: {{minesLeft}}</text>
+        <text class="label my-score"><text class="cuIcon-countdown"></text>: {{timesGo}}</text>
+    </view>
+    <view wx:for="{{mineMap}}" wx:for-item="row" wx:for-index="i" class="flex-container" wx:key="i">
+        <view wx:for="{{row}}" wx:for-item="value" wx:for-index="j" wx:key="j"
+            class="flex-item {{value < 9 ? (value< 0 ? '':'open') : ((value> 9) ? 'flag' : 'mine')}}" bindtap="demining"
+            data-x="{{i}}" data-y="{{j}}" data-value="{{value}}" hover-class="button-hover">
+            <!-- {{value< 9 ? (value< 0 ? '' :value) : ((value> 9) ? 'F' : 'M')}} -->
+            <text wx:if="{{value< 9}}">{{value< 0 ? '' :value}}</text>
+                    <text wx:if="{{value> 9}}"><text class="cuIcon-activityfill"></text></text>
+                    <text wx:if="{{value === 9}}"><text class="cuIcon-settings"></text></text>
+        </view>
+    </view>
+    <view class="footer">
+        <view
+            class="padding-lr padding-tb-sm radius bg-{{ColorList[theme].name}} {{buttionText === '开始游戏' ? 'animate__animated animate__heartBeat animate__infinite' : ''}}"
+            bindtap="setGame" hover-class="button-hover">{{buttionText}}</view>
+        <view wx:if="{{buttionText === '重新开始'}}">
+            <switch bindchange="flagSwitch" />
+        </view>
+    </view>
+</view>
+<view class="margin-lg text-grey text-xs">
+    <text wx:if="{{buttionText === '开始游戏'}}">目标：在最短的时间内根据点击格子出现的数字找出所有非雷格子，同时避免踩雷，踩到一个雷即全盘皆输。</text>
+    <text wx:if="{{buttionText === '重新开始'}}">- 方格数字代表著邻近方块有多少颗地雷（数字至多为8）\n- Switch 标记地雷\n</text>
+</view>

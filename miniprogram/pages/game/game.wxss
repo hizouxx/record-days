@@ -1,0 +1,13 @@
+/* pages/game/game.wxss */
+.btns{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+}
+.button-hover {
+  background-color: rgb(211, 211, 211);
+}

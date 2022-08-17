@@ -1,0 +1,69 @@
+/* pages/gameLevel3/gameLevel3.wxss */
+
+.wrapper {
+  padding: 5px;
+}
+.flex-container {
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  line-height:1em;
+  width: 90%;
+}
+
+.flex-item {
+  background: #E6E9ED;
+  margin: 1px;
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+  text-align: center;
+  flex: 1 0 auto;
+  height: 54rpx;
+  line-height: 54rpx;
+  width: 54rpx;
+  border-radius: 20%;
+  font-family: "Lucida Console", Monaco, monospace
+}
+.open {
+  background: #3BAFDA;
+}
+.mine {
+  background: #E9573F;
+}
+.flag {
+  
+  background: #F6BB42;
+}
+.flex-item:before {
+  content: '';
+  display: block;
+  float: left;
+  padding-top:100%;
+}
+.header {
+  display: flex;
+  font-size: 14px;
+  line-height: 2.5em;
+  text-align: center;
+}
+.header .label {
+  flex: 1;
+}
+.footer {
+  padding-top: 50rpx;
+  display: flex;   
+  justify-content: space-around;
+  align-items: center;
+}
+
+.button-hover {
+  background-color: rgb(211, 211, 211);
+}
+
+switch {
+  transform: scale(1.2);
+}

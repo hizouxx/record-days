@@ -1,0 +1,9 @@
+<!--pages/game/game.wxml-->
+<cu-custom isCustom bg-color="bg-white">
+  <view slot="content">扫雷</view>
+</cu-custom>
+<view class="btns">
+  <view class="margin-top bg-white radius padding-lr padding-tb-sm animate__animated animate__bounceInRight" hover-class="button-hover" catchtap="pageToLevel1">初级难度</view>
+  <view class="margin-top bg-white radius padding-lr padding-tb-sm animate__animated animate__bounceInRight" hover-class="button-hover" catchtap="pageToLevel2">中级难度</view>
+  <view class="margin-top bg-white radius padding-lr padding-tb-sm animate__animated animate__bounceInRight" hover-class="button-hover" catchtap="pageToLevel3">高级难度</view>
+</view>

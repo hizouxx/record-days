@@ -20,7 +20,11 @@
     "pages/agreementAdd/agreementAdd",
     "pages/wishAdd/wishAdd",
     "pages/photoWallEdit/photoWallEdit",
-    "pages/letter/letter"
+    "pages/letter/letter",
+    "pages/game/game",
+    "pages/gameLevel1/gameLevel1",
+    "pages/gameLevel2/gameLevel2",
+    "pages/gameLevel3/gameLevel3"
   ],
   "window": {
     "backgroundColor": "#f1f1f1",

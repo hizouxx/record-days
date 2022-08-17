@@ -3,7 +3,7 @@ const app = getApp()
 const {
   calendar
 } = require('../../utils/calendar.js')
-let defaultList = [{
+const defaultList = [{
     icon: 'moneybagfill',
     color: 'red',
     path: 'piggyBank',
@@ -44,6 +44,12 @@ let defaultList = [{
     color: 'blue',
     path: 'log',
     name: '心情驿站'
+  },
+  {
+    icon: 'upstagefill',
+    color: 'purple',
+    path: 'game',
+    name: '休闲益智'
   },
   {
     icon: 'infofill',
