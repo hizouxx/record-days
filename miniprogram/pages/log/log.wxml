@@ -41,10 +41,10 @@
         <view class="cu-timeline">
           <!-- <view class="cu-time">{{item.date}}</view> -->
           <view class="cu-item cur cuIcon-writefill">
-            <view class="left-line-wrapper content shadow-blur" data-id="{{item._id}}" bindlongpress="deleteLog">
-              <view class="left-line bg-gradual-{{ColorList[theme].name}}"></view>
-              <view class="cu-capsule radius">
-                <view class="cu-tag bg-{{ColorList[theme].name}} text-white">
+            <view class="content shadow-blur" data-id="{{item._id}}" bindlongpress="deleteLog">
+              <view class="bg-gradual-{{ColorList[theme].name}}"></view>
+              <view class="cu-capsule">
+                <view class="cu-tag bg-gradual-{{ColorList[theme].name}} text-white">
                   {{item.date}}
                 </view>
                 <view class="cu-tag line-{{ColorList[theme].name}}">

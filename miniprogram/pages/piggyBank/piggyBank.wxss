@@ -25,8 +25,8 @@
 }
 .line {
   height: 200rpx;
-  width: 16rpx;
-  border-radius: 8rpx 8rpx 0 0;
+  width: 10rpx;
+  border-radius: 5rpx 5rpx 0 0;
   position: relative;
 }
 .line-percentage {
@@ -34,7 +34,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  border-radius: 8rpx 8rpx 0 0;
+  border-radius: 5rpx 5rpx 0 0;
 }
 .line-money {
   position: absolute;
