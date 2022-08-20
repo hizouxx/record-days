@@ -17,7 +17,11 @@
 
 .bg-item-check{
   position: absolute;
-  right: 5rpx;
-  top: 5rpx;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 0 0 12rpx 12rpx;
+  background-color: rgba(0, 0, 0, 0.2);
   z-index: 9;
 }

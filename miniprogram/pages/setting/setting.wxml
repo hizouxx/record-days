@@ -28,35 +28,45 @@
   <view class="margin-lr radius bg-white">
     <view class="flex justify-between padding">
       <view class="bg-item radius bg-gray" data-bg="{{0}}" bindtap="selectBg">
-        <image class="img1 radius" src="../../images/desktop/1.jpeg"></image>
-        <text
-          class="bg-item-check cuIcon-{{bgCur===0?'roundcheck animate__animated animate__heartBeat':''}} text-xl text-white"></text>
+        <image class="radius" mode="aspectFill" src="../../images/desktop/1.jpeg"></image>
+        <view
+          class="bg-item-check cuIcon-{{bgCur===0?'check animate__animated animate__fadeIn':''}} text-xl text-center text-white">
+        </view>
       </view>
       <view class="bg-item radius bg-gray" data-bg="{{1}}" bindtap="selectBg">
-        <image class="img2 radius" src="../../images/desktop/2.jpeg"></image>
-        <text
-          class="bg-item-check cuIcon-{{bgCur===1?'roundcheck animate__animated animate__heartBeat':''}} text-xl text-white"></text>
+        <image class="radius" mode="aspectFill" src="../../images/desktop/2.jpeg"></image>
+        <view
+          class="bg-item-check cuIcon-{{bgCur===1?'check animate__animated animate__fadeIn':''}} text-xl text-center text-white">
+        </view>
       </view>
       <view class="bg-item radius bg-gray" data-bg="{{2}}" bindtap="selectBg">
-        <image class="img3 radius" src="../../images/desktop/3.jpeg"></image>
-        <text
-          class="bg-item-check cuIcon-{{bgCur===2?'roundcheck animate__animated animate__heartBeat':''}} text-xl text-white"></text>
+        <image class="radius" mode="aspectFill" src="../../images/desktop/3.jpeg"></image>
+        <view
+          class="bg-item-check cuIcon-{{bgCur===2?'check animate__animated animate__fadeIn':''}} text-xl text-center text-white">
+        </view>
       </view>
       <view class="bg-item radius bg-gray" data-bg="{{3}}" bindtap="selectBg">
-        <image class="img4 radius" src="../../images/desktop/4.jpeg"></image>
-        <text
-          class="bg-item-check cuIcon-{{bgCur===3?'roundcheck animate__animated animate__heartBeat':''}} text-xl text-white"></text>
+        <view wx:if="{{dasktopDIY === ''}}"
+          class="bg-item radius flex flex-direction align-center justify-center text-gray">
+          <text>自</text>
+          <text>选</text>
+          <text>背</text>
+          <text>景</text>
+        </view>
+        <image wx:if="{{dasktopDIY !== ''}}" class="radius" mode="aspectFill" src="{{dasktopDIY}}"></image>
+        <view
+          class="bg-item-check cuIcon-{{bgCur===3?'check animate__animated animate__fadeIn':''}} text-xl text-center text-white">
+        </view>
       </view>
     </view>
-
   </view>
 
-
-
-
-
-
-
+  <view wx:if="{{bgCur === 3}}"
+    class="margin-top-sm margin-lr flex justify-between align-center bg-white radius padding-lr text-grey animate__animated animate__fadeIn"
+    bindtap="chooseImage">
+    <view class="padding-tb text-black">上传自选背景</view>
+    <view class="cuIcon-right text-{{ColorList[theme].name}}"></view>
+  </view>
 
 </scroll-view>
 

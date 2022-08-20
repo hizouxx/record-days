@@ -1,6 +1,7 @@
 <!--miniprogram/pages/index/index.wxml-->
 <view class="desktop-wrapper">
-  <image class="desktop desktop-{{bgCur+1}}" mode="aspectFill" src="../../images/desktop/{{bgCur+1}}.jpeg"></image>
+  <image wx:if="{{bgCur < 3}}" class="desktop" mode="aspectFill" src="../../images/desktop/{{bgCur+1}}.jpeg"></image>
+  <image wx:if="{{bgCur === 3 && dasktopDIY}}" class="desktop animate__animated animate__fadeIn" mode="aspectFill" src="{{dasktopDIY}}"></image>
 </view>
 
 <block wx:if="{{isNewYearEve}}">
@@ -14,7 +15,7 @@
     <cu-custom></cu-custom>
 
     <!-- 时间 -->
-    <view class="margin-top-xl text-white">
+    <view class="margin-top-xl text-{{(bgCur === 3 && dasktopDIY === '') ? 'grey' : 'white'}}">
       <view class="text-xxl text-center text-bold">
         农历{{lunarDate.IMonthCn}}{{lunarDate.IDayCn}}
       </view>
@@ -47,7 +48,7 @@
     <!-- Drag -->
     <view class="margin scale-show">
       <!--drag组件外层需要适当加一定距离的margin, 防止某些情况精度计算误差导致drag宽度大于屏幕宽度, 从而出现横向滚动条-->
-      <drag id="drag" generic:item="drag-item" list-data="{{list}}" columns="{{dragColumnsSize}}" bind:click="itemClick"
+      <drag id="drag" generic:item="drag-item" list-data="{{list}}" columns="{{dragColumnsSize}}" text-color="{{(bgCur === 3 && dasktopDIY === '') ? 'grey' : 'white'}}" bind:click="itemClick"
         bind:change="change">
       </drag>
     </view>

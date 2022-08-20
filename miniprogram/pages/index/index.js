@@ -83,11 +83,12 @@ Page({
     dragColumnsSize: 0, // 九宫格排列列数
     list: [], // 九宫格数据列表
     bgCur: 0,
+    dasktopDIY: '', // 自定义背景图
     loading: false,
     lunarDate: calendar.solar2lunar(), // 农历日期
     isSpringFestival: false, // 春节～元宵节
     isNewYearEve: false, // 小年～除夕
-    isShowLetter: false,
+    isShowLetter: false, // 是否展示书信
   },
 
   /**
@@ -128,6 +129,7 @@ Page({
   onShow: function () {
     this.setData({
       bgCur: wx.getStorageSync('bgCur') || 0,
+      dasktopDIY: wx.getStorageSync('dasktop') || '',
       dragColumnsSize: wx.getStorageSync('layoutColumns') || 3, // 九宫格排列列数
     })
     // console.log('show', this.data.dragColumnsSize)
