@@ -11,7 +11,7 @@
 			<slot name="{{item.slot}}"></slot>
 		</block>
 		<block wx:else>
-			<item data-index="{{index}}" columns="{{columns}}" item-data="{{item.data}}" bind:click="itemClick" />
+			<item data-index="{{index}}" columns="{{columns}}" item-data="{{item.data}}" text-color="{{textColor}}" bind:click="itemClick" />
 		</block>
 
 	</view>

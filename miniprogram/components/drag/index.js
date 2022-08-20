@@ -45,6 +45,10 @@ Component({
 			type: Number,
 			value: 1
 		},
+		textColor: { // 字体颜色
+			type: String,
+			value: 'white'
+		},
 		topSize: { // 顶部固定高度
 			type: Number,
 			value: 0

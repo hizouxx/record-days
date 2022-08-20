@@ -13,7 +13,7 @@ Page({
   rowCount: 8,
   colCount: 8, //行列数
   mineCount: 8, //实际总雷数
-  minMineCount: 12, //最小雷数
+  minMineCount: 8, //最小雷数
   maxMineCount: 12,
   minesLeft: 0,
   timesGo: 0, //用时
@@ -154,7 +154,7 @@ Page({
 
   success: function () {
     wx.showToast({
-      title: 'Good Job !',
+      title: '恭喜过关！',
       image: '../../images/game/emoticon_happy.png',
       duration: 3000
     })
@@ -164,7 +164,7 @@ Page({
 
   failed: function () {
     wx.showToast({
-      title: 'Bomb !!!',
+      title: 'Bomb!!!',
       image: '../../images/game/emoticon_sad.png',
       mask: true,
       duration: 3000
