@@ -6,10 +6,10 @@
 <view class="padding-lr-xl animate__animated animate__bounceInRight">
   <!-- 介绍 -->
   <view class="padding-top padding-bottom-sm text-gray">介绍</view>
-  <view class="padding bg-white radius shadow-lg">基于「微信云开发」的一款「非盈利性质」的工具小程序，用来记录婚姻家庭中的生活点滴，后续将持续不断迭代更新。欢迎使用、分享、提想法。</view>
+  <view class="padding bg-white radius shadow-lg">一款工具小程序，用来记录婚姻家庭中的生活点滴，后续将持续不断迭代更新。欢迎使用、分享、提想法。</view>
   <!-- 声明 -->
   <view class="padding-top padding-bottom-sm text-gray">声明</view>
-  <view class="padding bg-white radius shadow-lg">本程序开发初衷是非盈利、自用的，这一点不会变。在用户本人同意授权情况下，只会获取昵称、头像等基本公开信息，以展示在个人信息页。作者承诺不会泄露、公开、使用这些信息在其他用途！</view>
+  <view class="padding bg-white radius shadow-lg">本程序开发初衷是自用的，后开放为公用。技术上基于「微信云开发」，数据存储在腾讯云。在用户本人同意授权情况下，只会获取昵称、头像等基本公开信息，以展示在个人信息页。作者承诺不会泄露、公开、使用这些信息在其他用途！</view>
   <!-- 反馈 -->
   <view class="padding-top padding-bottom-sm text-gray">反馈</view>
   <view class="shadow-lg bg-white radius">

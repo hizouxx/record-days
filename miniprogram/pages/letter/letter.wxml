@@ -4,6 +4,8 @@
 </cu-custom>
 <view class="padding-lr-xl">
   <view class="padding radius shadow-lg">
-    <view class="text-indent margin-top-sm">{{letterContent}}</view>
+    <view class="margin-top-sm">
+      <text>{{letterContent}}</text>
+    </view>
   </view>
 </view>

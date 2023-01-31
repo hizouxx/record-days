@@ -1,4 +1,5 @@
 var app = getApp()
+let interstitialAd = null // 在页面中定义插屏广告
 Page({
   data: {
     ColorList: app.globalData.ColorList,
@@ -9,11 +10,11 @@ Page({
   },
   mineMap: {}, //初始地图
   mineMapMapping: {}, //随机后的地图
-  rowCount: 10,
-  colCount: 10, //行列数
-  mineCount: 10, //实际总雷数
-  minMineCount: 15, //最小雷数
-  maxMineCount: 20,
+  rowCount: 8,
+  colCount: 8, //行列数
+  mineCount: 8, //实际总雷数
+  minMineCount: 8, //最小雷数
+  maxMineCount: 10,
   minesLeft: 0,
   timesGo: 0, //用时
   timeInterval: null,
@@ -23,6 +24,15 @@ Page({
   safeMinesGo: 0, //安全步数
   onLoad: function () //onload会在页面加载完成后立即发生
   {
+    // 在页面onLoad回调事件中创建插屏广告实例
+    if (wx.createInterstitialAd) {
+      interstitialAd = wx.createInterstitialAd({
+        adUnitId: 'adunit-fd08d7be8859e5c9'
+      })
+      interstitialAd.onLoad(() => {})
+      interstitialAd.onError((err) => {})
+      interstitialAd.onClose(() => {})
+    }
     const theme = wx.getStorageSync('theme') || 0
     this.setData({
       theme,
@@ -171,6 +181,14 @@ Page({
     this.showAll();
     this.timeGoStop();
     this.endOfTheGame = true;
+    setTimeout(() => {
+      // 在适合的场景显示插屏广告
+      if (interstitialAd) {
+        interstitialAd.show().catch((err) => {
+          console.error(err)
+        })
+      }
+    }, 3000);
   },
   openZeroArround: function (row, col) {
     for (var r = (row - 1); r < (row + 2); r++) {

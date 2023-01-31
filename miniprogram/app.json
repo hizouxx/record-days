@@ -22,9 +22,9 @@
     "pages/photoWallEdit/photoWallEdit",
     "pages/letter/letter",
     "pages/game/game",
-    "pages/gameLevel1/gameLevel1",
-    "pages/gameLevel2/gameLevel2",
-    "pages/gameLevel3/gameLevel3"
+    "pages/minesweeper/minesweeper",
+    "pages/2048/2048",
+    "pages/pianoBlock/pianoBlock"
   ],
   "window": {
     "backgroundColor": "#f1f1f1",

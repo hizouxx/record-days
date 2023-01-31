@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    CustomBar: 0, // 顶部状态栏高度
+    CustomBar: app.globalData.CustomBar, // 顶部状态栏高度
     drawerModalL: false, // 是否显示更换主题的弹框
     layoutModalL: false, // 是否显示布局的弹框
     theme: 0,
@@ -21,7 +21,6 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      CustomBar: app.globalData.CustomBar, // 顶部状态栏高度
       theme: wx.getStorageSync('theme') || 0, //主题
       dragColumnsSize: wx.getStorageSync('layoutColumns') || 3, //布局列数
       bgCur: wx.getStorageSync('bgCur') || 0, // 背景图索引

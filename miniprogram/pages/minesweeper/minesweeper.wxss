@@ -1,8 +1,7 @@
-/* pages/gameLevel2/gameLevel2.wxss */
-
 .wrapper {
   padding: 5px;
 }
+
 .flex-container {
   padding: 0;
   margin: 0 auto;
@@ -12,6 +11,7 @@
   justify-content: space-around;
   line-height:1em;
   width: 90%;
+  touch-action: none;
 }
 
 .flex-item {
@@ -19,15 +19,16 @@
   margin: 1px;
   color: white;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
   flex: 1 0 auto;
-  height:66rpx;
-  line-height: 66rpx;
-  width: 66rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+  width: 84rpx;
   border-radius: 20%;
   font-family: "Lucida Console", Monaco, monospace
 }
+
 .open {
   background: #3BAFDA;
 }
@@ -62,7 +63,6 @@
   justify-content: space-around;
   align-items: center;
 }
-
 .button-hover {
   background-color: rgb(211, 211, 211);
 }

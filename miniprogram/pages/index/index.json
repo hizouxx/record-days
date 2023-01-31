@@ -1,7 +1,8 @@
 {
 	"usingComponents": {
 		"drag": "../../components/drag/index",
-		"drag-item": "./drag-item/index",
+    "drag-item": "./drag-item/index",
+		"cat2": "../../components/cat2/cat2",
 		"com-fireworks": "../../components/com-fireworks/com-fireworks",
 		"com-letter": "../../components/com-letter/com-letter",
 		"com-lantern": "../../components/com-lantern/com-lantern",

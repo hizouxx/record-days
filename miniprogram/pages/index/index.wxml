@@ -53,4 +53,13 @@
       </drag>
     </view>
   </swiper-item>
+  
+  <!-- Swiper2 -->
+  <swiper-item>
+    <cu-custom></cu-custom>
+    <view class="padding radius overflow-hidden">
+      <ad unit-id="adunit-b0c8104664a13b7d" ad-type="video" ad-theme="white"></ad>
+    </view>
+    <cat2></cat2>
+  </swiper-item>
 </swiper>
