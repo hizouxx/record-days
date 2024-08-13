@@ -17,12 +17,23 @@ Page({
     amount: null, // 账户金额
     btnDisabled: false, // 提交按钮可点状态
     btnLoading: false, // 提交按钮上loading状态
+    isEdit: false, // 是否编辑状态
+    date: utils.formatDate(new Date()), // 日期
+    endTotoday: utils.formatDate4(new Date()), // 今日
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('options', options.paramsStr)
+    if (options && options.paramsStr) {
+      const { _id, type, amount, purpose, remark } = JSON.parse(options.paramsStr)
+      this.setData({
+        id: _id, type, amount, purpose, remark,
+        isEdit: true
+      })
+    }
     const theme = wx.getStorageSync('theme') || 0
     this.setData({
       theme
@@ -70,7 +81,15 @@ Page({
    */
   onShareAppMessage: function () {
   },
-
+  /**
+   * 选择日期
+   * @param {*} e 
+   */
+  dateChange(e) {
+    this.setData({
+      date: e.detail.value,
+    })
+  },
   /**
    * 选择支出｜收入类型
    * @param {*} e 
@@ -121,18 +140,17 @@ Page({
     if(this.data.btnDisabled) {
       return
     }
-    let { type, amount, remark } = this.data
+    let { amount, remark } = this.data
     if(remark.trim() === '') {
-      let title = type == 'pay' ? '支出去向' : '收入来源'
       wx.showToast({
-        title: title + '字段不能为空',
+        title: '请输入金额',
         icon: 'none'
       })
       return
     }
     if(!utils.regExpMoney(amount)) {
       wx.showToast({
-        title: '请输入正确金额',
+        title: '请输入金额（最多保留小数点后两位）',
         icon: 'none'
       })
       return
@@ -175,37 +193,72 @@ Page({
    * 提交
    */
   submit() {
-    let { type, amount, purpose, remark } = this.data
-    wx.cloud.callFunction({
-      name: 'addBill',
-      data: {
-        createTime: new Date().getTime(),
-        openid: app.globalData.openid,
-        nickName: app.globalData.userInfo.nickName,
-        avatarUrl: app.globalData.userInfo.avatarUrl,
-        type,
-        amount,
-        purpose,
-        remark,
-      },
-      success: res => {
-        // console.log(res)
-        this.setData({
-          btnDisabled: false,
-          btnLoading: false,
-        })
-        wx.showToast({
-          title: '添加账单成功'
-        })
-        wx.navigateBack()
-      },
-      fail: err => {
-        console.error('err', err)
-        this.setData({
-          btnDisabled: false,
-          btnLoading: false,
-        })
-      }
-    })
+    let { type, amount, purpose, remark, id, isEdit, date } = this.data
+    if (isEdit) {
+      wx.cloud.callFunction({
+        name: 'editBill',
+        data: {
+          id,
+          createTime: new Date(new Date(date).setHours(0,0,0,0)).getTime(),
+          nickName: app.globalData.userInfo.nickName,
+          avatarUrl: app.globalData.userInfo.avatarUrl,
+          type,
+          amount,
+          purpose,
+          remark,
+        },
+        success: res => {
+          console.log(res)
+          this.setData({
+            btnDisabled: false,
+            btnLoading: false,
+          })
+          wx.showToast({
+            title: '编辑账单成功'
+          })
+          wx.navigateBack()
+        },
+        fail: err => {
+          console.error('err', err)
+          this.setData({
+            btnDisabled: false,
+            btnLoading: false,
+          })
+        }
+      })
+
+    } else {
+      wx.cloud.callFunction({
+        name: 'addBill',
+        data: {
+          createTime: new Date(new Date(date).setHours(0,0,0,0)).getTime(),
+          openid: app.globalData.openid,
+          nickName: app.globalData.userInfo.nickName,
+          avatarUrl: app.globalData.userInfo.avatarUrl,
+          type,
+          amount,
+          purpose,
+          remark,
+        },
+        success: res => {
+          // console.log(res)
+          this.setData({
+            btnDisabled: false,
+            btnLoading: false,
+          })
+          wx.showToast({
+            title: '添加账单成功'
+          })
+          wx.navigateBack()
+        },
+        fail: err => {
+          console.error('err', err)
+          this.setData({
+            btnDisabled: false,
+            btnLoading: false,
+          })
+        }
+      })
+    }
   }
 })

@@ -167,9 +167,7 @@ Page({
         wx.showToast({
           title: '计划添加成功'
         })
-        wx.navigateBack({
-          delta: 0,
-        })
+        wx.navigateBack()
       },
       fail: err => {
         console.error('err', err)

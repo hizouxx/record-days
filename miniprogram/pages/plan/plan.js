@@ -14,6 +14,8 @@ Page({
     pickerYear: utils.formatDate(new Date()),
     achieveList: [], // 已实现计划列表
     unAchieveList: [], // 未实现计划列表
+    todoList: [], // 待实现计划列表
+    totalLength: 0,
     achieveRate: 0, // 实现率
   },
 
@@ -38,6 +40,9 @@ Page({
    */
   onShow: function () {
     // 因为自页面用了navigateBack。为了确保返回后刷新数据，所以接口调用放onShow而不放在onLoad里
+    this.setData({
+      year: new Date().getFullYear()
+    })
     this.getPlanList()
   },
 
@@ -93,11 +98,14 @@ Page({
       success: res => {
         // console.log('res', res)
         let achieveList = res.result && res.result.filter( i => i.achieve) || []
-        let unAchieveList = res.result && res.result.filter( i => !i.achieve) || []
+        let unAchieveList = res.result && res.result.filter( i => !i.achieve && i.achieveDate === -1) || []
+        let todoList = res.result && res.result.filter( i => !i.achieve && i.achieveDate !== -1) || []
         this.setData({
+          totalLength: res.result.length,
           achieveList,
           unAchieveList,
-          achieveRate: Math.round(achieveList.length / (achieveList.length + unAchieveList.length) * 100) || 0,
+          todoList,
+          achieveRate: Math.round(achieveList.length / res.result.length * 100) || 0,
           loading: false
         })
       },
@@ -114,13 +122,15 @@ Page({
   /**
    * 计划编辑（达成？）
    * @param {*} id
+   * @param {*} year
+   * @param {*} type 0-达成了计划 1-放弃计划 2-推迟计划至下一年
    */
-  planDetail(id) {
+  planDetail(id, year, type = 0) {
     wx.showModal({
       title: '计划',
-      content: '确认达成了计划？',
+      content: type === 0 ? '确认达成了计划？' : type === 1 ? '确认放弃计划吗？' : '确认推迟计划至下一年吗？',
       confirmText: "是的",
-      canaclText: "尚未",
+      canaclText: type === 0 ? '尚未' : '取消',
       success: res=> {
         if (res.confirm) {
           // console.log('用户点击确定')
@@ -130,14 +140,20 @@ Page({
             name: 'editPlan',
             data: {
               id,
-              achieve: true,
-              achieveDate: new Date().getTime(),
+              achieve: type === 0 ? true : false,
+              achieveDate: type === 0 ? new Date().getTime() : type === 1 ? -1 : null,
+              year: type === 2 ? (year + 1) : year
             },
             success: res => {
-              // console.log('res', res)
+              console.log('res', res, {
+                id,
+                achieve: type === 0 ? true : false,
+                achieveDate: type === 0 ? new Date().getTime() : type === 1 ? -1 : null,
+                year: type === 2 ? (year + 1) : year
+              })
               wx.hideLoading()
               wx.showToast({
-                title: '计划达成',
+                title: type === 0 ? '计划达成' : type === 1 ? '计划已放弃' : '计划已推迟',
               })
               this.getPlanList()
             },
@@ -158,8 +174,8 @@ Page({
    */
   longpressPlay(e) {
     wx.vibrateShort()
-    let { _id, achieve } = e.currentTarget.dataset.item
-    let itemList = achieve ? ['删除'] : ['删除', '计划达成']
+    let { _id, achieve, achieveDate, year } = e.currentTarget.dataset.item
+    let itemList = (achieve || achieveDate === -1) ? ['删除'] : ['删除', '已达成计划', '放弃计划', '推迟计划至下一年']
     wx.showActionSheet({
       itemList,
       success: res => {
@@ -184,7 +200,11 @@ Page({
             }
           })
         } else if(res.tapIndex == 1) {
-          this.planDetail(_id)
+          this.planDetail(_id, year, 0)
+        } else if(res.tapIndex == 2) {
+          this.planDetail(_id, year, 1)
+        } else if(res.tapIndex == 3) {
+          this.planDetail(_id, year, 2)
         }
       },
       fail: res => {

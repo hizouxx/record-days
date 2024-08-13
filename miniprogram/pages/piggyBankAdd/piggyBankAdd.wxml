@@ -2,17 +2,35 @@
 <cu-custom isCustom bg-color="bg-white">
   <view slot="content">新增账目</view>
 </cu-custom>
-<scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
-  <view class="padding-top">
-    <view class="flex justify-around bg-white text-lg">
-      <view
-        class="{{type === 'pay' ? 'animate__animated animate__heartBeat text-'+ColorList[theme].name : 'text-grey'}} basis-df padding radius text-center text-bold"
-        data-type="pay" bindtap="selectType">支出</view>
-      <view
-        class="{{type === 'income' ? 'animate__animated animate__heartBeat text-'+ColorList[theme].name : 'text-grey'}} basis-df padding radius text-center text-bold"
-        data-type="income" bindtap="selectType">收入</view>
+<scroll-view scroll-y>
+  <view>
+    <view class="margin-lr padding-top padding-bottom-sm text-grey">金额</view>
+    <view class="margin-lr">
+      <view class="padding radius bg-white">
+        <input type="digit" value="{{amount}}"
+          placeholder="请输入金额" bindinput="amountInput" />
+      </view>
+      <view class="text-right padding-tb-xs text-gray">最多保留小数点后两位</view>
     </view>
 
+    <view class="margin-lr padding-top padding-bottom-sm text-grey">描述</view>
+    <view class="margin-lr">
+      <view class="padding radius bg-white">
+        <input value="{{remark}}" maxlength="12" placeholder="请输入描述"
+          bindinput="remarkInput" />
+      </view>
+      <view class="text-right padding-tb-xs text-gray">{{remark.length}}/12</view>
+    </view>
+
+    <view class="margin-lr padding-top padding-bottom-sm text-grey">类型</view>
+    <view class="{{type === 'pay' ? 'margin-lr flex justify-around bg-white text-lg radius tab-nav' : 'margin-lr flex justify-around bg-white text-lg radius tab-nav is-pay'}}">
+      <view
+        class="{{type === 'pay' ? 'text-black text-blod' : 'text-grey'}} basis-df padding radius text-center"
+        data-type="pay" bindtap="selectType">支出</view>
+      <view
+        class="{{type === 'income' ? 'text-black text-blod' : 'text-grey'}} basis-df padding radius text-center"
+        data-type="income" bindtap="selectType">收入</view>
+    </view>
     <view wx:if="{{type == 'income'}}" class="flex flex-wrap padding-lr-sm padding-tb">
       <view class="basis-md" wx:for="{{IncomeList}}" wx:key="index" wx:for-index='index'>
         <view
@@ -32,25 +50,24 @@
       </view>
     </view>
 
-    <view class="margin">
-      <view class="padding radius bg-white">
-        <input value="{{remark}}" maxlength="12" placeholder="{{type == 'pay' ? '支出去向' : '收入来源'}}"
-          bindinput="remarkInput" />
-      </view>
-      <view class="text-right padding-tb-xs text-grey">{{remark.length}}/12</view>
-    </view>
 
-    <view class="margin padding radius bg-white">
-      <input type="digit" value="{{amount}}"
-        placeholder="{{type == 'income' ? '收入金额（最多保留小数点后两位）' : '支出金额（最多保留小数点后两位）'}}" bindinput="amountInput" />
+    <view class="margin-lr padding-top padding-bottom-sm text-grey">日期</view>
+    <view class="margin-lr">
+      <view class="cu-form-group radius bg-white">
+        <view class="title text-gray">请选择日期</view>
+        <picker mode="date" value="{{date}}" end="{{endTotoday}}" bindchange="dateChange">
+          <view class="picker">{{date}}</view>
+        </picker>
+      </view>
+      <view class="text-right padding-tb-xs text-gray">今日之后的日期不可选</view>
     </view>
   </view>
-</scroll-view>
 
-<view class="fixed-bottom flex justitfy-center padding-bottom">
-  <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg"
-    disabled="{{btnDisabled}}" bindtap="checkMsg">
-    <text wx:if="{{btnLoading}}" class="cuIcon-loading iconfont-spin text-sl text-white"></text>
-    <text wx:else>提交</text>
-  </button>
-</view>
+  <view class="flex justitfy-center padding margin-top-xl">
+    <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg"
+      disabled="{{btnDisabled}}" bindtap="checkMsg">
+      <text wx:if="{{btnLoading}}" class="cuIcon-loading iconfont-spin text-sl text-white"></text>
+      <text wx:else>提交</text>
+    </button>
+  </view>
+</scroll-view>

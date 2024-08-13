@@ -15,7 +15,8 @@ Page({
     btnLoading: false,
     name: 0, // 纪念日名称
     remark: '', // 备注
-    date: utils.formatDate(new Date()), // 今天日期
+    date: utils.formatDate4(new Date()), // 今天日期
+    endTotoday: utils.formatDate4(new Date()), // 今天日期
     lunarDate: calendar.solar2lunar(), // 农历日期
   },
 
@@ -101,7 +102,7 @@ Page({
     // console.log(e.detail.value)
     let dateArr = e.detail.value.split("-")
     this.setData({
-      date: e.detail.value,
+      date: dateArr.join('/'),
       lunarDate: calendar.solar2lunar(dateArr[0], dateArr[1], dateArr[2])
     })
   },
@@ -112,7 +113,7 @@ Page({
     let { remark } = this.data
     if(remark.trim() === '') {
       wx.showToast({
-        title: '纪念日不能为空',
+        title: '描述不能为空',
         icon: 'none'
       })
       return
@@ -174,7 +175,7 @@ Page({
           btnLoading: false,
         })
         wx.showToast({
-          title: '纪念日添加成功'
+          title: '添加成功'
         })
         wx.navigateBack({
           delta: 0,

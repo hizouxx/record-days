@@ -7,13 +7,13 @@ const defaultList = [{
     icon: 'moneybagfill',
     color: 'red',
     path: 'piggyBank',
-    name: '储蓄金'
+    name: '家庭储蓄金'
   },
   {
     icon: 'timefill',
     color: 'orange',
     path: 'specialDay',
-    name: '纪念日'
+    name: '家庭大事件'
   },
   {
     icon: 'formfill',
@@ -25,7 +25,7 @@ const defaultList = [{
     icon: 'camerafill',
     color: 'olive',
     path: 'photoWall',
-    name: '电子相册'
+    name: '家庭相册'
   },
   {
     icon: 'likefill',
@@ -43,13 +43,13 @@ const defaultList = [{
     icon: 'writefill',
     color: 'blue',
     path: 'log',
-    name: '心情驿站'
+    name: '家庭日记'
   },
   {
     icon: 'upstagefill',
     color: 'purple',
     path: 'game',
-    name: '休闲益智'
+    name: '打发时间'
   },
   {
     icon: 'infofill',

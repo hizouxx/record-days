@@ -89,13 +89,11 @@ Page({
       success: res => {
         // console.log('res', res)
         let dataList = res.result && res.result.map( i =>{
-          let year = new Date(i.date).getFullYear(), month = new Date(i.date).getMonth()+1, day = new Date(i.date).getDate();
-          i.date2 = utils.formatDate(new Date(i.date))
+          const date = new Date(i.date)
+          date.setHours(0, 0, 0, 0)
+          let year = date.getFullYear(), month = date.getMonth()+1, day = date.getDate();
           i.lunarDate = calendar.solar2lunar(year, month, day)
-          i.days = Math.ceil((new Date(i.date).getTime() - new Date().getTime()) / 86400000)
-          if(i.days < 0) {
-            i.days2 = Math.abs(i.days)
-          }
+          i.timePoint = utils.timePoint(date)
           return i
         })
         this.setData({

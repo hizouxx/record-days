@@ -88,8 +88,11 @@ Page({
    * 选择（起始）日期范围
    */
   bindDateStartChange(e) {
+    let dateArr = e.detail.value.split("-")
+    console.log('1', e, dateArr)
     this.setData({
-      dateStart: e.detail.value,
+      dateStart: new Date(new Date(e.detail.value).setHours(0,0,0,0)).getTime(),
+      pickerDateStart: dateArr.join('/'),
       loading: true,
     })
     this.getBillList()
@@ -99,8 +102,11 @@ Page({
    * @param {*} e 
    */
   bindDateEndChange(e) {
+    let dateArr = e.detail.value.split("-")
+    console.log('2', e, dateArr)
     this.setData({
-      dateEnd: e.detail.value,
+      dateEnd: new Date(new Date(e.detail.value).setHours(23,59,59,999)).getTime(),
+      pickerDateEnd: dateArr.join('/'),
       loading: true,
     })
     this.getBillList()
@@ -146,6 +152,8 @@ Page({
       case 3:
         this.setData({
           curRange: 3,
+          pickerDateStart: utils.formatDate4(new Date(this.data.dateStart)),
+          pickerDateEnd: utils.formatDate4(new Date(this.data.dateEnd)),
         })
         break;
       default:
@@ -172,6 +180,16 @@ Page({
   },
 
   /**
+   * 编辑账单
+   */
+  editBill(paramsObj) {
+    const paramsStr = JSON.stringify(paramsObj)
+    wx.navigateTo({
+      url: '/pages/piggyBankAdd/piggyBankAdd?paramsStr=' + paramsStr,
+    })
+  },
+
+  /**
    *  获取某段时间内的账户数据
    */
   getBillList() {
@@ -179,8 +197,8 @@ Page({
       name: 'getBillList',
       data: {
         couple: [app.globalData.openid, app.globalData.bindOpenid],
-        dateStart: new Date(this.data.dateStart).getTime(),
-        dateEnd: new Date(this.data.dateEnd).getTime(),
+        dateStart: this.data.dateStart,
+        dateEnd: this.data.dateEnd,
       },
       success: res => {
         // console.log('res1', res)
@@ -297,39 +315,43 @@ Page({
   },
 
   /**
-   * 删除某条账单
+   * 删除或编辑某条账单
    * @param {*} e 
    */
-  deleteBill(e) {
+  deleteOrEditBill(e) {
     // console.log(e)
     wx.vibrateShort()
-    let {
-      id
-    } = e.currentTarget.dataset
     wx.showActionSheet({
-      itemList: ['删除'],
+      itemList: ['编辑', '删除'],
       success: res => {
         // console.log(res.tapIndex)
-        wx.showLoading()
-        wx.cloud.callFunction({
-          name: 'deleteBill',
-          data: {
-            id
-          },
-          success: res => {
-            // console.log('res', res)
-            wx.hideLoading()
-            wx.showToast({
-              title: '删除成功',
-            })
-            this.getBillList()
-            this.getTotalAmount()
-          },
-          fail: err => {
-            wx.hideLoading()
-            console.log(err)
-          }
-        })
+        if (res.tapIndex == 0) {
+          const { _id, type, amount, purpose, remark } = e.currentTarget.dataset.obj
+          this.editBill({
+            _id, type, amount, purpose, remark
+          })
+        } else if (res.tapIndex == 1) {
+          wx.showLoading()
+          wx.cloud.callFunction({
+            name: 'deleteBill',
+            data: {
+              id: e.currentTarget.dataset.obj._id
+            },
+            success: res => {
+              // console.log('res', res)
+              wx.hideLoading()
+              wx.showToast({
+                title: '删除成功',
+              })
+              this.getBillList()
+              this.getTotalAmount()
+            },
+            fail: err => {
+              wx.hideLoading()
+              console.log(err)
+            }
+          })
+        }
       },
       fail: err => {
         console.log(err)

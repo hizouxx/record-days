@@ -18,6 +18,7 @@ exports.main = async (event, context) => {
       data:{
         achieve: event.achieve,
         achieveDate: event.achieveDate,
+        year: event.year,
       }
     })
   } catch (err) {

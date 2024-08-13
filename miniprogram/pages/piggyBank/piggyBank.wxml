@@ -1,10 +1,10 @@
 <!--miniprogram/pages/piggyBank/piggyBank.wxml-->
 <cu-custom isCustom bg-color="bg-white">
-  <view slot="content">储蓄金</view>
+  <view slot="content">家庭储蓄金</view>
 </cu-custom>
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
-  <view>
-    <view class="margin-lg padding-lg bg-gradual-{{ColorList[theme].name}} radius shadow">
+  <view class="padding-top-lg">
+    <view class="margin-lr-lg padding-lg bg-gradual-{{ColorList[theme].name}} radius shadow">
       <view class="flex align-center justify-between">
         <text class="text-blod">总余额</text>
         <text class="cuIcon-{{eye ? 'attentionfill' : 'attentionforbidfill'}} padding-sm"
@@ -16,7 +16,7 @@
       <view wx:if="{{!eye}}" class="price-height text-center text-content text-xxl">***</view>
     </view>
 
-    <view class="padding-lr-lg padding-tb-sm flex nav-tab justify-between margin-tb">
+    <view class="padding-lr-lg padding-tb-sm flex nav-tab justify-between margin-top-lg">
       <view class="nav-tab-btn radius text-center text-grey shadow-btn{{curRange === 0 ? '-active':''}}"
         data-range="{{0}}" bindtap="selectRange">本月</view>
       <view class="nav-tab-btn radius text-center text-grey shadow-btn{{curRange === 1 ? '-active':''}}"
@@ -28,19 +28,18 @@
     </view>
 
     <view wx:if="{{curRange === 3}}" class="margin-lg bg-white radius">
-      <view class="padding flex align-center justify-between">
-        <picker mode="date" value="{{dateStart}}" end="{{dateEnd}}" bindchange="bindDateStartChange">
-          <view class="text-lg text-grey">{{dateStart}}</view>
+      <view class="padding flex align-center justify-between animate__animated animate__bounceInRight">
+        <picker mode="date" value="{{pickerDateStart}}" end="{{pickerDateEnd}}" bindchange="bindDateStartChange">
+          <view class="text-lg text-grey text-bold">{{pickerDateStart}}</view>
         </picker>
         <text class="margin-lr">~</text>
-        <picker mode="date" value="{{dateEnd}}" start="{{dateStart}}" end="2050-01-01" bindchange="bindDateEndChange">
-          <view class="text-lg text-grey">{{dateEnd}}</view>
+        <picker mode="date" value="{{pickerDateEnd}}" start="{{pickerDateStart}}" bindchange="bindDateEndChange">
+          <view class="text-lg text-grey text-bold">{{pickerDateEnd}}</view>
         </picker>
       </view>
     </view>
 
-    <view class="margin-lg radius padding-lg text-center bg-white">
-
+    <view class="margin-lg radius padding-lr-lg padding-top-lg text-center bg-white">
       <view class="flex justify-between">
         <view class="text-gray">收入</view>
         <view class="text-gray">支出</view>
@@ -50,11 +49,11 @@
         <view class="text-black text-lg text-price">{{curTotalPay}}</view>
       </view>
       <view class="money-percentage cu-progress radius striped active">
-        <view class="bg-red" style="width: {{curTotalIncome / (curTotalPay + curTotalIncome) * 100}}%"></view>
-        <view class="bg-green" style="width: {{curTotalPay / (curTotalPay + curTotalIncome) * 100}}%"></view>
+        <view class="bg-green" style="width: {{curTotalIncome / (curTotalPay + curTotalIncome) * 100}}%"></view>
+        <view class="bg-red" style="width: {{curTotalPay / (curTotalPay + curTotalIncome) * 100}}%"></view>
       </view>
 
-      <view class="cuIcon-fold text-grey padding-tb toggle-rotate"
+      <view class="cuIcon-fold text-black text-bold padding-tb-lg toggle-rotate"
         style="transform: {{showStatistics ? 'rotate(0deg)' : 'rotate(180deg)'}}" bindtap="toggleShowStatistics">
       </view>
 
@@ -66,9 +65,8 @@
             <view class="line-wrapper flex flex-direction align-center" wx:for="{{numIncomeList}}" wx:key="item"
               wx:for-item='item'>
               <view class="line bg-gray">
-                <view class="line-percentage bg-red"
+                <view class="line-percentage bg-green"
                   style="height: {{item.total.number / curTotalIncome * 200}}rpx"></view>
-                <!-- <text class="line-money text-xs">¥{{item.total.string}}</text> -->
               </view>
               <text class="margin-top-xs text-sm">{{IncomeList[item.name].name}}</text>
             </view>
@@ -80,9 +78,8 @@
             <view class="line-wrapper flex flex-direction align-center" wx:for="{{numPayList}}" wx:key="item"
               wx:for-item='item'>
               <view class="line bg-gray">
-                <view class="line-percentage bg-green"
+                <view class="line-percentage bg-red"
                   style="height: {{item.total.number / curTotalPay * 200}}rpx"></view>
-                <!-- <text class="line-money text-xs">¥{{item.total.string}}</text> -->
               </view>
               <text class="margin-top-xs text-sm">{{PayList[item.name].name}}</text>
             </view>
@@ -97,7 +94,7 @@
       <view wx:if="{{!loading && dataList.length > 0}}">
         <view wx:for="{{dataList}}" wx:key="item" wx:for-item='item'>
           <view>{{item.date}}</view>
-          <view class="padding flex align-center justify-between" data-id="{{item._id}}" bindlongpress="deleteBill">
+          <view class="padding flex align-center justify-between" data-obj="{{item}}" bindlongpress="deleteOrEditBill">
             <view>
               <view class="cuIcon-{{item.type == 'pay' ? PayList[item.purpose].icon : IncomeList[item.purpose].icon}}">
                 {{ item.remark }}
@@ -110,7 +107,7 @@
       </view>
     </view>
     <view wx:if="{{!loading && dataList.length > 0}}" class="divider text-center ">
-      <view class="text-gray text-sm">——长按单条数据可删除——</view>
+      <view class="text-gray text-sm">——长按单条数据可删除或编辑——</view>
     </view>
   </view>
 </scroll-view>

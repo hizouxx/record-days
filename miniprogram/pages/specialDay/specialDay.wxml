@@ -1,28 +1,20 @@
 <!--miniprogram/pages/specialDay/specialDay.wxml-->
 <cu-custom isCustom bg-color="bg-white">
-  <view slot="content">纪念日</view>
+  <view slot="content">家庭大事件</view>
 </cu-custom>
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
   <view class="padding-lr padding-top">
     <com-loading wx:if="{{loading}}"></com-loading>
-    <com-nodata wx:if="{{!loading && dataList.length == 0}}" content="每一个特殊的日子都值得被纪念。"></com-nodata>
+    <com-nodata wx:if="{{!loading && dataList.length == 0}}" content="记录家庭生活每一个重要节点。"></com-nodata>
     <view wx:if="{{!loading && dataList.length > 0}}" wx:for="{{dataList}}" wx:key="item" wx:for-item='item' class="animate__animated animate__bounceInRight">
       <view class="left-line-wrapper margin-bottom padding radius bg-white flex align-center justify-between" data-id="{{item._id}}" bindlongpress="deleteSpecialDay">
         <view class="left-line bg-gradual-{{ColorList[theme].name}}"></view>
         <view class="cuIcon-{{SpecialDayList[item.name].icon}}">
           <text class="margin-left-xs">{{item.remark}}</text>
-          <view class="margin-top-xs text-sm text-gray">{{item.date2}}（{{item.lunarDate.gzYear}}年{{item.lunarDate.IMonthCn}}{{item.lunarDate.IDayCn}}）</view>
+          <view class="margin-top-xs text-sm text-gray">{{item.date}}（{{item.lunarDate.gzYear}}年{{item.lunarDate.IMonthCn}}{{item.lunarDate.IDayCn}}）</view>
         </view>
         <view class="text-right">
-          <view class="margin-bottom-sm">
-            <view wx:if="{{item.days > 0}}">
-              还有<text class="text-{{ColorList[theme].name}} text-xl margin-lr-xs">{{item.days}}</text>天到来
-            </view>
-            <view wx:if="{{item.days == 0}}">
-              <text class="text-{{ColorList[theme].name}} text-xl margin-lr-xs">今天</text>
-            </view>
-            <view wx:if="{{item.days < 0}}">已经过去{{item.days2}}天</view>
-          </view>
+          <text class="margin-bottom-sm">{{item.timePoint}}</text>
         </view>
       </view>
     </view>

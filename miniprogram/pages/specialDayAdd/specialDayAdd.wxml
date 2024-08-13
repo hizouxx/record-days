@@ -1,13 +1,19 @@
 <!--miniprogram/pages/specialDayAdd/specialDayAdd.wxml-->
 <cu-custom isCustom bg-color="bg-white">
-  <view slot="content">新增纪念日</view>
+  <view slot="content">新增事件</view>
 </cu-custom>
 
+<scroll-view scroll-y>
+  <view class="margin-lr padding-top padding-bottom-sm text-grey">描述</view>
+  <view class="margin-lr">
+    <view class="padding radius bg-white">
+      <input value="{{remark}}" maxlength="12" placeholder="请输入描述" bindinput="remarkInput" />
+    </view>
+    <view class="text-right padding-tb-xs text-gray">{{remark.length}}/12</view>
+  </view>
 
-<scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
-
-
-  <view class="flex flex-wrap padding-lr-sm padding-tb">
+  <view class="margin-lr padding-top padding-bottom-sm text-grey">类型</view>
+  <view class="flex flex-wrap padding-lr-sm padding-tb-sm">
     <view class="basis-md" wx:for="{{SpecialDayList}}" wx:key="index" wx:for-index='index'>
       <view
         class="margin-lr-sm text-grey margin-tb-sm padding-tb-sm text-center radius shadow-btn{{index == name ? '-active' : ''}}"
@@ -18,27 +24,23 @@
     </view>
   </view>
 
-  <view class="margin">
-    <view class="padding radius bg-white">
-      <input value="{{remark}}" maxlength="12" placeholder="纪念日名称" bindinput="remarkInput" />
+  <view class="margin-lr padding-top padding-bottom-sm text-grey">日期选择</view>
+  <view class="margin-lr">
+    <view class="cu-form-group radius bg-white">
+      <view class="title">请选择日期</view>
+      <picker mode="date" value="{{date}}" end="{{endTotoday}}" bindchange="dateChange">
+        <view class="picker">{{date}}（{{lunarDate.gzYear}}年{{lunarDate.IMonthCn}}{{lunarDate.IDayCn}}）</view>
+      </picker>
     </view>
-    <view class="text-right padding-tb-xs text-grey">{{remark.length}}/12</view>
+    <view class="text-right padding-tb-xs text-gray">今日之后的日期无法选择</view>
   </view>
 
-  <view class="cu-form-group margin radius bg-white">
-    <view class="title">日期选择</view>
-    <picker mode="date" value="{{date}}" start="1970-01-01" end="2050-01-01" bindchange="dateChange">
-      <view class="picker">{{date}}（{{lunarDate.gzYear}}年{{lunarDate.IMonthCn}}{{lunarDate.IDayCn}}）</view>
-    </picker>
+  <view class="flex justitfy-center padding margin-top-xl">
+    <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg"
+      disabled="{{btnDisabled}}" bindtap="checkMsg">
+      <text wx:if="{{btnLoading}}" class="cuIcon-loading iconfont-spin text-sl text-white"></text>
+      <text wx:else>提交</text>
+    </button>
   </view>
-
-
 </scroll-view>
 
-<view class="fixed-bottom flex justitfy-center padding-bottom">
-  <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg"
-    disabled="{{btnDisabled}}" bindtap="checkMsg">
-    <text wx:if="{{btnLoading}}" class="cuIcon-loading iconfont-spin text-sl text-white"></text>
-    <text wx:else>提交</text>
-  </button>
-</view>

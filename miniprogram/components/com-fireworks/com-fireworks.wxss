@@ -19,7 +19,7 @@
           perspective: 600px;
 }
 
-view {
+.container, .camera, .fireworks, .line, .spark, .fire {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
 }
