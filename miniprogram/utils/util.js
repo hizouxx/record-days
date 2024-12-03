@@ -137,6 +137,13 @@ const getCurYearStartAndEnd = () => {
 const regExpMoney = (val) => {
   return /((^[1-9]\d*)|^0)(\.\d{0,2}){0,1}$/.test(val)
 }
+/**
+ * 正则：正整数金额
+ */
+const regExpMoney2 = (val) => {
+  return /^[1-9]\d*$/.test(val)
+}
+
 
 /**
  * 上月天数
@@ -213,4 +220,5 @@ module.exports = {
   getLastMonthStartAndEnd: getLastMonthStartAndEnd,
   getCurYearStartAndEnd: getCurYearStartAndEnd,
   regExpMoney: regExpMoney,
+  regExpMoney2: regExpMoney2,
 }

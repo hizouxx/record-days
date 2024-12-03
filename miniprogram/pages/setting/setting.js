@@ -162,7 +162,9 @@ Page({
         this.setData({
           filePaths: res.tempFiles
         })
-        wx.showLoading()
+        wx.showLoading({
+          title: '上传中···',
+        })
         this.doUpload()
       },
       fail: () => {
@@ -181,7 +183,7 @@ Page({
     const timestamp = new Date().getTime();
     // 上传图片
     wx.cloud.uploadFile({
-      cloudPath: 'dasktop-' + timestamp + this.data.filePaths[0].tempFilePath.match(/\.[^.]+?$/)[0],
+      cloudPath: 'desktop/' + timestamp + this.data.filePaths[0].tempFilePath.match(/\.[^.]+?$/)[0],
       filePath: this.data.filePaths[0].tempFilePath,
       success: res => {
         console.log('res', res)

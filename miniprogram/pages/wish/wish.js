@@ -122,7 +122,9 @@ Page({
       success: res=> {
         if (res.confirm) {
           // console.log('用户点击确定')
-          wx.showLoading()
+          wx.showLoading({
+            title: '操作中···',
+          })
           // 调用云函数
           wx.cloud.callFunction({
             name: 'editWish',
@@ -165,7 +167,9 @@ Page({
       success: res => {
         // console.log(res.tapIndex)
         if (res.tapIndex == 0) {
-          wx.showLoading()
+          wx.showLoading({
+            title: '操作中···',
+          })
           wx.cloud.callFunction({
             name: 'deleteWish',
             data: {

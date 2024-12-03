@@ -46,11 +46,17 @@ const defaultList = [{
     name: '家庭日记'
   },
   {
-    icon: 'upstagefill',
+    icon: 'babyfill',
     color: 'purple',
-    path: 'game',
-    name: '打发时间'
+    path: 'children',
+    name: '仔仔成长记录'
   },
+  // {
+  //   icon: 'upstagefill',
+  //   color: 'purple',
+  //   path: 'game',
+  //   name: '打发时间'
+  // },
   {
     icon: 'infofill',
     color: 'mauve',

@@ -1,0 +1,332 @@
+/* pages/children/children.wxss */
+.children {
+  min-width: 100vw;
+  position: relative;
+}
+.scale{
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+.children-avatar {
+  height: 120rpx;
+  width: 120rpx;
+  border-radius: 50%;
+  border: 10rpx solid rgba(114, 130, 138, 0.2);
+}
+.children-more {
+  border: 10rpx solid white;
+  height: 120rpx;
+  width: 120rpx;
+  border-radius: 50%;
+}
+
+
+.ring {
+  position: relative;
+}
+.ring-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 9;
+  transform: translate(-50%, -50%);
+}
+
+
+
+
+
+/* 弹框样式 */
+.dialog-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+/* 遮罩层 */
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* 弹框容器 */
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  overflow: hidden;
+}
+
+
+
+.line {
+  height: 1rpx;
+  width: 100%;
+  background: #f2f2f2;
+}
+
+.no-data {
+  height: 100%;
+}
+
+
+
+
+
+
+
+
+.piggy-wrapper{
+	position: relative;
+	width: 350rpx;
+  height: 350rpx;
+}
+.piggy-wrap{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+  width: 100%;
+	height: 100%;
+	transform-origin: bottom center;
+}
+.piggy{
+	position: absolute;
+	bottom: 40rpx;
+	left: 50%;
+	margin-left: -160rpx;
+	width: 320rpx;
+	height: 240rpx;
+	display: block;
+	border-radius: 120rpx;
+	background-color: #d88fa0;
+}
+.piggy-amount {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.nose{
+	position: absolute;
+	top: 80rpx;
+	left: -25rpx;
+	width: 40rpx;
+	height: 60rpx;
+	display: block;
+	background-color: #d88fa0;
+	z-index: 1;
+}
+.mouth{
+	position: absolute;
+	top: 95rpx;
+	left: -15rpx;
+    width: 0;
+    height: 0;
+	z-index: 8;
+	display: block;
+    border-bottom: 60rpx solid #d88fa0;
+    border-left: 20rpx solid transparent;
+    border-right: 20rpx solid transparent;
+}
+.ear{
+	position: absolute;
+	top: -35rpx;
+	left: 70rpx;
+	width: 60rpx;
+	height: 60rpx;
+	display: block;
+	border-top-right-radius: 60rpx;
+	background-color: #d88fa0;
+	z-index: 1;
+}
+.piggy:before{
+	position: absolute;
+	content: '';
+	top: -25rpx;
+	left: 55rpx;
+	width: 60rpx;
+	height: 60rpx;
+	display: block;
+	border-top-right-radius: 60rpx;
+	background-color: #cb6980;
+	z-index: -1;
+}
+.tail{
+	position: absolute;
+	left: 314rpx;
+	top: 125rpx;
+}
+.tail span{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 20rpx;
+	height: 5rpx;
+	transform: rotate(30deg);
+	background-color: #d88fa0;
+}
+.tail span:nth-child(2){
+	left: 0rpx;
+	top: -48rpx;
+	width: 50rpx;
+	height: 50rpx;
+	transform: rotate(-20deg);
+	background-color: transparent;
+	border-radius: 50%;
+	border-width: 5rpx;
+	border-style: solid;
+	border-color: transparent #d88fa0 #d88fa0 transparent;
+}
+.tail span:nth-child(3){
+	left: 22rpx;
+	top: -46rpx;
+	width: 30rpx;
+	height: 30rpx;
+	transform: rotate(-40deg);
+	background-color: transparent;
+	border-radius: 50%;
+	border-width: 5rpx;
+	border-style: solid;
+	border-color: #d88fa0 transparent transparent #d88fa0;
+}
+.tail span:nth-child(4){
+	left: 7rpx;
+	top: -76rpx;
+	width: 60rpx;
+	height: 60rpx;
+	transform: rotate(-40deg);
+	background-color: transparent;
+	border-radius: 50%;
+	border-width: 5rpx;
+	border-style: solid;
+	border-color: transparent transparent #d88fa0 transparent;
+}
+.eye{
+	position: absolute;
+	left: 35rpx;
+	top: 75rpx;
+	width: 35rpx;
+	height: 35rpx;
+	transform: rotate(45deg);
+	border-radius: 50%;
+	border-width: 4rpx;
+	border-style: solid;
+	border-color: transparent #555 #555 transparent;
+  animation: blink 5s linear infinite;
+  animation-delay: 5s;
+}
+@keyframes blink {
+  0% { 
+		border-color: #555 transparent transparent #555;
+  }
+  19% { 
+		border-color: #555 transparent transparent #555;  
+  }
+  20% { 
+		border-color: transparent #555 #555 transparent;
+  }
+  60% { 
+		border-color: transparent #555 #555 transparent;
+  }
+  61% { 
+		border-color: #555 transparent transparent #555;
+  }
+  100% { 
+		border-color: #555 transparent transparent #555;
+  }
+}
+.hole{
+	position: absolute;
+	left: 130rpx;
+	top: 0;
+	width: 80rpx;
+	height: 5rpx;
+	background-color: #555;
+	border-bottom-left-radius: 5rpx;
+	border-bottom-right-radius: 5rpx;
+}
+.coin-wrap{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 9;
+    width: 100%;
+	height: 100%;
+	opacity: 0;
+	transform-origin: bottom center;
+}
+.coin-wrap-active {
+	animation: moveCoin 1s ease-out;
+}
+.coin{
+	position: absolute;
+	top: 70rpx;
+	left: 143rpx;
+	z-index: 9;
+  width: 76rpx;
+	height: 76rpx;
+	border-radius: 50%;
+	border: 6rpx solid #e67e22;
+	background-color: #f39c12;
+	text-align: center;
+	line-height: 68rpx;
+	font-size: 45rpx;
+	font-weight: 500;
+	color: rgba(32,32,32,0.5);
+	box-shadow: inset 0 0 4rpx #777;
+}
+@keyframes moveCoin {
+  0% { 
+		opacity: 0; 
+		top: -220rpx;
+  }
+  10% { 
+		opacity: 1; 
+		top: -220rpx;
+  }
+  99% { 
+		opacity: 1; 
+		top: 10rpx;
+  }
+  100% { 
+		opacity: 0;
+		top: 10rpx;
+  }
+}
+.legs {
+	position: absolute;
+	bottom: 15rpx;
+	left: 100rpx;
+	width: 40rpx;
+	height: 60rpx;
+	display: block;
+	background-color: #cb6980;
+	border-radius: 3rpx;
+	z-index: 1;
+}
+.legs:after {
+	position: absolute;
+	content: '';
+	bottom: 0;
+	left: 0;
+	width: 30rpx;
+	height: 12rpx;
+	display: block;
+	background-color: #d88fa0;
+	border-bottom-left-radius: 3rpx;
+	border-top-right-radius: 3rpx;
+	z-index: 1;
+}
+.legs.back {
+	left: 210rpx;
+}

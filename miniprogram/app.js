@@ -218,7 +218,9 @@ App({
    * 下载小程序新版本并重启应用
    */
   downLoadAndUpdate(updateManager) {
-    wx.showLoading();
+    wx.showLoading({
+      title: '下载中···',
+    });
     //静默下载更新小程序新版本
     updateManager.onUpdateReady(function() {
       wx.hideLoading()

@@ -53,7 +53,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // 因为自页面用了navigateBack。为了确保返回后刷新数据，所以接口调用放onShow而不放在onLoad里
+    // 因为子页面用了navigateBack。为了确保返回后刷新数据，所以接口调用放onShow而不放在onLoad里
     this.getBillList()
     this.getTotalAmount()
   },
@@ -201,7 +201,7 @@ Page({
         dateEnd: this.data.dateEnd,
       },
       success: res => {
-        // console.log('res1', res)
+        // console.log('res', res)
         let curTotalPay = 0
         let curTotalIncome = 0
         let dataList = res.result && res.result.map(i => {
@@ -331,7 +331,9 @@ Page({
             _id, type, amount, purpose, remark
           })
         } else if (res.tapIndex == 1) {
-          wx.showLoading()
+          wx.showLoading({
+            title: '操作中···',
+          })
           wx.cloud.callFunction({
             name: 'deleteBill',
             data: {

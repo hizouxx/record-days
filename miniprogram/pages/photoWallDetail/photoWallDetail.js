@@ -78,7 +78,9 @@ Page({
 
   getPhoto(id) {
     //调用云函数
-    wx.showLoading()
+    wx.showLoading({
+      title: '加载中···',
+    })
     wx.cloud.callFunction({
       name: 'getPhotoDetail',
       data: {
@@ -104,7 +106,9 @@ Page({
    */
 
   downloadImages() {
-    wx.showLoading()
+    wx.showLoading({
+      title: '加载中···',
+    })
     wx.cloud.getTempFileURL({
       fileList: this.data.photoData.pictrueList,
       success: res => {

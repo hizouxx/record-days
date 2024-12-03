@@ -1,0 +1,53 @@
+<!--pages/childrenEdit/childrenEdit.wxml-->
+<cu-custom isCustom bg-color="bg-white">
+  <view slot="content"></view>
+</cu-custom>
+<scroll-view scroll-y>
+  <view class="padding-lg radius bg-white flex flex-direction align-center">
+    <view class="avatar">
+      <image class="avatar-img" src="{{avatarDIY}}" mode="aspectFill" fade-in bindtap="chooseImage" />
+      <text class="avatar-icon cuIcon-camerafill text-xxl text-gray"></text>
+    </view>
+    <view class="padding-tb-xs margin-top-sm">
+    <text class="text-bold">建议上传前裁切成正方形。</text>
+    <text class="text-gray">非正方形图片显示方式：保持纵横比缩放图片，只保证图片的短边能完全显示出来。</text>
+    </view>
+  </view>
+
+  <view class="margin-lr padding-top padding-bottom-sm text-grey">名字</view>
+  <view class="margin-lr">
+    <view class="padding radius bg-white">
+      <input value="{{childrenName}}" maxlength="12" placeholder="请输入名字"
+        bindinput="childrenNameInput" />
+    </view>
+    <view class="text-right padding-tb-xs text-gray">{{childrenName.length}}/12</view>
+  </view>
+
+  <view class="margin-lr padding-top padding-bottom-sm text-grey">生日</view>
+  <view class="margin-lr">
+    <view class="cu-form-group radius bg-white">
+      <view class="title text-gray">请选择日期</view>
+      <picker mode="date" value="{{date}}" end="{{endTotoday}}" bindchange="dateChange">
+        <view class="picker">{{date}}</view>
+      </picker>
+    </view>
+    <view class="text-right padding-tb-xs text-gray">今日之后的日期不可选</view>
+  </view>
+
+  <view class="margin-lr padding-top padding-bottom-sm text-grey">压岁钱</view>
+    <view class="margin-lr">
+      <view class="padding radius bg-white">
+        <input type="text" value="{{amount}}"
+          placeholder="请输入金额" bindinput="amountInput" />
+      </view>
+      <view class="text-right padding-tb-xs text-gray">请输入整数</view>
+    </view>
+
+  <view class="flex justitfy-center padding margin-top-xl">
+    <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg"
+      disabled="{{btnDisabled}}" bindtap="checkMsg">
+      <text wx:if="{{btnLoading}}" class="cuIcon-loading iconfont-spin text-sl text-white"></text>
+      <text wx:else>提交</text>
+    </button>
+  </view>
+</scroll-view>

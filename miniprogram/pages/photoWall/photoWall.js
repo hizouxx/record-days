@@ -98,7 +98,9 @@ Page({
         this.setData({
           addBtnDisabled: true
         })
-        wx.showLoading()
+        wx.showLoading({
+          title: '上传中···',
+        })
         // this.checkImg()
         this.doUpload()
       },
@@ -276,7 +278,9 @@ Page({
             url: '/pages/photoWallEdit/photoWallEdit?id=' + id + '&name=' + name,
           })
         } else if(res.tapIndex == 1) {
-          wx.showLoading()
+          wx.showLoading({
+            title: '操作中···',
+          })
           wx.cloud.callFunction({
             name: 'deletePhotoWall',
             data: { id },

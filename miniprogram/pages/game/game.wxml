@@ -1,6 +1,6 @@
 <!--pages/game/game.wxml-->
 <cu-custom isCustom bg-color="bg-white">
-  <view slot="content">休闲益智</view>
+  <view slot="content">打发时间</view>
 </cu-custom>
 <scroll-view>
   <view class="margin-sm animate__animated animate__bounceInRight radius padding-sm bg-white" bindtap="pageToMinesweeprt">
@@ -18,4 +18,5 @@
   <view class="margin-sm radius overflow-hidden padding-sm bg-white">
     <ad unit-id="adunit-97709770375d781b"></ad>
   </view>
+  
 </scroll-view>

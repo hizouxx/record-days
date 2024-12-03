@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/children/children",
+    "pages/childrenEdit/childrenEdit",
     "pages/piggyBankAdd/piggyBankAdd",
     "pages/specialDayAdd/specialDayAdd",
     "pages/agreement/agreement",

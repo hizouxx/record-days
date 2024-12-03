@@ -111,7 +111,9 @@ Page({
       itemList: ['删除'],
       success: res => {
         // console.log(res.tapIndex)
-        wx.showLoading()
+        wx.showLoading({
+          title: '操作中···',
+        })
         wx.cloud.callFunction({
           name: 'deleteAgreement',
           data: {
