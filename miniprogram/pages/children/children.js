@@ -9,19 +9,12 @@ Page({
   data: {
     CustomBar: app.globalData.CustomBar,
     ColorList: app.globalData.ColorList,
+    paymentOptions: app.globalData.ChildrenPayment,
+    theme: 0,
     loading: false,
-    paymentLoading: false,
     curChildrenIndex: 0,
     childrenList: [],
     curPaymentId: null,
-    paymentOptions: [
-      { name: '穿搭', color: '#e54d42', id: 1 },
-      { name: '喂养', color: '#fbbd08', id: 2 },
-      { name: '玩具', color: '#39b54a', id: 3 },
-      { name: '医疗', color: '#0081ff', id: 4 },
-      { name: '教育', color: '#9c26b0', id: 5 },
-      { name: '其他', color: '#a5673f', id: 6 },
-    ],
     amountList: [
       {
         amount: 1000,
@@ -56,10 +49,6 @@ Page({
         loading: false,
       },
     ],
-    isDialogVisible: false, // 控制弹框显示隐藏
-    inputValue: '', // 输入框的内容
-    totalValue: 0,
-    theme: 0,
     isCoinAnimation: false,
   },
   
@@ -72,7 +61,6 @@ Page({
     const theme = wx.getStorageSync('theme') || 0
     this.setData({
       theme,
-      curChildrenIndex: wx.getStorageSync('childrenCur') || 0, // tab索引
     })
   },
 
@@ -138,6 +126,16 @@ Page({
       url: '/pages/childrenEdit/childrenEdit',
     })
   },
+  pageToPayment (e) {
+    const { id, name, value } = e.currentTarget.dataset.item
+    const paymentValue = value ? value : ''
+    const { childrenList, curChildrenIndex } = this.data
+    const { paymentList, _id } = childrenList[curChildrenIndex]
+    const paramsStr = JSON.stringify(paymentList)
+    wx.navigateTo({
+      url: '/pages/childrenPayment/childrenPayment?childrenId=' + _id + '&paymentId=' + id + '&paymentName=' + name + '&paymentValue=' + paymentValue + '&paramsStr=' + paramsStr,
+    })
+  },
 
   getChildrenList() {
     this.setData({
@@ -150,9 +148,38 @@ Page({
       },
       success: res => {
         // console.log('res1', res)
+        const getPercentage = (child, parent) => {
+          if (child) {
+            return (child / parent * 100).toFixed(2) + '%'
+          } else {
+            return '0%'
+          }
+        }
+        const mergeArrays = (list1, list2) => {
+          if (list2.length === 0) {
+            return list1.map(item => ({
+              ...item,
+              value: 0,
+              percentage: '0%'
+            }));
+          }
+          // 将 list2 数组转成 id -> value 的映射对象，方便查找
+          const bcaMap = list2.reduce((map, item) => {
+            map[item.id] = item.value;
+            return map;
+          }, {});
+          const totalValue = list2.reduce((sum, item) => sum + item.value, 0);
+          // 合并 list1 数组与 list2 数组的元素
+          return list1.map(item => ({
+            ...item, // 保留 list1 中的其他字段
+            value: bcaMap[item.id] !== undefined ? bcaMap[item.id] : 0, // 如果 list2 中有对应 id，使用 value，否则默认 0
+            percentage: getPercentage(bcaMap[item.id], totalValue)
+          }));
+        }
         let childrenList = res.result && res.result.map(i => {
           i.birthdayDateString = utils.formatDate(new Date(i.birthday))
           i.piggyBank = Number(i.piggyBank)
+          i.paymentListForWxml = mergeArrays(this.data.paymentOptions, i.paymentList)
           return i
         })
         this.setData({
@@ -161,7 +188,7 @@ Page({
         })
         if (childrenList?.length) {
           setTimeout(()=>{
-            this.drawCircleChart()
+            this.drawRingChart()
           }, 200)
         }
       },
@@ -238,100 +265,111 @@ Page({
     const {index} = e.currentTarget.dataset
     if (index === this.data.curChildrenIndex) return
     this.setData({
-      curChildrenIndex: index
+      curChildrenIndex: index,
     })
     if (this.data.childrenList?.length) {
-      this.drawCircleChart()
+      this.drawRingChart()
     }
-    wx.setStorageSync('childrenCur', index)
   },
-  
-  drawCircleChart() {
-    const ctx = wx.createCanvasContext('circleCanvas', this);
 
-    const radius = 60; // 外半径
-    const innerRadius = 50; // 内半径，模拟环形效果
-    const centerX = 120; // 圆心X坐标
-    const centerY = 120; // 圆心Y坐标
-    const gap = 0.04; // 每个扇形之间的间隙角度
-    let startAngle = -90; // 起始角度
-    const shadowOffset = 3; // 阴影偏移量
-    const shadowBlur = 6; // 阴影模糊半径
+  drawRingChart() {
+    const query = wx.createSelectorQuery();
+    query
+      .select('#ringCanvas')
+      .fields({ node: true, size: true })
+      .exec(this.initCanvas.bind(this));
+  },
 
-
-
-    // 获取画布的宽高，确保每次绘制前清空画布
-    const canvasWidth = 240; 
-    const canvasHeight = 240;
-
-    // 清空整个画布
-    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-
+  initCanvas(res) {
     const { paymentList } = this.data.childrenList[this.data.curChildrenIndex]
-    const totalValue = paymentList?.length ? paymentList.reduce((sum, item) => sum + item.value, 0) : 0; // 总和
-    this.setData({
-      totalValue
-    })
+    const canvas = res[0].node;
+    const ctx = canvas.getContext('2d');
 
-    const paymentOptions = this.data.paymentOptions
 
-    // 设置外环阴影效果
-    ctx.setShadow(shadowOffset, shadowOffset, shadowBlur, 'rgba(0, 0, 0, 0.3)');
+    // 设置高分屏适配
+    const dpr = wx.getSystemInfoSync().pixelRatio;
+    canvas.width = res[0].width * dpr;
+    canvas.height = res[0].height * dpr;
+    ctx.scale(dpr, dpr);
 
-    // 绘制每个扇形
-    paymentList?.length && paymentList.forEach((item, index) => {
-      const angle = (item.value / totalValue) * ((2 - gap * paymentList.length) * Math.PI); // 当前扇形的角度
-      const endAngle = startAngle + angle;
+    // 圆心和半径
+    const centerX = res[0].width / 2;
+    const centerY = res[0].height / 2;
+    const radius = Math.min(centerX, centerY) - 20; // 外圆半径
+    const innerRadius = radius * 0.6; // 内圆半径
 
-      // 绘制外环扇形
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-      ctx.lineTo(centerX, centerY);
-      ctx.closePath();
+    /**
+     * * * * * * * * * * * * * * * * *
+     * 无数据处理
+     */
+    if (paymentList?.length === 0) {
+      ctx.textAlign = 'center'; // 水平居中
+      ctx.textBaseline = 'middle'; // 垂直居中
+      ctx.font = '15px Arial'; // 设置字体样式
+      ctx.fillStyle = '#333'; // 设置文本颜色
+      ctx.fillText(`暂无支出数据`, centerX, centerY);
+      return
+    }
+    /**
+     * 无数据处理
+     * * * * * * * * * * * * * * * * * *
+     */
+
+    // 计算总值
+    // console.log('paymentList', paymentList)
+    const totalValue = paymentList.reduce((sum, item) => sum + item.value, 0);
+    // console.log('totalValue', totalValue)
+    // 起始角度
+    let startAngle = -Math.PI / 2; // 以 -90 度为起点
+
+    // 设置隔断的角度
+    const gapAngle = 10 * Math.PI / 360; // 每个隔断的角度，1度是 2π/360
+
+    // 计算分区总角度
+    const totalAngles = paymentList.map(item => (item.value / totalValue) * 2 * Math.PI);
+
+    // 计算总的隔断角度
+    const totalGapAngle = gapAngle * paymentList.length; // 每两个分区之间有一个隔断
+
+    // 总角度不能超过 360°，计算总的分区角度
+    const totalAnglesSum = totalAngles.reduce((sum, angle) => sum + angle, 0);
+    const availableAngle = 2 * Math.PI - totalGapAngle;  // 可用的角度
+
+    // 计算每个分区的实际角度，并添加隔断
+    const anglesWithGap = totalAngles.map(angle => (angle / totalAnglesSum) * availableAngle);
+
+    // 设置阴影效果
+    ctx.shadowOffsetX = 6; // 阴影在水平方向上的偏移
+    ctx.shadowOffsetY = 6; // 阴影在垂直方向上的偏移
+    ctx.shadowBlur = 15;   // 阴影的模糊程度
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.4)'; // 阴影的颜色，黑色并带有透明度
+    paymentList.forEach((item, index) => {
+      const angle = anglesWithGap[index];
       let curColor
-      const colorIdx = paymentOptions.findIndex(i=>i.id === item.id)
-      if (colorIdx > -1) {
-        curColor = paymentOptions[colorIdx].color
+      const idx = this.data.paymentOptions.findIndex(i=>i.id === item.id)
+      if (idx > -1) {
+        curColor = this.data.paymentOptions[idx].color
       }
-      ctx.setFillStyle(curColor);
+      // 绘制环形分区
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, startAngle, startAngle + angle);
+      ctx.arc(centerX, centerY, innerRadius, startAngle + angle, startAngle, true);
+      ctx.closePath();
+      ctx.fillStyle = curColor;
       ctx.fill();
-
-      // 计算扇形区域中心位置，用来显示标签
-      const midAngle = (startAngle + endAngle) / 2;
-      const textX = centerX + (radius + 24) * Math.cos(midAngle); // 将标签移出一些
-      const textY = centerY + (radius + 24) * Math.sin(midAngle); // 将标签移出一些
-
-      // 清除阴影（为了确保其他元素不受影响）
-      ctx.setShadow(0, 0, 0, 'rgba(0, 0, 0, 0)');
-
-      // 在每个扇形区域标注名称
-      ctx.setFontSize(12);
-      ctx.setFillStyle('#8799a3');
-      let curName
-      const nameIdx = paymentOptions.findIndex(i=>i.id === item.id)
-      if (nameIdx > -1) {
-        curName = paymentOptions[nameIdx].name
-      }
-      ctx.fillText(curName, textX - 20, textY); // 小幅度调整x坐标以使文本居中
-
-      // 设置外环阴影效果
-      ctx.setShadow(shadowOffset, shadowOffset, shadowBlur, 'rgba(0, 0, 0, 0.3)');
-
-      startAngle = endAngle + gap * Math.PI; // 更新起始角度，添加间隙
+      // 更新起始角度，增加隔断角度
+      startAngle += angle + gapAngle; // 加上隔断角度
     });
+    console.log('this.data.paymentOptions', this.data.paymentOptions)
+    // 绘制总金额文本
+    ctx.textAlign = 'center'; // 水平居中
+    ctx.textBaseline = 'middle'; // 垂直居中
+    ctx.font = '15px Arial'; // 设置字体样式
+    ctx.fillStyle = '#333'; // 设置文本颜色
+    ctx.fillText(`¥${totalValue}`, centerX, centerY);
 
-    // 绘制内环（确保内环是最后绘制，遮住gap部分）
-    ctx.setFillStyle('#fff'); // 白色内环
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, innerRadius, 0, 2 * Math.PI);
-    ctx.closePath();
-    ctx.fill();
-
-    // 清除阴影（为了确保其他元素不受影响）
-    ctx.setShadow(0, 0, 0, 'rgba(0, 0, 0, 0)');
-
-    // 执行绘制
-    ctx.draw();
+    // 移除阴影效果（防止影响其他绘制）
+    ctx.shadowColor = 'rgba(0,0,0,0)';
   },
 
   // 按钮点击事件
@@ -380,88 +418,4 @@ Page({
       }
     })
   },
-
-  // 显示弹框
-  showDialog(e) {
-    const {id} = e.currentTarget.dataset
-    this.setData({
-      isDialogVisible: true,
-      curPaymentId: id
-    });
-  },
-
-  // 隐藏弹框
-  hideDialog() {
-    this.setData({
-      isDialogVisible: false,
-      inputValue: '' // 清空输入框内容
-    });
-  },
-
-  // 监听输入框内容变化
-  onInputChange(e) {
-    this.setData({
-      inputValue: e.detail.value
-    });
-  },
-
-  updateArray(arr, id, value) {
-    // 找到满足条件的元素
-    const found = arr?.length && arr.find(item => item.id === id);
-  
-    if (found) {
-      // 如果找到，更新 bb 值
-      found.value += value;
-    } else {
-      // 如果没有找到，添加新的元素
-      arr.push({ id, value });
-    }
-    return arr; // 返回修改后的数组
-  },
-
-  // 确认按钮点击事件
-  confirmDialog() {
-    const { inputValue, curPaymentId } = this.data;
-    if(!utils.regExpMoney2(inputValue)) {
-      wx.showToast({
-        title: '请输入正整数金额',
-        icon: 'none'
-      })
-      return
-    }
-    this.setData({
-      paymentLoading: true
-    })
-    this.hideDialog();
-    wx.showLoading({
-      title: '加载中···',
-    })
-    let CL = this.data.childrenList
-    let PL = this.updateArray(this.data.childrenList[this.data.curChildrenIndex].paymentList, curPaymentId,  Number(inputValue))
-    wx.cloud.callFunction({
-      name: 'editChildren',
-      data: {
-        id: CL[this.data.curChildrenIndex]._id,
-        paymentList: PL,
-      },
-      success: res => {
-        // console.log(res)
-        CL[this.data.curChildrenIndex].paymentList = PL
-        wx.hideLoading()
-        this.setData({
-          childrenList: CL
-        })
-        this.drawCircleChart()
-      },
-      fail: err => {
-        console.error('err', err)
-        wx.hideLoading()
-        wx.showToast({
-          title: '添加支出失败',
-          icon: 'none'
-        })
-      }
-    })
-  },
-  
 })

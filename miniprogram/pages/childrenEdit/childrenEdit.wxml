@@ -17,10 +17,10 @@
   <view class="margin-lr padding-top padding-bottom-sm text-grey">名字</view>
   <view class="margin-lr">
     <view class="padding radius bg-white">
-      <input value="{{childrenName}}" maxlength="12" placeholder="请输入名字"
+      <input value="{{childrenName}}" maxlength="16" placeholder="请输入名字"
         bindinput="childrenNameInput" />
     </view>
-    <view class="text-right padding-tb-xs text-gray">{{childrenName.length}}/12</view>
+    <view class="text-right padding-tb-xs text-gray">{{childrenName.length}}/16</view>
   </view>
 
   <view class="margin-lr padding-top padding-bottom-sm text-grey">生日</view>
@@ -35,13 +35,13 @@
   </view>
 
   <view class="margin-lr padding-top padding-bottom-sm text-grey">压岁钱</view>
-    <view class="margin-lr">
-      <view class="padding radius bg-white">
-        <input type="text" value="{{amount}}"
-          placeholder="请输入金额" bindinput="amountInput" />
-      </view>
-      <view class="text-right padding-tb-xs text-gray">请输入整数</view>
+  <view class="margin-lr">
+    <view class="padding radius bg-white">
+      <input type="number" value="{{amount}}"
+        placeholder="请输入金额" bindinput="amountInput" />
     </view>
+    <view class="text-right padding-tb-xs text-gray">请输入整数</view>
+  </view>
 
   <view class="flex justitfy-center padding margin-top-xl">
     <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg"

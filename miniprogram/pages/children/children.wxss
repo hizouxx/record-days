@@ -2,6 +2,7 @@
 .children {
   min-width: 100vw;
   position: relative;
+  border-radius: 0 0 25rpx 25rpx;
 }
 .scale{
   transform: scale(1.1);
@@ -20,53 +21,19 @@
   border-radius: 50%;
 }
 
-
-.ring {
+.section-tit {
   position: relative;
 }
-.ring-center {
+.section-tit-text {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 9;
-  transform: translate(-50%, -50%);
-}
-
-
-
-
-
-/* 弹框样式 */
-.dialog-wrapper {
-  position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1000;
-}
-
-/* 遮罩层 */
-.mask {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-/* 弹框容器 */
-.dialog {
-  position: fixed;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  overflow: hidden;
+  transform: translateX(-50%);
+  width: 200rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 0 0 25rpx 25rpx;
 }
-
-
 
 .line {
   height: 1rpx;
@@ -74,14 +41,9 @@
   background: #f2f2f2;
 }
 
-.no-data {
-  height: 100%;
+line-height1 {
+  line-height: 1;
 }
-
-
-
-
-
 
 
 
@@ -247,7 +209,7 @@
 }
 .hole{
 	position: absolute;
-	left: 130rpx;
+	left: 126rpx;
 	top: 0;
 	width: 80rpx;
 	height: 5rpx;
@@ -260,7 +222,7 @@
 	top: 0;
 	left: 0;
 	z-index: 9;
-    width: 100%;
+  width: 100%;
 	height: 100%;
 	opacity: 0;
 	transform-origin: bottom center;
@@ -284,6 +246,23 @@
 	font-weight: 500;
 	color: rgba(32,32,32,0.5);
 	box-shadow: inset 0 0 4rpx #777;
+}
+.red{
+	position: absolute;
+	top: 70rpx;
+	left: 143rpx;
+	z-index: 9;
+  width: 76rpx;
+	height: 76rpx;
+	/* border-radius: 50%; */
+	/* border: 6rpx solid #e67e22; */
+	/* background-color: #f39c12; */
+	text-align: center;
+	line-height: 68rpx;
+	font-size: 76rpx;
+	font-weight: 500;
+	/* color: rgba(32,32,32,0.5); */
+	/* box-shadow: inset 0 0 4rpx #777; */
 }
 @keyframes moveCoin {
   0% { 

@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+		"rolling-text": "../../components/rolling-text/rolling-text"
+  }
 }

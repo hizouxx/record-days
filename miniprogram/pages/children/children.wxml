@@ -2,112 +2,99 @@
 <cu-custom isCustom bg-color="bg-white">
   <view slot="content">仔仔成长记录</view>
 </cu-custom>
-<scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
-  <com-loading wx:if="{{loading}}"></com-loading>
-  <view wx:if="{{!loading && childrenList.length === 0}}">
-    <com-nodata content="还没有孩子数据哦，去添加"></com-nodata>
-    <view class="add-btn padding-lg bg-gradual-{{ColorList[theme].name}} shadow-blur round flex justify-center align-center" bindtap="pageToAdd">
-      <text class="cuIcon-add text-xxl"></text>
-    </view>
+<com-loading wx:if="{{loading}}"></com-loading>
+<view wx:if="{{!loading && childrenList.length === 0}}">
+  <com-nodata content="还没有孩子数据哦，去添加"></com-nodata>
+  <view class="add-btn padding-lg bg-gradual-{{ColorList[theme].name}} shadow-blur round flex justify-center align-center" bindtap="pageToAdd">
+    <text class="cuIcon-add text-xxl"></text>
   </view>
-  <view wx:if="{{!loading && childrenList.length > 0}}">
-    <scroll-view scroll-x class="bg-white">
-      <view class="children padding-top-lg padding-bottom-sm flex" style="width: {{(childrenList.length + 1) * 25 + 'vw'}}">
-        <view class="basis-md flex flex-direction align-center {{curChildrenIndex === index ? 'scale' : ''}}" wx:for="{{childrenList}}" wx:key="index" wx:for-index='index' data-obj="{{item}}" data-index="{{index}}" bindlongpress="deleteOrEditChildren" bind:touchend="childTabClick">
-          <image class="children-avatar" src="{{item.avatar}}" mode="aspectFill" fade-in />
-          <text class="margin-tb-xs text-center text-{{curChildrenIndex === index ? ColorList[theme].name : 'gray'}}">{{item.name}}</text>
-        </view>
-
-        <view class="basis-md flex flex-direction align-center">
-          <view class="children-more bg-gray flex align-center justify-center text-lg text-grey" bindtap="pageToAdd">+</view>
-        </view>
-      </view>
-    </scroll-view>
-
-    <view class="margin padding bg-white radius">
-      <view class="ring flex align-center justify-center">
-        <canvas id="circleCanvas" canvas-id="circleCanvas" style="width: 240px; height: 240px;"></canvas>
-        <view class="ring-center flex flex-direction align-center justify-center">
-          <text class="text-black text-sl">{{totalValue}}</text>
-          <text class="text-gray">总支出</text>
-        </view>
+</view>
+<view wx:if="{{!loading && childrenList.length > 0}}" class="animate__animated animate__fadeIn">
+  <scroll-view scroll-x>
+    <view class="children bg-white padding-top-lg padding-bottom-sm flex" style="width: {{(childrenList.length + 1) * 25 + 'vw'}}">
+      <view class="basis-md flex flex-direction align-center {{curChildrenIndex === index ? 'scale' : ''}}" wx:for="{{childrenList}}" wx:key="index" wx:for-index='index' data-obj="{{item}}" data-index="{{index}}" bindlongpress="deleteOrEditChildren" bind:touchend="childTabClick">
+        <image class="children-avatar" src="{{item.avatar}}" mode="aspectFill" fade-in />
+        <text class="margin-tb-xs text-center text-{{curChildrenIndex === index ? ColorList[theme].name : 'gray'}}">{{item.name}}</text>
       </view>
 
-      <view class="flex flex-wrap">
-        <view class="basis-md" wx:for="{{paymentOptions}}" wx:key="id" wx:for-index='index'>
-          <view class="margin-sm padding-tb-sm text-center radius shadow-btn" data-id="{{item.id}}" bindtap="showDialog">
-            <text class="text-grey">{{item.name}}支出</text>
-          </view>
-        </view>
-      </view>
-      <!-- 自定义弹框 -->
-      <view class="dialog-wrapper" wx:if="{{isDialogVisible}}">
-        <!-- 遮罩层 -->
-        <view class="mask" bindtap="hideDialog"></view>
-
-        <!-- 弹框内容 -->
-        <view class="dialog bg-white radius">
-          <view class="padding-lg text-xl text-bold text-center">请输入支出金额</view>
-          <view class="line"></view>
-          <view class="margin-lg padding bg-gray radius">
-            <input 
-              type="number" 
-              focus
-              placeholder="请输入正整数" 
-              value="{{inputValue}}" 
-              bindinput="onInputChange" 
-              class="text-center text-xl" 
-            />
-          </view>
-          <view class="line"></view>
-          <view class="flex justify-between padding-lg">
-            <button class="basis-sm" bindtap="hideDialog">取消</button>
-            <button class="basis-sm" type="primary" bindtap="confirmDialog">确认</button>
-          </view>
-        </view>
+      <view class="basis-md flex flex-direction align-center">
+        <view class="children-more bg-gray flex align-center justify-center text-lg text-grey" bindtap="pageToAdd">+</view>
       </view>
     </view>
-    <view class="margin padding-tb bg-white radius">
-      <view class="padding-lg flex align-center justify-center">
-        <div class="piggy-wrapper">
-          <div class="piggy-wrap">
-            <div class="piggy">
-              <view class="piggy-amount flex flex-direction align-center justify-center">
-                <text class="text-white text-xl">¥{{childrenList[curChildrenIndex].piggyBank}}</text>
-                <text class="text-white">压岁钱</text>
+  </scroll-view>
+
+  <view class="margin-tb-lg margin-lr bg-white radius">
+    <view class="section-tit padding">
+      <view class="section-tit-text text-center bg-gradual-{{ColorList[theme].name}} shadow-blur">支出分布</view>
+    </view>
+    <view class="flex align-center justify-center">
+      <canvas type="2d" id="ringCanvas" style="width: 160px; height: 160px;"></canvas>
+    </view>
+    <view class="padding-lr-lg padding-bottom">
+      <block wx:for="{{childrenList[curChildrenIndex].paymentListForWxml}}" wx:key="id" wx:for-index='index'>
+        <view class="padding-tb-sm flex align-center justify-between" data-item="{{item}}" bindtap="pageToPayment">
+          <view class="flex-sub">
+            <view class="flex align-end justify-between">
+              <view class="flex align-end">
+                <text class="line-height1 text-bold">{{item.name}}</text>
+                <text class="line-height1 margin-left-sm text-grey">{{item.percentage}}</text>
               </view>
-              <div class="nose"></div>
-              <div class="mouth"></div>
-              <div class="ear"></div>
-              <div class="tail">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <div class="eye"></div>
-              <div class="hole"></div>
-            </div>
-          </div>
-          <div class="coin-wrap {{isCoinAnimation ? 'coin-wrap-active' : ''}}">
-            <div class="coin">¥</div>
-          </div>
-          <div class="legs"></div>
-          <div class="legs back"></div>
-        </div>
-      </view>
-
-      <view class="padding-lr flex flex-wrap">
-        <view class="basis-md" wx:for="{{amountList}}" wx:key="index" wx:for-index='index'>
-          <view class="margin-sm padding-tb-sm text-center radius shadow-btn" data-item="{{item}}"  data-index="{{index}}" bindtap="addRedEnvelope">
-            <text wx:if="{{item.loading}}" class="cuIcon-loading iconfont-spin text-{{ColorList[theme].name}}"></text>
-            <text wx:else class="text-grey">¥{{item.amount}}</text>
+              <text class="line-height1 text-bold">{{item.value ? item.value : 0}}</text>
+            </view>
+            <view class="cu-progress xs radius striped active">
+              <view style="width: {{item.percentage}}; background: {{item.color}}"></view>
+            </view>
           </view>
+          <text class="margin-left-sm cuIcon-right text-grey"></text>
         </view>
+        <view class="line" wx:if="{{index !== (paymentOptions.length - 1)}}">
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="margin-tb-lg margin-lr bg-white radius">
+    <view class="section-tit padding">
+      <view class="section-tit-text text-center bg-gradual-{{ColorList[theme].name}} shadow-blur">压岁钱</view>
+    </view>
+    <view class="padding-lg flex align-center justify-center">
+      <div class="piggy-wrapper">
+        <div class="piggy-wrap">
+          <div class="piggy">
+            <view class="piggy-amount flex flex-direction align-center justify-center">
+              <rolling-text number="{{childrenList[curChildrenIndex].piggyBank}}" duration="500" size="38"></rolling-text>
+            </view>
+            <div class="nose"></div>
+            <div class="mouth"></div>
+            <div class="ear"></div>
+            <div class="tail">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="eye"></div>
+            <div class="hole"></div>
+          </div>
+        </div>
+        <div class="coin-wrap {{isCoinAnimation ? 'coin-wrap-active' : ''}}">
+          <!-- <div class="coin">¥</div> -->
+          <div class="red">🧧</div>
+        </div>
+        <div class="legs"></div>
+        <div class="legs back"></div>
+      </div>
+    </view>
+  </view>
+  <view class="padding-lr flex flex-wrap">
+    <view class="basis-md" wx:for="{{amountList}}" wx:key="index" wx:for-index='index'>
+      <view class="margin-sm padding-tb-sm text-center radius shadow-btn" data-item="{{item}}"  data-index="{{index}}" bindtap="addRedEnvelope">
+        <text wx:if="{{item.loading}}" class="cuIcon-loading iconfont-spin text-lg text-{{ColorList[theme].name}}"></text>
+        <text wx:else class="text-grey text-lg">¥{{item.amount}}</text>
       </view>
     </view>
-
-
-    <view class="padding-top-sm padding-bottom-lg text-center text-gray text-sm">——长按顶部【头像】可编辑或删除——</view>
   </view>
-</scroll-view>
+
+
+  <view class="margin-top-xl padding-top-sm padding-bottom-lg text-center text-gray text-sm">——长按顶部【头像】可编辑或删除——</view>
+</view>

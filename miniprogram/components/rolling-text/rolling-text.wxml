@@ -1,0 +1,3 @@
+<!--components/rolling-text/rolling-text.wxml-->
+<text style="font-size: {{size + 'rpx'}}">{{currentNumber}}</text>
+

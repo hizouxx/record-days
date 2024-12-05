@@ -5,9 +5,9 @@
 
 <view class="margin">
   <view class="padding radius bg-white">
-    <input type="text" auto-focus value="{{photosName}}" maxlength="12" placeholder="相册名" bindinput="onInput"></input>
+    <input type="text" auto-focus value="{{photosName}}" maxlength="16" placeholder="相册名" bindinput="onInput"></input>
   </view>
-  <view class="text-right padding-tb-xs text-grey">{{photosName.length}}/12</view>
+  <view class="text-right padding-tb-xs text-grey">{{photosName.length}}/16</view>
 </view>
 
 <view class="fixed-bottom flex justitfy-center padding-bottom">

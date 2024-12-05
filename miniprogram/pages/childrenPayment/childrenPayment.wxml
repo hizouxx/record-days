@@ -1,0 +1,22 @@
+<!--pages/childrenPayment/childrenPayment.wxml-->
+<cu-custom isCustom bg-color="bg-white">
+  <view slot="content">编辑支出</view>
+</cu-custom>
+
+<view class="margin-lr padding-top padding-bottom-sm text-grey">{{paymentName}}支出</view>
+<view class="margin-lr">
+  <view class="padding radius bg-white">
+    <input type="number" value="{{inputValue}}" focus
+      placeholder="请输入金额" bindinput="amountInput" />
+  </view>
+  <view class="text-right padding-tb-xs text-gray">请输入整数</view>
+</view>
+
+<view class="flex justitfy-center padding margin-top-xl">
+  <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg"
+    disabled="{{btnDisabled}}" bindtap="submit">
+    <text wx:if="{{btnLoading}}" class="cuIcon-loading iconfont-spin text-sl text-white"></text>
+    <text wx:else>提交</text>
+  </button>
+</view>
+

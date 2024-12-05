@@ -48,7 +48,7 @@
         <view class="text-black text-lg text-price">{{curTotalIncome}}</view>
         <view class="text-black text-lg text-price">{{curTotalPay}}</view>
       </view>
-      <view class="money-percentage cu-progress radius striped active">
+      <view class="cu-progress xs radius striped active">
         <view class="bg-green" style="width: {{curTotalIncome / (curTotalPay + curTotalIncome) * 100}}%"></view>
         <view class="bg-red" style="width: {{curTotalPay / (curTotalPay + curTotalIncome) * 100}}%"></view>
       </view>
@@ -58,30 +58,22 @@
       </view>
 
       <view class="statistics"
-        style="height: {{ showStatistics ? (((numIncomeList.length > 0 && numPayList.length > 0) ? '700rpx' : ((numIncomeList.length === 0 && numPayList.length === 0)) ? 0 : '350rpx')) : 0 }}">
+        style="height: {{ showStatistics ? ((numIncomeList.length + numPayList.length) * 50 + 24)+'rpx' : 0 }}">
         <view wx:if="{{numIncomeList.length > 0}}">
-          <view class="margin-tb text-bold">收入</view>
-          <view class="flex justify-around">
-            <view class="line-wrapper flex flex-direction align-center" wx:for="{{numIncomeList}}" wx:key="item"
-              wx:for-item='item'>
-              <view class="line bg-gray">
-                <view class="line-percentage bg-green"
-                  style="height: {{item.total.number / curTotalIncome * 200}}rpx"></view>
-              </view>
-              <text class="margin-top-xs text-sm">{{IncomeList[item.name].name}}</text>
+          <view class="line-wrapper flex align-center" wx:for="{{numIncomeList}}" wx:key="item" wx:for-item='item'>
+            <text class="margin-tb-xs margin-right-xs text-sm">{{IncomeList[item.name].name}}</text>
+            <view class="line bg-gray">
+              <view class="line-percentage bg-green"
+                style="width: {{item.total.number / curTotalIncome * 100}}%"></view>
             </view>
           </view>
         </view>
         <view wx:if="{{numPayList.length > 0}}">
-          <view class="margin-tb text-bold">支出</view>
-          <view class="flex justify-around">
-            <view class="line-wrapper flex flex-direction align-center" wx:for="{{numPayList}}" wx:key="item"
-              wx:for-item='item'>
-              <view class="line bg-gray">
-                <view class="line-percentage bg-red"
-                  style="height: {{item.total.number / curTotalPay * 200}}rpx"></view>
-              </view>
-              <text class="margin-top-xs text-sm">{{PayList[item.name].name}}</text>
+          <view class="line-wrapper flex align-center" wx:for="{{numPayList}}" wx:key="item" wx:for-item='item'>
+            <view class="margin-tb-xs margin-right-xs text-sm">{{PayList[item.name].name}}</view>
+            <view class="line bg-gray">
+              <view class="line-percentage bg-red"
+                style="width: {{item.total.number / curTotalPay * 100}}%"></view>
             </view>
           </view>
         </view>

@@ -361,4 +361,15 @@ Page({
     })
   },
 
+  /**
+   * 获取百分比
+   * @param {*} child 分子
+   * @param {*} parents 分母
+   */
+  getPercentage (child, parents) {
+    const a = Math.round(child / parents * 10000) / 100
+    console.log('a', a)
+    return a
+  },
+
 })

@@ -168,6 +168,15 @@ App({
           icon: 'moreandroid'
         }
       ],
+      // 孩子支出
+      ChildrenPayment: [
+        { name: '穿搭', color: '#e54d42', id: 1 },
+        { name: '喂养', color: '#fbbd08', id: 2 },
+        { name: '玩具', color: '#39b54a', id: 3 },
+        { name: '医疗', color: '#0081ff', id: 4 },
+        { name: '教育', color: '#9c26b0', id: 5 },
+        { name: '其他', color: '#a5673f', id: 6 },
+      ]
     }
 
     wx.getSystemInfo({

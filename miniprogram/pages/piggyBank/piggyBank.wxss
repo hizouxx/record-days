@@ -3,10 +3,6 @@
   height: 60rpx;
 }
 
-.money-percentage {
-  height: 10rpx;
-}
-
 .nav-tab-btn {
   height: 90rpx;
   line-height: 90rpx;
@@ -21,21 +17,30 @@
   transition: 0.4s height;
 }
 .line-wrapper {
-  width: 53rpx;
+  height: 50rpx;
+  align-items: center;
 }
 .line {
-  height: 200rpx;
-  width: 10rpx;
-  border-radius: 3rpx;
+  flex: 1;
+  height: 20rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
   position: relative;
 }
 .line-percentage {
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
-  border-radius:3rpx;
+  top: 0;
+  border-radius: 10rpx;
 }
+.line-num {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .line-money {
   position: absolute;
   top: 0;

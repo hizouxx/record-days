@@ -7,9 +7,9 @@
   <view class="margin-lr padding-top padding-bottom-sm text-grey">描述</view>
   <view class="margin-lr">
     <view class="padding radius bg-white">
-      <input value="{{remark}}" maxlength="12" placeholder="请输入描述" bindinput="remarkInput" />
+      <input value="{{remark}}" maxlength="16" placeholder="请输入描述" bindinput="remarkInput" />
     </view>
-    <view class="text-right padding-tb-xs text-gray">{{remark.length}}/12</view>
+    <view class="text-right padding-tb-xs text-gray">{{remark.length}}/16</view>
   </view>
 
   <view class="margin-lr padding-top padding-bottom-sm text-grey">类型</view>
