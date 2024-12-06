@@ -360,7 +360,7 @@ Page({
       // 更新起始角度，增加隔断角度
       startAngle += angle + gapAngle; // 加上隔断角度
     });
-    console.log('this.data.paymentOptions', this.data.paymentOptions)
+    // console.log('this.data.paymentOptions', this.data.paymentOptions)
     // 绘制总金额文本
     ctx.textAlign = 'center'; // 水平居中
     ctx.textBaseline = 'middle'; // 垂直居中

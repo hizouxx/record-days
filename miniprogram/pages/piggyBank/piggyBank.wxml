@@ -11,7 +11,7 @@
           bindtap="toggleMoneyStatus"></text>
       </view>
       <view wx:if="{{eye}}" class="price-height text-center text-price">
-        <text class="text-xxl">{{totalAmount}}</text>
+        <rolling-text number="{{totalAmount}}" duration="1000" size="50"></rolling-text>
       </view>
       <view wx:if="{{!eye}}" class="price-height text-center text-content text-xxl">***</view>
     </view>
@@ -45,8 +45,12 @@
         <view class="text-gray">支出</view>
       </view>
       <view class="flex justify-between margin-tb-lg">
-        <view class="text-black text-lg text-price">{{curTotalIncome}}</view>
-        <view class="text-black text-lg text-price">{{curTotalPay}}</view>
+        <view class="text-black text-price">
+          <rolling-text number="{{curTotalIncome}}" duration="200" size="28"></rolling-text>
+        </view>
+        <view class="text-black text-price">
+          <rolling-text number="{{curTotalPay}}" duration="200" size="28"></rolling-text>
+        </view>
       </view>
       <view class="cu-progress xs radius striped active">
         <view class="bg-green" style="width: {{curTotalIncome / (curTotalPay + curTotalIncome) * 100}}%"></view>

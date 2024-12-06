@@ -12,7 +12,7 @@
   height: 120rpx;
   width: 120rpx;
   border-radius: 50%;
-  border: 10rpx solid rgba(114, 130, 138, 0.2);
+  border: 10rpx solid #f0f0f0;
 }
 .children-more {
   border: 10rpx solid white;

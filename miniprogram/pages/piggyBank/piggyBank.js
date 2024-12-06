@@ -300,9 +300,6 @@ Page({
           } else if (i.type == 'income') {
             totalIncome = totalIncome + parseFloat(i.amount)
           }
-          this.setData({
-            totalAmount: parseFloat(totalIncome - totalPay).toFixed(2)
-          })
         })
         this.setData({
           totalAmount: parseFloat(totalIncome - totalPay).toFixed(2)

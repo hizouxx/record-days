@@ -3,11 +3,12 @@
   <view slot="content">新增协议</view>
 </cu-custom>
 
-<textarea class="margin-top padding bg-white text-lg" value="{{inputValue}}" placeholder="请输入协议" focus maxlength="120"
-  bindinput="input" />
-<view class="text-right padding-tb-xs text-grey">{{inputValue.length}}/120</view>
-
-<view class="fixed-bottom flex justitfy-center padding-bottom">
+<view class="padding">
+  <textarea class="margin-top-sm padding bg-white radius text-lg" style="width: 100%" value="{{inputValue}}" placeholder="请输入协议" focus maxlength="120"
+    bindinput="input" />
+  <view class="text-right padding-tb-xs text-grey">{{inputValue.length}}/120</view>
+</view>
+<view class="flex justitfy-center padding margin-top-xl">
   <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg"
     disabled="{{btnDisabled}}" bindtap="checkMsg">
     <text wx:if="{{btnLoading}}" class="cuIcon-loading iconfont-spin text-sl text-white"></text>

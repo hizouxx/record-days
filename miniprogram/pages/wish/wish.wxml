@@ -6,7 +6,7 @@
 <com-loading wx:if="{{loading}}"></com-loading>
 
 <com-nodata wx:if="{{!loading && list.length == 0}}" content="想吃一次火锅，想要一个拥抱···生活里的幸福就是小小的心愿都成真"></com-nodata>
-<scroll-view scroll-y wx:if="{{!loading && list.length > 0}}">
+<scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)" wx:if="{{!loading && list.length > 0}}">
   <view class="padding-lg animate__animated animate__bounceInRight">
     <view class="left-line-wrapper margin-bottom padding bg-white radius" wx:for="{{list}}" wx:key="item"
       wx:for-index="index" data-item="{{item}}" bindlongpress="longpressWish">

@@ -5,7 +5,7 @@
 <com-loading wx:if="{{loading}}"></com-loading>
 <view wx:if="{{!loading && childrenList.length === 0}}">
   <com-nodata content="还没有孩子数据哦，去添加"></com-nodata>
-  <view class="add-btn padding-lg bg-gradual-{{ColorList[theme].name}} shadow-blur round flex justify-center align-center" bindtap="pageToAdd">
+  <view class="add-btn padding-lg bg-gradual-{{ColorList[theme].name}} round flex justify-center align-center" bindtap="pageToAdd">
     <text class="cuIcon-add text-xxl"></text>
   </view>
 </view>
@@ -13,8 +13,8 @@
   <scroll-view scroll-x>
     <view class="children bg-white padding-top-lg padding-bottom-sm flex" style="width: {{(childrenList.length + 1) * 25 + 'vw'}}">
       <view class="basis-md flex flex-direction align-center {{curChildrenIndex === index ? 'scale' : ''}}" wx:for="{{childrenList}}" wx:key="index" wx:for-index='index' data-obj="{{item}}" data-index="{{index}}" bindlongpress="deleteOrEditChildren" bind:touchend="childTabClick">
-        <image class="children-avatar" src="{{item.avatar}}" mode="aspectFill" fade-in />
-        <text class="margin-tb-xs text-center text-{{curChildrenIndex === index ? ColorList[theme].name : 'gray'}}">{{item.name}}</text>
+        <image class="children-avatar" style="box-shadow: 0 0 12rpx {{curChildrenIndex === index ? 'grey' : 'transparent'}}" src="{{item.avatar || '../../images/avatar_default.png'}}" mode="aspectFill" fade-in />
+        <text class="margin-tb-sm text-center shadow-blur text-{{curChildrenIndex === index ? 'black' : 'gray'}}">{{item.name}}</text>
       </view>
 
       <view class="basis-md flex flex-direction align-center">
@@ -95,6 +95,7 @@
     </view>
   </view>
 
-
-  <view class="margin-top-xl padding-top-sm padding-bottom-lg text-center text-gray text-sm">——长按顶部【头像】可编辑或删除——</view>
+  <view class="divider text-center">
+    <view class="text-gray text-sm">——长按顶部【头像】可编辑或删除——</view>
+  </view>
 </view>

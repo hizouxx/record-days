@@ -2,7 +2,7 @@
 <cu-custom isCustom bg-color="bg-white">
   <view slot="content">新增计划</view>
 </cu-custom>
-<scroll-view scroll-y>
+<scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
   <view>
     <view class="margin-lr padding-top padding-bottom-sm text-grey">计划内容</view>
     <view class="margin-lr">

@@ -1,8 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/children/children",
-    "pages/childrenEdit/childrenEdit",
     "pages/piggyBankAdd/piggyBankAdd",
     "pages/specialDayAdd/specialDayAdd",
     "pages/agreement/agreement",
@@ -23,10 +21,8 @@
     "pages/wishAdd/wishAdd",
     "pages/photoWallEdit/photoWallEdit",
     "pages/letter/letter",
-    "pages/game/game",
-    "pages/minesweeper/minesweeper",
-    "pages/2048/2048",
-    "pages/pianoBlock/pianoBlock",
+    "pages/children/children",
+    "pages/childrenEdit/childrenEdit",
     "pages/childrenPayment/childrenPayment"
   ],
   "window": {

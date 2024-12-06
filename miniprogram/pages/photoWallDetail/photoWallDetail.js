@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    CustomBar: app.globalData.CustomBar,
     StatusBar: app.globalData.StatusBar,
     loading: true,
     photoData: {},

@@ -47,6 +47,7 @@
 
 .divider {
   line-height: 2.4;
+  padding: 30rpx 0;
   margin-bottom: constant(safe-area-inset-bottom);
   margin-bottom: env(safe-area-inset-bottom);
 }

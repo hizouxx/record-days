@@ -4,38 +4,42 @@
 </cu-custom>
 <swiper class="swiper" style="height: calc(100vh - {{CustomBar}}px)" current="{{current}}" bindchange="swiperChange">
   <swiper-item class="swiper-item animate__animated animate__bounceInRight">
-
-    <view class="margin-tb-sm padding flex justify-between align-center bg-white text-lg">
-      <text>{{today}}</text>
-      <text>农历{{lunarDate.IMonthCn}}{{lunarDate.IDayCn}} {{week}}</text>
-    </view>
-
-    <textarea class="padding bg-white text-lg" value="{{remark}}" placeholder="写点什么" maxlength="200"
-      bindinput="remarkInput" />
-    <view class="text-right padding-tb-xs text-grey">{{remark.length}}/200</view>
-
-    <view wx:if="{{showEmoji}}" class="flex flex-wrap justitfy-between padding-sm bg-white margin-top-sm animation-fade">
-      <block wx:for="{{emojiList}}" wx:key="index" wx:for-item='item' wx:for-index='index'>
-        <view class="basis-ss">
-          <view class="padding-tb-xs radius flex align-center justify-center"
-            data-emoji="{{item}}" bindtap="clickEmoji">
-            <text class="emoji">{{item}}</text>
-          </view>
+    <scroll-view scroll-y style="height: 100%">
+      <view class="padding">
+        <view class="padding flex justify-between align-center bg-white radius text-lg text-grey">
+          <text>{{today}}</text>
+          <text>农历{{lunarDate.IMonthCn}}{{lunarDate.IDayCn}} {{week}}</text>
         </view>
-      </block>
-    </view>
-    <view class="cuIcon-{{showEmoji ? 'fold':'unfold'}} text-grey padding-top text-center text-xl" bindtap="toggleShowEmoji"></view>
+      </view>
+      <view class="padding-lr">
+        <textarea class="padding bg-white radius text-lg" value="{{remark}}" placeholder="写点什么" maxlength="200"
+          bindinput="remarkInput" />
+        <view class="text-right padding-tb-xs text-grey">{{remark.length}}/200</view>
+      </view>
+      <view class="padding-lr">
+        <view class="flex flex-wrap justitfy-between">
+          <block wx:for="{{emojiList}}" wx:key="index" wx:for-item='item' wx:for-index='index'>
+            <view class="basis-ss">
+              <view class="padding-tb-xs radius flex align-center justify-center"
+                data-emoji="{{item}}" bindtap="clickEmoji">
+                <text class="emoji">{{item}}</text>
+              </view>
+            </view>
+          </block>
+        </view>
+        <!-- <view class="cuIcon-{{showEmoji ? 'fold':'unfold'}} text-grey text-center text-xl" bindtap="toggleShowEmoji"></view> -->
+      </view>
 
-    <view class="fixed-bottom flex justitfy-center padding-bottom">
-      <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg" disabled="{{btnDisabled}}" bindtap="checkMsg">
-        <text wx:if="{{btnLoading}}" class="cuIcon-loading iconfont-spin text-sl text-white"></text>
-        <text>提交</text>
-      </button>
-    </view>
-
+      <view class="flex justitfy-center padding margin-top-xl">
+        <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg" disabled="{{btnDisabled}}" bindtap="checkMsg">
+          <text wx:if="{{btnLoading}}" class="cuIcon-loading iconfont-spin text-sl text-white"></text>
+          <text>提交</text>
+        </button>
+      </view>
+    </scroll-view>
   </swiper-item>
   <swiper-item class="swiper-item bg-white">
-    <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
+    <scroll-view scroll-y style="height: 100%">
       <com-loading wx:if="{{loading}}"></com-loading>
       <view wx:if="{{!loading && dataList.length > 0}}" class="cu-timeline" wx:for="{{dataList}}" wx:key="item">
         <view class="cu-timeline">

@@ -3,14 +3,14 @@
   <view slot="content">编辑相册名</view>
 </cu-custom>
 
-<view class="margin">
+<view class="padding">
   <view class="padding radius bg-white">
-    <input type="text" auto-focus value="{{photosName}}" maxlength="16" placeholder="相册名" bindinput="onInput"></input>
+    <input type="text" focus value="{{photosName}}" maxlength="16" placeholder="相册名" bindinput="onInput"></input>
   </view>
   <view class="text-right padding-tb-xs text-grey">{{photosName.length}}/16</view>
 </view>
 
-<view class="fixed-bottom flex justitfy-center padding-bottom">
+<view class="flex justitfy-center padding margin-top-xl">
   <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg"
     disabled="{{editBtnDisabled}}" bindtap="checkMsg">
     <text wx:if="{{btnLoading}}" class="cuIcon-loading iconfont-spin text-sl text-white"></text>

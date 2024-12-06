@@ -51,12 +51,6 @@ const defaultList = [{
     path: 'children',
     name: '仔仔成长记录'
   },
-  // {
-  //   icon: 'upstagefill',
-  //   color: 'purple',
-  //   path: 'game',
-  //   name: '打发时间'
-  // },
   {
     icon: 'infofill',
     color: 'mauve',

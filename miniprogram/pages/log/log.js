@@ -15,9 +15,9 @@ Page({
     today: utils.formatDate3(new Date()),
     current: 0, // 当前swiper索引值
     loading: true,
-    btnDisabled: false,
+    btnDisabled: true,
     btnLoading: false,
-    showEmoji: false, // 收起/展示表情
+    // showEmoji: false, // 收起/展示表情
     emojiList: [
       '😀','😁','😂','😃','😄','😅','😆','😉','😊','😋',
       '😎','😍','😘','😗','😙','😚','😇','😐','😑','😶',
@@ -168,11 +168,11 @@ Page({
   /**
    * 显示/隐藏表情
    */
-  toggleShowEmoji() {
-    this.setData({
-      showEmoji: !this.data.showEmoji
-    })
-  },
+  // toggleShowEmoji() {
+  //   this.setData({
+  //     showEmoji: !this.data.showEmoji
+  //   })
+  // },
 
   /**
    * 输入表情
@@ -181,7 +181,8 @@ Page({
     // console.log(e)
     let {emoji} = e.currentTarget.dataset
     this.setData({
-      remark: this.data.remark + emoji
+      remark: this.data.remark + emoji,
+      btnDisabled: (this.data.remark + emoji)?.trim() === '' ? true : false
     })
   },
   /**
@@ -191,7 +192,8 @@ Page({
   remarkInput(e) {
     // console.log(e)
     this.setData({
-      remark: e.detail.value
+      remark: e.detail.value,
+      btnDisabled: e.detail.value?.trim() === '' ? true : false
     })
   },
   /**

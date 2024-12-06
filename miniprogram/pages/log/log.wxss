@@ -1,7 +1,7 @@
 /* miniprogram/pages/log/log.wxss */
 
 textarea{
-  width: 750rpx;
+  width: 100%;
   box-sizing: border-box;
 }
 .emoji{
