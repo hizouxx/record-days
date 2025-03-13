@@ -3,19 +3,20 @@
   <view slot="content"></view>
 </cu-custom>
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
-  <view class="padding-lg radius bg-white flex flex-direction align-center">
+  <!-- <view class="padding-lg radius bg-white flex flex-direction align-center">
     <view class="avatar">
       <image class="avatar-img" src="{{avatarDIY || '../../images/avatar_default.png'}}" mode="aspectFill" fade-in bindtap="chooseImage" />
       <text class="avatar-icon cuIcon-camerafill text-xxl text-gray"></text>
     </view>
-    <view class="padding-tb-xs margin-top-sm">
-    <text class="text-bold">建议上传前裁切成正方形。</text>
-    <text class="text-gray">非正方形图片显示方式：保持纵横比缩放图片，只保证图片的短边能完全显示出来。</text>
-    </view>
-  </view>
+  </view> -->
+  <view class="padding-lg radius bg-white flex flex-direction align-center animate__animated animate__fadeIn" >
+      <button class="avatar" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+        <image class="avatar-img animate__animated animate__fadeIn" src="{{avatarDIY || '../../images/avatar_default.png'}}" mode="aspectFill" fade-in />
+      </button>
+    </view> 
 
   <view class="margin-lr padding-top padding-bottom-sm text-grey">名字</view>
-  <view class="margin-lr">
+  <view class="margin-lr-lg">
     <view class="padding radius bg-white">
       <input value="{{childrenName}}" maxlength="16" placeholder="请输入名字"
         bindinput="childrenNameInput" />
@@ -24,7 +25,7 @@
   </view>
 
   <view class="margin-lr padding-top padding-bottom-sm text-grey">生日</view>
-  <view class="margin-lr">
+  <view class="margin-lr-lg">
     <view class="cu-form-group radius bg-white">
       <view class="title text-gray">请选择日期</view>
       <picker mode="date" value="{{date}}" end="{{endTotoday}}" bindchange="dateChange">
@@ -34,8 +35,8 @@
     <view class="text-right padding-tb-xs text-gray">今日之后的日期不可选</view>
   </view>
 
-  <view class="margin-lr padding-top padding-bottom-sm text-grey">压岁钱</view>
-  <view class="margin-lr">
+  <view class="margin-lr padding-top padding-bottom-sm text-grey">压岁钱总额</view>
+  <view class="margin-lr-lg">
     <view class="padding radius bg-white">
       <input type="number" value="{{amount}}"
         placeholder="请输入金额" bindinput="amountInput" />

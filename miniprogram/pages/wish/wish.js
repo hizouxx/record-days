@@ -1,5 +1,5 @@
 // miniprogram/pages/wish/wish.js
-const utils = require('../../utils/util.js')
+import utils from '../../utils/util.js'
 const app = getApp()
 Page({
   /**
@@ -123,7 +123,7 @@ Page({
         if (res.confirm) {
           // console.log('用户点击确定')
           wx.showLoading({
-            title: '操作中···',
+            title: '操作中',
           })
           // 调用云函数
           wx.cloud.callFunction({
@@ -168,7 +168,7 @@ Page({
         // console.log(res.tapIndex)
         if (res.tapIndex == 0) {
           wx.showLoading({
-            title: '操作中···',
+            title: '操作中',
           })
           wx.cloud.callFunction({
             name: 'deleteWish',

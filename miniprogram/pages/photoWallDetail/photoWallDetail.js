@@ -11,6 +11,7 @@ Page({
     CustomBar: app.globalData.CustomBar,
     StatusBar: app.globalData.StatusBar,
     loading: true,
+    mediaType: '',
     photoData: {},
     pictrueList: [],
     leftList: [], // 定义左侧空数组
@@ -21,10 +22,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(options)
+    console.log(options)
     let {
-      id
+      id, mediaType
     } = options
+    this.setData({
+      mediaType
+    })
     this.getPhoto(id)
   },
 
@@ -80,7 +84,7 @@ Page({
   getPhoto(id) {
     //调用云函数
     wx.showLoading({
-      title: '加载中···',
+      title: '加载中',
     })
     wx.cloud.callFunction({
       name: 'getPhotoDetail',
@@ -88,7 +92,7 @@ Page({
         _id: id
       },
       success: res => {
-        // console.log(res, 'res')
+        console.log(res, 'res')
         wx.hideLoading()
         this.setData({
           photoData: res.result.data[0]
@@ -108,7 +112,7 @@ Page({
 
   downloadImages() {
     wx.showLoading({
-      title: '加载中···',
+      title: '加载中',
     })
     wx.cloud.getTempFileURL({
       fileList: this.data.photoData.pictrueList,
@@ -116,9 +120,12 @@ Page({
         // console.log('getTempFileURL', res)
         wx.hideLoading()
         this.setData({
+          loading: false,
           pictrueList: res.fileList
         })
-        this.isLeft()
+        if (this.data.mediaType === 'image') {
+          this.isLeft()
+        }
       },
       fail: err => {
         wx.hideLoading()
@@ -164,9 +171,6 @@ Page({
           resolve();
         });
       });
-      this.setData({
-        loading: false
-      })
     })
   }
 

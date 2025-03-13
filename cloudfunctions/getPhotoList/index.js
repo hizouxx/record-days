@@ -30,7 +30,8 @@ exports.main = async (event, context) => {
       avatarUrl: true,
       createTime: true,
       total: true,
-      name: true
+      name: true,
+      mediaType: true,
     }).get()
     all = all.concat(list.data)
   }

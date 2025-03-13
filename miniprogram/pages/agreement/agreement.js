@@ -112,7 +112,7 @@ Page({
       success: res => {
         // console.log(res.tapIndex)
         wx.showLoading({
-          title: '操作中···',
+          title: '操作中',
         })
         wx.cloud.callFunction({
           name: 'deleteAgreement',

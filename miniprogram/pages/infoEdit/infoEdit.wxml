@@ -1,0 +1,45 @@
+<!--pages/infoEdit/infoEdit.wxml-->
+<cu-custom isCustom bg-color="bg-white">
+  <view slot="content">个人信息编辑</view>
+</cu-custom>
+
+
+<scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
+
+    <view class="padding-lg radius bg-white flex flex-direction align-center animate__animated animate__fadeIn" >
+      <button class="avatar" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+        <image class="avatar-img animate__animated animate__fadeIn" src="{{avatarUrl || '../../images/avatar_default.png'}}" mode="aspectFill" fade-in />
+      </button>
+    </view> 
+
+    <view class="margin-lr padding-top padding-bottom-sm text-grey">昵称</view>
+    <view class="margin-lr-lg">
+      <view class="padding radius bg-white">
+        <input type="nickname" value="{{nickName}}" maxlength="16" placeholder="请输入昵称"
+          bindinput="nickNameInput" />
+      </view>
+      <view class="text-right padding-tb-xs text-gray">{{nickName.length}}/16</view>
+    </view>
+
+    <view class="margin-lr padding-top padding-bottom-sm text-grey">性别</view>
+    <view class="margin-lr-lg padding-lr bg-white radius">
+      <view class="padding-tb flex justify-between align-center" data-gender="{{0}}" bindtap="genderSwitchChange">
+        <text class="text-black">男性</text>
+        <text
+          class="cuIcon-male text-xl {{genderSwitch === 0 ? 'animate__animated animate__heartBeat text-blue': 'text-grey'}} "></text>
+      </view>
+      <view class="padding-tb flex justify-between align-center solid-top" data-gender="{{1}}" bindtap="genderSwitchChange">
+        <text class="text-black">女性</text>
+        <text
+          class="cuIcon-female text-xl {{genderSwitch === 1 ? 'animate__animated animate__heartBeat text-pink': 'text-grey'}} "></text>
+      </view>
+    </view>
+
+    <view class="flex justitfy-center padding margin-top-xl">
+      <button class="submit-btn cu-btn padding-xl bg-gradual-{{ColorList[theme].name}} radius text-lg"
+        disabled="{{btnDisabled}}" bindtap="formSubmit">
+        <text wx:if="{{btnLoading}}" class="cuIcon-loading iconfont-spin text-sl text-white"></text>
+        <text wx:else>提交</text>
+      </button>
+    </view>
+</scroll-view>

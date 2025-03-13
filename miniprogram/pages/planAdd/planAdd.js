@@ -1,6 +1,6 @@
 // pages/planAdd/planAdd.js
 const app = getApp();
-const utils = require('../../utils/util.js')
+import utils from '../../utils/util.js'
 Page({
   /**
    * 页面的初始数据

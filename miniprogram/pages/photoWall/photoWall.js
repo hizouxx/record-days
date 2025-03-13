@@ -1,6 +1,6 @@
 // miniprogram/pages/photoWall/photoWall.js
 const app = getApp()
-const utils = require('../../utils/util.js')
+import utils from '../../utils/util.js'
 Page({
   /**
    * 页面的初始数据
@@ -13,6 +13,8 @@ Page({
     addBtnDisabled: false, // 新增按钮loading
     filePaths: [], // 照片临时路径列表
     filePathIds: [], // 照片上传到云存储-获得的id列表
+    failedCount: 0,
+    successCount: 0,
     dataList: [] // 照片列表
   },
 
@@ -73,36 +75,50 @@ Page({
    * @param {*} e 
    */
   pageToDetail(e) {
-    const { id } = e.currentTarget.dataset
+    const { id, type } = e.currentTarget.dataset
+    const mediaType = type === 'video' ? 'video' : 'image'
     wx.navigateTo({
-      url: '/pages/photoWallDetail/photoWallDetail?id=' + id,
+      url: '/pages/photoWallDetail/photoWallDetail?id=' + id + '&mediaType=' + mediaType,
     })
   },
 
-  /**
-   * 选择图片
-   */
-  chooseImage () {
+  chooseMediaType () {
     if(this.data.addBtnDisabled){
       return
     }
-    wx.chooseImage({
-      count: 9,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
+    wx.showActionSheet({
+      itemList: ['照片', '视频'],
       success: res => {
-        // console.log(res)
+        // console.log(res.tapIndex)
+        if (res.tapIndex == 0) {
+          this.chooseMedia('image')
+        } else if (res.tapIndex == 1) {
+          this.chooseMedia('video')
+        }
+      },
+      fail: res=> {
+        console.log(res.errMsg)
+      }
+    })
+  },
+  chooseMedia (mediaType) {
+    wx.chooseMedia({
+      mediaType: mediaType === 'video' ? ['video'] : ['image'],
+      sizeType: ['compressed'],
+      sourceType: ['album'],
+      success: res => {
+        // console.log('-0-', res)
+        
         this.setData({
-          filePaths: res.tempFilePaths
-        })
-        this.setData({
+          filePaths: res.tempFiles,
+          failedCount: res.failedCount,
+          successCount: res.tempFiles?.length,
           addBtnDisabled: true
         })
         wx.showLoading({
-          title: '上传中···',
+          title: '上传中',
         })
-        // this.checkImg()
-        this.doUpload()
+        this.doUpload(mediaType)
       },
       fail: err => {
         wx.showToast({
@@ -112,73 +128,29 @@ Page({
       }
     })
   },
-  /**
-   * 调用云函数进行审核（图片）
-   */
-  checkImg() {
-    //获取图片的临时路径
-    const tempFilePaths = this.data.filePaths[0]
-    //使用getFileSystemManager获取图片的Buffer流
-    wx.getFileSystemManager().readFile({
-      filePath: tempFilePaths,                   
-      success: (res)=>{            
-        const buffer = res.data
-        wx.cloud.callFunction({
-          name: 'checkImg',              
-          data:{
-            'buffer': buffer
-          },
-          success: res => {
-            // console.log(res)
-            //获取状态码  0-正常   87014-违规
-            if(res.result.errCode != 0) {
-              wx.hideLoading()
-              this.setData({
-                addBtnDisabled: false
-              })
-              wx.showToast({
-                title: '输入的内容违规',
-                icon: 'none'
-              })
-            } else {
-              this.doUpload()
-            }
-          },
-          fail: err => {
-            console.error('err', err)
-            wx.hideLoading()
-            this.setData({
-              addBtnDisabled: false
-            })
-            wx.showToast({
-              title: '上传图片过大，请压缩图片后上传',
-              icon: 'none'
-            })
-          }
-        })
-      }
-    })
-  },
 
   /**
    * 上传图片到存储，并获取到ids
    */
-  doUpload() {
+  doUpload(mediaType) {
     const timestamp = new Date().getTime();
+    const YYMMDD = utils.formatDate(new Date())
     let arr = []
     this.data.filePaths.forEach((item, index) => {
-      // 上传图片
+      // console.log('tempFilePath', item.tempFilePath)
+      // console.log('item.tempFilePath.match', item.tempFilePath.match(/\.[^.]+?$/)[0])
+      // 上传
       wx.cloud.uploadFile({
-        cloudPath: timestamp +'-'+ index + item.match(/\.[^.]+?$/)[0],
-        filePath: item,
+        cloudPath: YYMMDD + '/' + mediaType + '_' +timestamp + '_' + index + item.tempFilePath.match(/\.[^.]+?$/)[0],
+        filePath: item.tempFilePath,
         success: res => {
           arr.push(res.fileID)
-          if (arr.length === this.data.filePaths.length) {
+          if (arr?.length === this.data.filePaths?.length) {
             // console.log('filePathIds', arr)
             this.setData({
               filePathIds: arr
             })
-            this.cloudFunction()
+            this.cloudFunction(mediaType)
           }
         },
         fail: () => {
@@ -197,7 +169,7 @@ Page({
   /**
    * 上传图片ids到数据库
    */
-  cloudFunction() {
+  cloudFunction(mediaType) {
     //调用云函数
     wx.cloud.callFunction({
       name: 'addPhoto',
@@ -208,7 +180,8 @@ Page({
         createTime: new Date().getTime(),
         pictrueList: this.data.filePathIds,
         total: this.data.filePathIds.length,
-        name: '未命名相册'
+        name: mediaType === 'video' ? '未命名视频' : '未命名相册',
+        mediaType,
       },
       success: res => {
         // console.log('res', res)
@@ -216,8 +189,9 @@ Page({
         this.setData({
           addBtnDisabled: false
         })
+
         wx.showToast({
-          title: '上传成功',
+          title: '上传成功个数：' + this.data.successCount + '，失败个数：'+this.data.failedCount,
           icon: 'success'
         })
         this.getPhotoList()
@@ -228,7 +202,7 @@ Page({
           addBtnDisabled: false
         })
         wx.showToast({
-          title: '创建相册失败，请稍后再试',
+          title: '创建失败，请稍后再试',
           icon: 'none'
         })
       }
@@ -279,7 +253,7 @@ Page({
           })
         } else if(res.tapIndex == 1) {
           wx.showLoading({
-            title: '操作中···',
+            title: '操作中',
           })
           wx.cloud.callFunction({
             name: 'deletePhotoWall',

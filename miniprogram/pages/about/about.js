@@ -1,6 +1,6 @@
 // miniprogram/pages/about/about.js
 const app = getApp()
-const utils = require('../../utils/util.js')
+import utils from '../../utils/util.js'
 Page({
 
   /**

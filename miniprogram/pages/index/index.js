@@ -1,19 +1,17 @@
 // miniprogram/pages/welcome/welcome.js
 const app = getApp()
-const {
-  calendar
-} = require('../../utils/calendar.js')
+import {calendar} from '../../utils/calendar.js'
 const defaultList = [{
     icon: 'moneybagfill',
     color: 'red',
     path: 'piggyBank',
-    name: '家庭储蓄金'
+    name: '记账本'
   },
   {
     icon: 'timefill',
     color: 'orange',
     path: 'specialDay',
-    name: '家庭大事件'
+    name: '纪念日'
   },
   {
     icon: 'formfill',
@@ -25,31 +23,31 @@ const defaultList = [{
     icon: 'camerafill',
     color: 'olive',
     path: 'photoWall',
-    name: '家庭相册'
+    name: '时光相册'
   },
   {
     icon: 'likefill',
     color: 'green',
     path: 'wish',
-    name: '小心愿'
+    name: '小小心愿'
   },
   {
     icon: 'newshotfill',
     color: 'cyan',
     path: 'agreement',
-    name: '家庭协议'
+    name: '约法三章'
   },
   {
     icon: 'writefill',
     color: 'blue',
     path: 'log',
-    name: '家庭日记'
+    name: '日常笔记'
   },
   {
     icon: 'babyfill',
     color: 'purple',
     path: 'children',
-    name: '仔仔成长记录'
+    name: '仔的储蓄罐'
   },
   {
     icon: 'infofill',

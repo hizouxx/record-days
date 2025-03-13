@@ -2,6 +2,8 @@
 <cu-custom isCustom bg-color="bg-white">
   <view slot="content">面对面绑定</view>
 </cu-custom>
-<view class="canvas-warp shadow radius">
-  <canvas canvas-id="mycanvas"></canvas>
+<view class="flex align-center justify-center" style="height: calc(100vh - {{CustomBar}}px)">
+  <view class="padding shadow radius">
+    <canvas type="2d" class="myQrcode" id="myQrcode"></canvas>
+  </view>
 </view>

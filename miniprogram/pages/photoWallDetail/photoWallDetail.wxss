@@ -3,3 +3,7 @@
   width: 50vw;
   float: left;
 }
+.video-item {
+  width: 650rpx;
+  height: 365rpx;
+}

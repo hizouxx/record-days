@@ -1,7 +1,7 @@
 // miniprogram/pages/specialDayAdd/specialDayAdd.js
 const app = getApp();
-const utils = require('../../utils/util.js')
-const {calendar} = require('../../utils/calendar.js')
+import utils from '../../utils/util.js'
+import {calendar} from '../../utils/calendar.js'
 Page({
   /**
    * 页面的初始数据

@@ -179,14 +179,11 @@ App({
       ]
     }
 
-    wx.getSystemInfo({
-      success: e => {
-        this.globalData.StatusBar = e.statusBarHeight;
-        let custom = wx.getMenuButtonBoundingClientRect();
-        this.globalData.Custom = custom;  
-        this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
-      }
-    })
+    const windowInfo = wx.getWindowInfo() // 获取窗口信息
+    this.globalData.StatusBar = windowInfo.statusBarHeight
+    let custom = wx.getMenuButtonBoundingClientRect(); // 获取菜单按钮（右上角胶囊按钮）的布局位置信息
+    this.globalData.Custom = custom;  
+    this.globalData.CustomBar = custom.bottom + custom.top - windowInfo.statusBarHeight;
   },
 
   /**
@@ -228,7 +225,7 @@ App({
    */
   downLoadAndUpdate(updateManager) {
     wx.showLoading({
-      title: '下载中···',
+      title: '下载中',
     });
     //静默下载更新小程序新版本
     updateManager.onUpdateReady(function() {

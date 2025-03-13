@@ -3,8 +3,8 @@
   <view slot="content"></view>
 </cu-custom>
 <scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
-  <view>
-    <view wx:if="{{!loading}}">
+  <view wx:if="{{!loading}}">
+    <view wx:if="{{mediaType === 'image'}}">
       <view id="left" class="photo-col padding-tb-sm padding-left-sm padding-right-xs">
         <view wx:for="{{leftList}}" wx:key="index" class="margin-bottom-sm padding-sm shadow-warp bg-white">
           <image src="{{item.tempFileURL}}" mode='widthFix' data-current="{{item.tempFileURL}}" bindtap="previewPhoto"></image>
@@ -14,6 +14,11 @@
         <view wx:for="{{rightList}}" wx:key="index" class="margin-bottom-sm padding-sm shadow-warp bg-white">
           <image src="{{item.tempFileURL}}" mode='widthFix' data-current="{{item.tempFileURL}}" bindtap="previewPhoto"></image>
         </view>
+      </view>
+    </view>
+    <view wx:if="{{mediaType === 'video'}}" class="padding-tb-sm">
+      <view wx:for="{{pictrueList}}" wx:key="index" class="margin-lr margin-tb-sm padding-sm radius shadow-warp bg-white">
+        <video class="video-item" src="{{item.tempFileURL}}" object-fit="cover"></video>
       </view>
     </view>
   </view>

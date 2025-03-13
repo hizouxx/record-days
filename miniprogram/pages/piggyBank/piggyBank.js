@@ -1,6 +1,6 @@
 // miniprogram/pages/piggyBank/piggyBank.js
 const app = getApp();
-const utils = require('../../utils/util.js')
+import utils from '../../utils/util.js'
 Page({
   /**
    * 页面的初始数据
@@ -329,7 +329,7 @@ Page({
           })
         } else if (res.tapIndex == 1) {
           wx.showLoading({
-            title: '操作中···',
+            title: '操作中',
           })
           wx.cloud.callFunction({
             name: 'deleteBill',

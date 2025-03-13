@@ -53,7 +53,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
   },
 
   /**
@@ -132,38 +134,8 @@ Page({
    * 手动获取用户微信头像昵称等信息
    */
   getUserProfile() {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
-    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '获取微信头像昵称', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        // console.log('res', res)
-        this.setData({
-          userInfo: res.userInfo,
-        })
-        app.globalData.userInfo = res.userInfo
-        wx.cloud.callFunction({
-          name: 'updateUserInfo',
-          data: {
-            openid: app.globalData.openid,
-            bindOpenid: app.globalData.bindOpenid,
-            userInfo: app.globalData.userInfo,
-          },
-          success: () => {
-            // console.log('绑定success:', res)
-            wx.hideLoading()
-            wx.showToast({
-              title: '绑定成功',
-            })
-          },
-          fail: res => {
-            console.log('绑定fail:', res)
-          }
-        })
-      },
-      fail: res => {
-        console.log('取消获取授权', res)
-      }
+    wx.navigateTo({
+      url: '/pages/infoEdit/infoEdit'
     })
   },
 
@@ -186,7 +158,7 @@ Page({
    */
   bindCouple(bindOpenid) {
     wx.showLoading({
-      title: '绑定中···',
+      title: '绑定中',
     })
     wx.cloud.callFunction({
       name: 'updateUserInfo',

@@ -1,22 +1,61 @@
 // miniprogram/pages/qcCode/qrCode.js
 const app = getApp()
-const QR = require("../../utils/qrcode.js")
+import drawQrcode from '../../utils/weapp.qrcode.esm.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    CustomBar: app.globalData.CustomBar,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    let w = this.getRatio()
-    // console.log('w', w)
-    QR.api.draw(app.globalData.openid, 'mycanvas', 250 * w, 250 * w);
+    const query = wx.createSelectorQuery()
+    query.select('#myQrcode')
+      .fields({
+        node: true,
+        size: true
+      })
+      .exec(async (res) => {
+        // 微信小程序
+        var canvas = res[0].node
+
+        // 调用方法drawQrcode生成二维码
+        await drawQrcode({
+          canvas: canvas,
+          canvasId: 'myQrcode',
+          width: 260,
+          padding: 30,
+          background: '#ffffff',
+          foreground: '#000000',
+          text: app.globalData.openid,
+        })
+
+        // let base64 = canvas.toDataURL()
+        // console.info(base64)
+
+        // 获取临时路径
+        wx.canvasToTempFilePath({
+          canvasId: 'myQrcode',
+          canvas: canvas,
+          x: 0,
+          y: 0,
+          width: 260,
+          height: 260,
+          destWidth: 260,
+          destHeight: 260,
+          success: res=> {
+            // console.log('二维码临时路径：', res.tempFilePath)
+          },
+          fail(res) {
+            console.error(res)
+          }
+        })
+      })
   },
 
   /**
@@ -66,18 +105,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  /**
-   * 获取手机宽度
-   */
-  getRatio() {
-    let w = 0;
-    wx.getSystemInfo({
-      success: function (res) {
-        w = res.windowWidth / 375; //按照750的屏宽
-      },
-    })
-    return w
   },
 })

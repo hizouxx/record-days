@@ -1,7 +1,7 @@
 // miniprogram/pages/specialDay/specialDay.js
 const app = getApp()
-const utils = require('../../utils/util.js')
-const {calendar} = require('../../utils/calendar.js')
+import utils from '../../utils/util.js'
+import {calendar} from '../../utils/calendar.js'
 Page({
   /**
    * 页面的初始数据
@@ -139,7 +139,7 @@ Page({
       success: res => {
         // console.log(res.tapIndex)
         wx.showLoading({
-          title: '操作中···',
+          title: '操作中',
         })
         wx.cloud.callFunction({
           name: 'deleteLog',

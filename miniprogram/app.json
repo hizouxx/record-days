@@ -1,15 +1,16 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/childrenEdit/childrenEdit",
     "pages/piggyBankAdd/piggyBankAdd",
     "pages/specialDayAdd/specialDayAdd",
     "pages/agreement/agreement",
     "pages/piggyBank/piggyBank",
     "pages/info/info",
+    "pages/photoWall/photoWall",
     "pages/log/log",
     "pages/wish/wish",
     "pages/about/about",
-    "pages/photoWall/photoWall",
     "pages/specialDay/specialDay",
     "pages/photoWallDetail/photoWallDetail",
     "pages/qrCode/qrCode",
@@ -22,8 +23,8 @@
     "pages/photoWallEdit/photoWallEdit",
     "pages/letter/letter",
     "pages/children/children",
-    "pages/childrenEdit/childrenEdit",
-    "pages/childrenPayment/childrenPayment"
+    "pages/childrenPayment/childrenPayment",
+    "pages/infoEdit/infoEdit"
   ],
   "window": {
     "backgroundColor": "#f1f1f1",

@@ -163,7 +163,7 @@ Page({
           filePaths: res.tempFiles
         })
         wx.showLoading({
-          title: '上传中···',
+          title: '上传中',
         })
         this.doUpload()
       },

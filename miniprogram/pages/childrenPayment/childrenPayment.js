@@ -1,5 +1,5 @@
 // pages/childrenPayment/childrenPayment.js
-const utils = require('../../utils/util.js')
+import utils from '../../utils/util.js'
 const app = getApp();
 Page({
 

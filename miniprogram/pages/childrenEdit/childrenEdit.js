@@ -1,5 +1,5 @@
 // pages/childrenEdit/childrenEdit.js
-const utils = require('../../utils/util.js')
+import utils from '../../utils/util.js'
 const app = getApp();
 Page({
 
@@ -253,43 +253,16 @@ Page({
   },
 
 
-  /**
-   * 选择图片
-   */
-  chooseImage () {
-    wx.chooseMedia({
-      count: 1,
-      mediaType: ['image'],
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: res => {
-        console.log(res)
-        this.setData({
-          filePaths: res.tempFiles
-        })
-        wx.showLoading({
-          title: '上传中···',
-        })
-        this.doUpload()
-      },
-      fail: () => {
-        wx.showToast({
-          title: '取消上传',
-          icon: 'none'
-        })
-      }
-    })
-  },
-
-  /**
-   * 上传图片到存储，并获取到ids
-   */
-  doUpload() {
+  onChooseAvatar(e) {
+    const { avatarUrl } = e.detail 
     const timestamp = new Date().getTime();
     // 上传图片
+    wx.showLoading({
+      title: '上传中',
+    })
     wx.cloud.uploadFile({
-      cloudPath: 'avatar/' + timestamp + this.data.filePaths[0].tempFilePath.match(/\.[^.]+?$/)[0],
-      filePath: this.data.filePaths[0].tempFilePath,
+      cloudPath: 'avatar/' + timestamp + avatarUrl.match(/\.[^.]+?$/)[0],
+      filePath: avatarUrl,
       success: res => {
         // console.log('res', res)
         wx.hideLoading()
@@ -306,4 +279,58 @@ Page({
       }
     })
   },
+  /**
+   * 选择图片
+   */
+  // chooseImage () {
+  //   wx.chooseMedia({
+  //     count: 1,
+  //     mediaType: ['image'],
+  //     sizeType: ['compressed'],
+  //     sourceType: ['album', 'camera'],
+  //     success: res => {
+  //       console.log(res)
+  //       this.setData({
+  //         filePaths: res.tempFiles
+  //       })
+  //       wx.showLoading({
+  //         title: '上传中',
+  //       })
+  //       this.doUpload()
+  //     },
+  //     fail: () => {
+  //       wx.showToast({
+  //         title: '取消上传',
+  //         icon: 'none'
+  //       })
+  //     }
+  //   })
+  // },
+
+
+  /**
+   * 上传图片到存储，并获取到ids
+   */
+  // doUpload() {
+  //   const timestamp = new Date().getTime();
+  //   // 上传图片
+  //   wx.cloud.uploadFile({
+  //     cloudPath: 'avatar/' + timestamp + this.data.filePaths[0].tempFilePath.match(/\.[^.]+?$/)[0],
+  //     filePath: this.data.filePaths[0].tempFilePath,
+  //     success: res => {
+  //       // console.log('res', res)
+  //       wx.hideLoading()
+  //       this.setData({
+  //         avatarDIY: res.fileID
+  //       })
+  //     },
+  //     fail: () => {
+  //       wx.hideLoading()
+  //       wx.showToast({
+  //         title: '上传图片到云存储失败，请稍后再试',
+  //         icon: 'none'
+  //       })
+  //     }
+  //   })
+  // },
 })

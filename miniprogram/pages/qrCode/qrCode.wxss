@@ -1,10 +1,8 @@
 /* miniprogram/pages/qcCode/qrCode.wxss */
-.canvas-warp, canvas{
-  position: absolute;
-  width: 500rpx;
-  height: 500rpx;
-  top: 50%;
-  left: 50%;
-  overflow: hidden;
-  transform: translate(-50%, -50%);
+.canvas-warp {
+  margin: 20rpx auto;
+}
+.myQrcode{
+  width: 260px;
+  height: 260px;
 }

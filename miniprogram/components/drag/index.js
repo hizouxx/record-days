@@ -69,7 +69,6 @@ Component({
 	data: {
 		/* 未渲染数据 */
 		baseData: {},
-		pageMetaSupport: false, // 当前版本是否支持 page-meta 标签
 		platform: '', // 平台信息
 		listWxs: [], // wxs 传回的最新 list 数据
 		rows: 0, // 行数
@@ -84,16 +83,9 @@ Component({
 			if (this.data.platform !== "devtools") wx.vibrateShort();
 		},
 		pageScroll(e) {
-			if (this.data.pageMetaSupport) {
-				this.triggerEvent("scroll", {
-					scrollTop: e.scrollTop
-				});
-			} else {
-				wx.pageScrollTo({
-					scrollTop: e.scrollTop,
-					duration: 300
-				});
-			}
+      this.triggerEvent("scroll", {
+        scrollTop: e.scrollTop
+      });
 		},
 		drag(e) {
 			this.setData({
@@ -117,15 +109,9 @@ Component({
 		 *  初始化获取 dom 信息
 		 */
 		initDom() {
-			let {
-				windowWidth,
-				windowHeight,
-				platform,
-				SDKVersion
-			} = wx.getSystemInfoSync();
+      const {windowWidth, windowHeight} = wx.getWindowInfo();
+      const {platform} = wx.getDeviceInfo()
 			let remScale = (windowWidth || 375) / 375;
-
-			this.data.pageMetaSupport = compareVersion(SDKVersion, '2.9.0') >= 0;
 			this.data.platform = platform;
 
 			let baseData = {};

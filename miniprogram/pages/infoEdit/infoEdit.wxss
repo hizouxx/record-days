@@ -1,4 +1,5 @@
-/* pages/childrenEdit/childrenEdit.wxss */
+/* pages/infoEdit/infoEdit.wxss */
+
 .avatar {
   all: unset;
   height: 240rpx !important;

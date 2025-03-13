@@ -1,11 +1,7 @@
 <!--pages/letter/letter.wxml-->
 <cu-custom isCustom bg-color="bg-gray">
-  <view slot="content">致用户</view>
+  <view slot="content"></view>
 </cu-custom>
-<view class="padding-lr-xl">
-  <view class="padding radius shadow-lg">
-    <view class="margin-top-sm">
-      <text>{{letterContent}}</text>
-    </view>
-  </view>
+<view class="padding">
+  <rich-text nodes="{{letterContent}}"></rich-text>
 </view>

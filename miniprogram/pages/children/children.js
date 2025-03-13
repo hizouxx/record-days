@@ -1,5 +1,5 @@
 // pages/children/children.js
-const utils = require('../../utils/util.js')
+import utils from '../../utils/util.js'
 const app = getApp();
 Page({
 
@@ -224,7 +224,7 @@ Page({
           })
         } else if (res.tapIndex == 1) {
           wx.showLoading({
-            title: '操作中···',
+            title: '操作中',
           })
           wx.cloud.callFunction({
             name: 'deleteChildren',
@@ -287,7 +287,7 @@ Page({
 
 
     // 设置高分屏适配
-    const dpr = wx.getSystemInfoSync().pixelRatio;
+    const dpr = wx.getWindowInfo().pixelRatio;
     canvas.width = res[0].width * dpr;
     canvas.height = res[0].height * dpr;
     ctx.scale(dpr, dpr);

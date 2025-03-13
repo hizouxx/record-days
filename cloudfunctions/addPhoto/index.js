@@ -21,6 +21,7 @@ exports.main = async (event, context) => {
         pictrueList: event.pictrueList, // 照片集地址列表
         total: event.total, // 照片集总数
         name: event.name, // 照片集名称
+        mediaType: event.mediaType, // 照片类型 image/video
       }
     })
   } catch (err) {
