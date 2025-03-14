@@ -2,24 +2,23 @@
 <cu-custom isCustom bg-color="bg-white">
   <view slot="content"></view>
 </cu-custom>
-<scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)">
+<scroll-view scroll-y style="height: calc(100vh - {{CustomBar}}px)" wx:if="{{mediaType === 'image'}}">
   <view wx:if="{{!loading}}">
-    <view wx:if="{{mediaType === 'image'}}">
-      <view id="left" class="photo-col padding-tb-sm padding-left-sm padding-right-xs">
-        <view wx:for="{{leftList}}" wx:key="index" class="margin-bottom-sm padding-sm shadow-warp bg-white">
-          <image src="{{item.tempFileURL}}" mode='widthFix' data-current="{{item.tempFileURL}}" bindtap="previewPhoto"></image>
-        </view>
-      </view>
-      <view id="right" class="photo-col padding-tb-sm padding-right-sm padding-left-xs">
-        <view wx:for="{{rightList}}" wx:key="index" class="margin-bottom-sm padding-sm shadow-warp bg-white">
-          <image src="{{item.tempFileURL}}" mode='widthFix' data-current="{{item.tempFileURL}}" bindtap="previewPhoto"></image>
-        </view>
+    <view id="left" class="photo-col padding-tb-sm padding-left-sm padding-right-xs">
+      <view wx:for="{{leftList}}" wx:key="index" class="margin-bottom-sm padding-sm shadow-warp bg-white">
+        <image src="{{item.tempFileURL}}" mode='widthFix' data-current="{{item.tempFileURL}}" bindtap="previewPhoto"></image>
       </view>
     </view>
-    <view wx:if="{{mediaType === 'video'}}" class="padding-tb-sm">
-      <view wx:for="{{pictrueList}}" wx:key="index" class="margin-lr margin-tb-sm padding-sm radius shadow-warp bg-white">
-        <video class="video-item" src="{{item.tempFileURL}}" object-fit="cover"></video>
+    <view id="right" class="photo-col padding-tb-sm padding-right-sm padding-left-xs">
+      <view wx:for="{{rightList}}" wx:key="index" class="margin-bottom-sm padding-sm shadow-warp bg-white">
+        <image src="{{item.tempFileURL}}" mode='widthFix' data-current="{{item.tempFileURL}}" bindtap="previewPhoto"></image>
       </view>
     </view>
   </view>
 </scroll-view>
+
+<view wx:if="{{mediaType === 'video'}}">
+  <view wx:for="{{pictrueList}}" wx:key="index" class="margin padding radius shadow-warp bg-white">
+    <video style="height: calc(100vh - {{CustomBar}}px - 120rpx); width: calc(100vw - 120rpx)" src="{{item.tempFileURL}}" object-fit="cover"></video>
+  </view>
+</view>

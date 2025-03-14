@@ -13,8 +13,6 @@ Page({
     addBtnDisabled: false, // 新增按钮loading
     filePaths: [], // 照片临时路径列表
     filePathIds: [], // 照片上传到云存储-获得的id列表
-    failedCount: 0,
-    successCount: 0,
     dataList: [] // 照片列表
   },
 
@@ -91,40 +89,54 @@ Page({
       success: res => {
         // console.log(res.tapIndex)
         if (res.tapIndex == 0) {
-          this.chooseMedia('image')
+          wx.chooseMedia({
+            mediaType: ['image'],
+            sizeType: ['compressed'],
+            sourceType: ['album'],
+            success: res => {
+              this.setData({
+                filePaths: res.tempFiles,
+                addBtnDisabled: true
+              })
+              wx.showLoading({
+                title: '上传中',
+              })
+              this.doUpload('image')
+            },
+            fail: err => {
+              wx.showToast({
+                title: '取消上传',
+                icon: 'none'
+              })
+            }
+          })
         } else if (res.tapIndex == 1) {
-          this.chooseMedia('video')
+          wx.chooseMedia({
+            count: 1,
+            mediaType: ['video'],
+            sizeType: ['compressed'],
+            sourceType: ['album', 'camera'],
+            success: res => {
+              this.setData({
+                filePaths: res.tempFiles,
+                addBtnDisabled: true
+              })
+              wx.showLoading({
+                title: '上传中',
+              })
+              this.doUpload('video')
+            },
+            fail: err => {
+              wx.showToast({
+                title: '取消上传',
+                icon: 'none'
+              })
+            }
+          })
         }
       },
       fail: res=> {
         console.log(res.errMsg)
-      }
-    })
-  },
-  chooseMedia (mediaType) {
-    wx.chooseMedia({
-      mediaType: mediaType === 'video' ? ['video'] : ['image'],
-      sizeType: ['compressed'],
-      sourceType: ['album'],
-      success: res => {
-        // console.log('-0-', res)
-        
-        this.setData({
-          filePaths: res.tempFiles,
-          failedCount: res.failedCount,
-          successCount: res.tempFiles?.length,
-          addBtnDisabled: true
-        })
-        wx.showLoading({
-          title: '上传中',
-        })
-        this.doUpload(mediaType)
-      },
-      fail: err => {
-        wx.showToast({
-          title: '取消上传',
-          icon: 'none'
-        })
       }
     })
   },
@@ -191,7 +203,7 @@ Page({
         })
 
         wx.showToast({
-          title: '上传成功个数：' + this.data.successCount + '，失败个数：'+this.data.failedCount,
+          title: '上传成功',
           icon: 'success'
         })
         this.getPhotoList()
